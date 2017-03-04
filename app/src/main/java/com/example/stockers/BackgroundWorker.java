@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Handler;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -13,6 +14,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -42,9 +44,10 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     AlertDialog alertDialog;
     String action;
 
-    public BackgroundWorker (Context context){
+    public BackgroundWorker (Context context, Activity activity){
         this.context = context;
         this.ready = false;
+        this.activity = activity;
     }
 
     @Override
@@ -56,6 +59,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             try {
 
                 this.action = "login";
+
                 player = new Player();
 
                 URL url = new URL(login_url);
@@ -118,6 +122,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         else if (type.equals("register")){
             try {
                 this.action = "register";
+
                 URL url = new URL(register_url);
 
                 player = new Player();
@@ -190,6 +195,31 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         alertDialog.setMessage(result);
         alertDialog.show();
+
+        if (this.action.equals("login")){
+            if (!result.equals("Login Unsuccessful")){  // jump to welcome activity
+                try {
+                    Thread.sleep(2000);
+                }
+                catch (Exception e){}
+
+                Intent intent = new Intent(this.context, WelcomeActivity.class);
+                intent.putExtra("Player", (Serializable) player);
+
+                this.context.startActivity(intent);
+            }
+            else {}
+        }
+        else if (this.action.equals("register")){
+            if (result.equals("Registration successful")){
+                try {
+                    Thread.sleep(2000);
+                }
+                catch (Exception e){}
+                this.activity.finish();
+            }
+            else {}
+        }
     }
 
     @Override
