@@ -32,12 +32,12 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
     private Activity activity;
 
-    public static String login_url = "http://10.0.2.2:8888/login.php";
-    public static String register_url = "http://10.0.2.2:8888/register.php";
-    public static String viewPrices_url = "http://localhost:8888/viewPrices.php";
-    public static String purchase_url = "http://localhost:8888/purchase.php";
-    public static String sell_url = "http://localhost:8888/sell.php";
-    public static String update_url = "http://localhost:8888/yahoostock.php";
+    public static String login_url = "http://stockers.atwebpages.com/login.php";
+    public static String register_url = "http://stockers.atwebpages.com/register.php";
+    public static String viewPrices_url = "http://stockers.atwebpages.com/viewPrices.php";
+    public static String purchase_url = "http://stockers.atwebpages.com/purchase.php";
+    public static String sell_url = "http://stockers.atwebpages.com/sell.php";
+    public static String update_url = "http://stockers.atwebpages.com/yahoostock.php";
 
 
     Context context;
@@ -163,15 +163,9 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                 httpURLConnection.disconnect();
 
                 if (Integer.parseInt(result) == 1){
-
-                    // go back to MainActivity
-
-
                     return "Registration successful";
-
                 }
                 else {
-
                     return "Registration unsuccessful";
                 }
             }
