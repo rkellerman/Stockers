@@ -27,18 +27,17 @@ import java.net.URLEncoder;
 public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
     Player player = null;
-    boolean success = false;
-    boolean ready = false;
 
     private Activity activity;
+    public AsyncResponse delegate = null;
 
     public static String login_url = "http://stockers.atwebpages.com/login.php";
     public static String register_url = "http://stockers.atwebpages.com/register.php";
-    public static String viewPrices_url = "http://stockers.atwebpages.com/viewPrices.php";
-    public static String purchase_url = "http://stockers.atwebpages.com/purchase.php";
-    public static String sell_url = "http://stockers.atwebpages.com/sell.php";
-    public static String update_url = "http://stockers.atwebpages.com/yahoostock.php";
-
+    public String viewPrices_url = "http://stockers.atwebpages.com/viewPrices.php";
+    public String purchase_url = "http://stockers.atwebpages.com/purchase.php";
+    public String sell_url = "http://stockers.atwebpages.com/sell.php";
+    public String update_url = "http://stockers.atwebpages.com/yahoostock.php";
+    public static String portfolio_url = "http://stockers.atwebpages.com/portfolio.php";
 
     Context context;
     AlertDialog alertDialog;
@@ -46,7 +45,6 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
     public BackgroundWorker (Context context, Activity activity){
         this.context = context;
-        this.ready = false;
         this.activity = activity;
     }
 
@@ -123,6 +121,8 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             try {
                 this.action = "register";
 
+
+
                 URL url = new URL(register_url);
 
                 player = new Player();
@@ -175,6 +175,66 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                 e.printStackTrace();
             }
         }
+        else if (type.equals("portfolio")){
+
+            try {
+
+                player = new Player();
+
+                player.playerID = Integer.parseInt(params[1]);
+
+
+                this.action = "portfolio";
+                URL url = new URL(portfolio_url);
+
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                String post_data = URLEncoder.encode("playerID", "UTF-8") + "=" + URLEncoder.encode(Integer.toString(player.playerID), "UTF-8");
+
+                bufferedWriter.write(post_data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+
+                String result = "";
+                String line = "";
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    result += line;
+                }
+
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+
+                String array[] = result.split("====");
+
+                String entries[][] = new String[array.length][3];
+
+                String text = "";
+
+                for (int i = 0; i < array.length; i++){
+
+                    text += (array[i] + "\n");
+
+                }
+
+                return result;
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         return null;
     }
 
@@ -182,13 +242,12 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     protected void onPreExecute() {
 
         alertDialog = new AlertDialog.Builder(context).create();
-        alertDialog.setTitle("Status");
+        alertDialog.setTitle("NOTICE");
     }
 
     @Override
     protected void onPostExecute(String result) {
-        alertDialog.setMessage(result);
-        alertDialog.show();
+
 
         if (this.action.equals("login")){
             if (!result.equals("Login Unsuccessful")){  // jump to welcome activity
@@ -202,7 +261,10 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
                 this.context.startActivity(intent);
             }
-            else {}
+            else {
+                alertDialog.setMessage(result);
+                alertDialog.show();
+            }
         }
         else if (this.action.equals("register")){
             if (result.equals("Registration successful")){
@@ -213,6 +275,12 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                 this.activity.finish();
             }
             else {}
+        }
+        else if (this.action.equals("portfolio")){
+            alertDialog.setMessage(result);
+            alertDialog.show();
+
+            delegate.processFinish(result);
         }
     }
 
