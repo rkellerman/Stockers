@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/portfolio_stockTicker"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:text="Ticker"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:id="@+id/portfolio_stockPrice"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@id/portfolio_stockTicker"
+        android:text="Price"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:id="@+id/portfolio_shares"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@id/portfolio_stockPrice"
+        android:text="Shares"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:id="@+id/portfolio_totalValue"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@id/portfolio_shares"
+        android:text="Value"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:id="@+id/portfolio_percentChange"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@id/portfolio_totalValue"
+        android:text="Change"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textStyle="normal|bold" />
+
+    <ListView
+        android:id="@+id/portfolioListView"
+        android:layout_width="350dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/portfolio_stockTicker"
+        android:layout_centerHorizontal="true" >
+    </ListView>
+
+</RelativeLayout>
