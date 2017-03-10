@@ -256,7 +256,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                 }
                 catch (Exception e){}
 
-                Intent intent = new Intent(this.context, WelcomeActivity.class);
+                Intent intent = new Intent(this.context, navigationActivity.class);
                 intent.putExtra("Player", (Serializable) player);
 
                 this.context.startActivity(intent);
