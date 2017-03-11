@@ -48,194 +48,208 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         this.activity = activity;
     }
 
+    public String login(String... params){
+        try {
+
+            this.action = "login";
+
+            player = new Player();
+
+            URL url = new URL(login_url);
+
+            player.email = params[1];
+
+            player.password = params[2];
+
+            HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.setDoOutput(true);
+            httpURLConnection.setDoInput(true);
+
+            OutputStream outputStream = httpURLConnection.getOutputStream();
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+            String post_data = URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(player.email, "UTF-8") + "&" +
+                    URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(player.password, "UTF-8");
+
+            bufferedWriter.write(post_data);
+            bufferedWriter.flush();
+            bufferedWriter.close();
+            outputStream.close();
+
+            InputStream inputStream = httpURLConnection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+
+            String result = "";
+            String line = "";
+
+            while ((line = bufferedReader.readLine()) != null){
+                result += line;
+            }
+
+            bufferedReader.close();
+            inputStream.close();
+            httpURLConnection.disconnect();
+
+
+
+            String array[] = result.split(" ");
+
+            if (array.length > 1){
+
+                return result;
+            }
+            else {
+
+                return "-1";
+            }
+        }
+        catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "-1";
+    }
+
+    public String register(String... params){
+        try {
+            this.action = "register";
+
+            URL url = new URL(register_url);
+
+            player = new Player();
+            player.name = params[1];
+            player.surname = params[2];
+            player.email = params[3];
+            player.password = params[4];
+
+            HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.setDoOutput(true);
+            httpURLConnection.setDoInput(true);
+
+            OutputStream outputStream = httpURLConnection.getOutputStream();
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+            String post_data = URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(player.name, "UTF-8") + "&" +
+                    URLEncoder.encode("surname", "UTF-8") + "=" + URLEncoder.encode(player.surname, "UTF-8") + "&" +
+                    URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(player.email, "UTF-8") + "&" +
+                    URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(player.password, "UTF-8");
+
+            bufferedWriter.write(post_data);
+            bufferedWriter.flush();
+            bufferedWriter.close();
+            outputStream.close();
+
+            InputStream inputStream = httpURLConnection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+
+            String result = "";
+            String line = "";
+
+            while ((line = bufferedReader.readLine()) != null){
+                result += line;
+            }
+
+            bufferedReader.close();
+            inputStream.close();
+            httpURLConnection.disconnect();
+
+            if (Integer.parseInt(result) == 1){
+                return "0";
+            }
+            else {
+                return "-1";
+            }
+        }
+        catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "-1";
+    }
+
+    public String portfolio(String... params){
+        try {
+
+            player = new Player();
+
+            player.playerID = Integer.parseInt(params[1]);
+
+
+            this.action = "portfolio";
+            URL url = new URL(portfolio_url);
+
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.setDoOutput(true);
+            httpURLConnection.setDoInput(true);
+
+            OutputStream outputStream = httpURLConnection.getOutputStream();
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+            String post_data = URLEncoder.encode("playerID", "UTF-8") + "=" + URLEncoder.encode(Integer.toString(player.playerID), "UTF-8");
+
+            bufferedWriter.write(post_data);
+            bufferedWriter.flush();
+            bufferedWriter.close();
+            outputStream.close();
+
+            InputStream inputStream = httpURLConnection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+
+            String result = "";
+            String line = "";
+
+            while ((line = bufferedReader.readLine()) != null) {
+                result += line;
+            }
+
+            bufferedReader.close();
+            inputStream.close();
+            httpURLConnection.disconnect();
+
+            String array[] = result.split("====");
+
+            String entries[][] = new String[array.length][3];
+
+            String text = "";
+
+            for (int i = 0; i < array.length; i++){
+
+                text += (array[i] + "\n");
+
+            }
+
+            return result;
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "-1";
+    }
+
     @Override
     protected String doInBackground(String... params){
 
         String type = params[0];
+        String result = null;
 
         if (type.equals("login")){
-            try {
-
-                this.action = "login";
-
-                player = new Player();
-
-                URL url = new URL(login_url);
-
-                player.email = params[1];
-
-                player.password = params[2];
-
-                HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoOutput(true);
-                httpURLConnection.setDoInput(true);
-
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                String post_data = URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(player.email, "UTF-8") + "&" +
-                        URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(player.password, "UTF-8");
-
-                bufferedWriter.write(post_data);
-                bufferedWriter.flush();
-                bufferedWriter.close();
-                outputStream.close();
-
-                InputStream inputStream = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-
-                String result = "";
-                String line = "";
-
-                while ((line = bufferedReader.readLine()) != null){
-                    result += line;
-                }
-
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
-
-                String array[] = result.split(" ");
-
-                if (array.length > 1){
-
-                    player.playerID = Integer.parseInt(array[1]);
-                    player.value = Double.parseDouble(array[2]);
-                    player.name = array[0];
-
-                    return "Success\nWelcome " + player.name + "!";
-                }
-                else {
-
-                    return "Login Unsuccessful";
-                }
-            }
-            catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
+            result = login(params);
         }
         else if (type.equals("register")){
-            try {
-                this.action = "register";
-
-
-
-                URL url = new URL(register_url);
-
-                player = new Player();
-                player.name = params[1];
-                player.surname = params[2];
-                player.email = params[3];
-                player.password = params[4];
-
-                HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoOutput(true);
-                httpURLConnection.setDoInput(true);
-
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                String post_data = URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(player.name, "UTF-8") + "&" +
-                        URLEncoder.encode("surname", "UTF-8") + "=" + URLEncoder.encode(player.surname, "UTF-8") + "&" +
-                        URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(player.email, "UTF-8") + "&" +
-                        URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(player.password, "UTF-8");
-
-                bufferedWriter.write(post_data);
-                bufferedWriter.flush();
-                bufferedWriter.close();
-                outputStream.close();
-
-                InputStream inputStream = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-
-                String result = "";
-                String line = "";
-
-                while ((line = bufferedReader.readLine()) != null){
-                    result += line;
-                }
-
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
-
-                if (Integer.parseInt(result) == 1){
-                    return "Registration successful";
-                }
-                else {
-                    return "Registration unsuccessful";
-                }
-            }
-            catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            result = register(params);
         }
         else if (type.equals("portfolio")){
-
-            try {
-
-                player = new Player();
-
-                player.playerID = Integer.parseInt(params[1]);
-
-
-                this.action = "portfolio";
-                URL url = new URL(portfolio_url);
-
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoOutput(true);
-                httpURLConnection.setDoInput(true);
-
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                String post_data = URLEncoder.encode("playerID", "UTF-8") + "=" + URLEncoder.encode(Integer.toString(player.playerID), "UTF-8");
-
-                bufferedWriter.write(post_data);
-                bufferedWriter.flush();
-                bufferedWriter.close();
-                outputStream.close();
-
-                InputStream inputStream = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-
-                String result = "";
-                String line = "";
-
-                while ((line = bufferedReader.readLine()) != null) {
-                    result += line;
-                }
-
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
-
-                String array[] = result.split("====");
-
-                String entries[][] = new String[array.length][3];
-
-                String text = "";
-
-                for (int i = 0; i < array.length; i++){
-
-                    text += (array[i] + "\n");
-
-                }
-
-                return result;
-
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            result = portfolio(params);
         }
-        return null;
+        return result;
     }
 
     @Override
@@ -250,16 +264,10 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
 
         if (this.action.equals("login")){
-            if (!result.equals("Login Unsuccessful")){  // jump to welcome activity
-                try {
-                    Thread.sleep(2000);
-                }
-                catch (Exception e){}
+            if (!result.equals("-1")){  // jump to welcome activity
 
-                Intent intent = new Intent(this.context, navigationActivity.class);
-                intent.putExtra("Player", (Serializable) player);
+                delegate.processFinish(result);
 
-                this.context.startActivity(intent);
             }
             else {
                 alertDialog.setMessage(result);
@@ -267,12 +275,8 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             }
         }
         else if (this.action.equals("register")){
-            if (result.equals("Registration successful")){
-                try {
-                    Thread.sleep(2000);
-                }
-                catch (Exception e){}
-                this.activity.finish();
+            if (result.equals("0")){
+                delegate.processFinish(result);
             }
             else {}
         }

@@ -1,12 +1,15 @@
 package com.example.stockers;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity {
+import java.io.Serializable;
+
+public class MainActivity extends AppCompatActivity implements AsyncResponse{
 
     EditText Username, Password;
 
@@ -27,12 +30,31 @@ public class MainActivity extends AppCompatActivity {
         String type = "login";
 
         BackgroundWorker backgroundWorker = new BackgroundWorker(this, MainActivity.this);
-            backgroundWorker.execute(type, username, password);
+        backgroundWorker.delegate = this;
+        backgroundWorker.execute(type, username, password);
 
 
     }
 
     public void openReg(View view){
+
         startActivity(new Intent(this, Register.class));
+
+    }
+
+    @Override
+    public void processFinish(String result){
+
+        Player player = new Player();
+        String array[] = result.split(" ");
+
+        player.playerID = Integer.parseInt(array[1]);
+        player.value = Double.parseDouble(array[2]);
+        player.name = array[0];
+
+
+        Intent intent = new Intent(this, navigationActivity.class);
+        intent.putExtra("Player", (Serializable)player);
+        startActivity(intent);
     }
 }

@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-public class Register extends AppCompatActivity {
+import java.io.Serializable;
+
+public class Register extends AppCompatActivity implements AsyncResponse{
 
     EditText name, surname, email, password;
 
@@ -30,12 +32,15 @@ public class Register extends AppCompatActivity {
         String type = "register";
 
         BackgroundWorker backgroundWorker = new BackgroundWorker(this, Register.this);
+        backgroundWorker.delegate = this;
         backgroundWorker.execute(type, str_name, str_surname, str_email, str_password);
 
 
+    }
 
+    @Override
+    public void processFinish(String result){
 
-
-
+        finish();
     }
 }

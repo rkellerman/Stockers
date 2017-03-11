@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -36,11 +37,10 @@ public class WelcomeActivity extends AppCompatActivity implements AsyncResponse 
 
     }
 
-    //this override the implemented method from asyncTask
-    @Override
-    public void processFinish(String output){
-        //Here you will receive the result fired from async class
-        //of onPostExecute(result) method.
-    }
 
+
+    @Override
+    public void processFinish(String result) {
+
+    }
 }
