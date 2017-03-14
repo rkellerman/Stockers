@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="tim@tim.com"
         android:ems="10"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -29,7 +29,8 @@
         android:layout_below="@+id/etUserName"
         android:layout_alignEnd="@+id/etUserName"
         android:layout_marginTop="27dp"
-        android:id="@+id/etPassword" />
+        android:id="@+id/etPassword"
+        android:text="timtim" />
 
     <Button
         android:text="Register"

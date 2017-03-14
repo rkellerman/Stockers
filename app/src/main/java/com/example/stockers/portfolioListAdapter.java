@@ -16,12 +16,12 @@ public class portfolioListAdapter extends ArrayAdapter<String> {
     String[] stockTicker={};
     double[] stockPrice={};
     int[] shares={};
-    double[] percentChange={};
+    String[] percentChange={};
     Context c;
     LayoutInflater inflater;
 
     public portfolioListAdapter(Context context, String[] stockTicker,
-                                double[] stockPrice, int[] shares, double[] percentChange) {
+                                double[] stockPrice, int[] shares, String[] percentChange) {
 
         super(context, R.layout.portfolio_row_model, stockTicker);
 
@@ -66,7 +66,7 @@ public class portfolioListAdapter extends ArrayAdapter<String> {
         holder.stockPrice.setText(String.valueOf("$"+stockPrice[position]));
         holder.shares.setText(String.valueOf(shares[position]));
         holder.totalValue.setText(String.valueOf("$"+(stockPrice[position]*shares[position])));
-        holder.percentChange.setText(String.valueOf(percentChange[position]+"%"));
+        holder.percentChange.setText(String.valueOf(percentChange[position]));
 
 
         //return super.getView(position, convertView, parent);

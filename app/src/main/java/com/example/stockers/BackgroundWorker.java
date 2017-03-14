@@ -20,6 +20,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import com.example.stockers.SharedPreference.*;
+
 /**
  * Created by RyanMini on 3/2/17.
  */
@@ -27,6 +29,8 @@ import java.net.URLEncoder;
 public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
     Player player = null;
+
+    private SharedPreference sharedPreference;
 
     private Activity activity;
     public AsyncResponse delegate = null;
@@ -94,7 +98,13 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
             String array[] = result.split(" ");
 
+
+
             if (array.length > 1){
+
+                player.name = array[0];
+                player.playerID = Integer.parseInt(array[1]);
+                player.value = Double.parseDouble(array[2]);
 
                 return result;
             }
@@ -173,14 +183,20 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     }
 
     public String portfolio(String... params){
+
+        update();
+
         try {
 
-            player = new Player();
+            if (player == null) {
+                this.action = "portfolio";
+                player = new Player();
 
-            player.playerID = Integer.parseInt(params[1]);
+                player.playerID = Integer.parseInt(params[1]);
+            }
 
 
-            this.action = "portfolio";
+
             URL url = new URL(portfolio_url);
 
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -211,18 +227,6 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             inputStream.close();
             httpURLConnection.disconnect();
 
-            String array[] = result.split("====");
-
-            String entries[][] = new String[array.length][3];
-
-            String text = "";
-
-            for (int i = 0; i < array.length; i++){
-
-                text += (array[i] + "\n");
-
-            }
-
             return result;
 
         } catch (MalformedURLException e) {
@@ -234,14 +238,52 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         return "-1";
     }
 
+    public void update(){
+
+        try {
+            URL url = new URL(update_url);
+
+            HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+            httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.setDoOutput(true);
+            httpURLConnection.setDoInput(true);
+
+            InputStream inputStream = httpURLConnection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+
+            String result = "";
+            String line = "";
+
+            while ((line = bufferedReader.readLine()) != null){
+                result += line;
+            }
+
+            bufferedReader.close();
+            inputStream.close();
+            httpURLConnection.disconnect();
+        }
+        catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     protected String doInBackground(String... params){
 
         String type = params[0];
+
         String result = null;
 
         if (type.equals("login")){
             result = login(params);
+            if (!result.equals("-1")){
+                String result2 = portfolio(params);
+                sharedPreference = new SharedPreference();
+                sharedPreference.save(context, result2);
+            }
+
         }
         else if (type.equals("register")){
             result = register(params);
