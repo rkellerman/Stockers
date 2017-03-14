@@ -1,6 +1,8 @@
 package com.example.stockers;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -26,9 +28,14 @@ public class portfolioActivity extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        /*
         sharedPreference = new SharedPreference();
-
         String result = sharedPreference.getValue(getContext());
+        */
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("1", Context.MODE_PRIVATE);
+        String result = sharedPreferences.getString("PORTFOLIO", "0!!!0!!!0!!!0");
+
 
         /*
         AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();

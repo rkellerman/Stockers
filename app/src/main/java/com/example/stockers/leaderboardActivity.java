@@ -1,6 +1,8 @@
 package com.example.stockers;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,9 +15,9 @@ import android.widget.ListView;
 public class leaderboardActivity extends Fragment {
 
     ListView leaderboardList;
-    int[] rank= {1,2,3,4,5,6,7};
-    String[] investor={"eevee", "espeon", "flareon", "glaceon", "leafeon", "umbreon", "vaporeon"};
-    double[] networth={8000, 7400, 7000, 6800, 6700, 5500, 4200};
+    int[] rank = null;
+    String[] investor = null;
+    double[] networth = null;
 
     @Nullable
     @Override
@@ -23,6 +25,25 @@ public class leaderboardActivity extends Fragment {
         View rootView = inflater.inflate(R.layout.leaderboard_layout, container, false);
 
         leaderboardList=(ListView) rootView.findViewById(R.id.leaderboardListView);
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("1", Context.MODE_PRIVATE);
+        String result = sharedPreferences.getString("LEADERBOARD", "0!!!0");
+
+        result = result.substring(0, result.length()-3);
+        String[] array = result.split("===");
+
+        rank = new int[array.length];
+        investor = new String[array.length];
+        networth = new double[array.length];
+
+        for (int i = 0; i < array.length; i++){
+            String[] entries = array[i].split("!!!");
+
+            rank[i] = i+1;
+            investor[i] = entries[0];
+            networth[i] = Double.parseDouble(entries[1]);
+        }
+
 
         //ADAPTER
         ListAdapter adapter = new leaderboardListAdapter(getActivity(), rank, investor, networth);

@@ -72,11 +72,6 @@ public class navigationActivity extends AppCompatActivity
         switch (id){
             case R.id.nav_portfolio:
                 fragment = new portfolioActivity();
-
-
-
-
-
                 break;
             case R.id.nav_leaderboard:
                 fragment = new leaderboardActivity();

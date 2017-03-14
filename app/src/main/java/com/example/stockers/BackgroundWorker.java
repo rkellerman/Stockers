@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -37,11 +39,12 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
     public static String login_url = "http://stockers.atwebpages.com/login.php";
     public static String register_url = "http://stockers.atwebpages.com/register.php";
-    public String viewPrices_url = "http://stockers.atwebpages.com/viewPrices.php";
-    public String purchase_url = "http://stockers.atwebpages.com/purchase.php";
-    public String sell_url = "http://stockers.atwebpages.com/sell.php";
-    public String update_url = "http://stockers.atwebpages.com/yahoostock.php";
+    public static String viewPrices_url = "http://stockers.atwebpages.com/viewPrices.php";
+    public static String purchase_url = "http://stockers.atwebpages.com/purchase.php";
+    public static String sell_url = "http://stockers.atwebpages.com/sell.php";
+    public static String update_url = "http://stockers.atwebpages.com/yahoostock.php";
     public static String portfolio_url = "http://stockers.atwebpages.com/portfolio.php";
+    public static String leaderboard_url = "http://stockers.atwebpages.com/leaderboard.php";
 
     Context context;
     AlertDialog alertDialog;
@@ -244,7 +247,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             URL url = new URL(update_url);
 
             HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
-            httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.setRequestMethod("POST");
             httpURLConnection.setDoOutput(true);
             httpURLConnection.setDoInput(true);
 
@@ -258,6 +261,8 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                 result += line;
             }
 
+            Log.d("BOI", result);
+
             bufferedReader.close();
             inputStream.close();
             httpURLConnection.disconnect();
@@ -267,6 +272,47 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String leaderboard(){
+
+        update();
+
+        try {
+
+
+            URL url = new URL(leaderboard_url);
+
+
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.setDoOutput(true);
+            httpURLConnection.setDoInput(true);
+
+            InputStream inputStream = httpURLConnection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+
+            String result = "";
+            String line = "";
+
+            while ((line = bufferedReader.readLine()) != null) {
+                result += line;
+            }
+
+            bufferedReader.close();
+            inputStream.close();
+            httpURLConnection.disconnect();
+
+            return result;
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
     }
 
     @Override
@@ -279,9 +325,21 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         if (type.equals("login")){
             result = login(params);
             if (!result.equals("-1")){
+
+                String result1 = leaderboard();
                 String result2 = portfolio(params);
+
+                /*
                 sharedPreference = new SharedPreference();
                 sharedPreference.save(context, result2);
+                */
+
+                SharedPreferences sharedPref = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("LEADERBOARD", result1);
+                editor.putString("PORTFOLIO", result2);
+
+                editor.commit();
             }
 
         }
