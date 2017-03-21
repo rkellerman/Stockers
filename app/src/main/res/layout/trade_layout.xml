@@ -10,6 +10,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.stockers.tradeActivity">
 
+    <Button
+        android:text="Buy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/textView5" />
+
     <TextView
         android:text="EPS"
         android:layout_width="wrap_content"
@@ -120,13 +128,6 @@
         android:layout_marginBottom="23dp"
         android:textSize="20sp" />
 
-    <SearchView
-        android:id="@id/searchView"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_below="@+id/textView14"
-        android:layout_alignParentStart="true" />
-
     <Button
         android:text="Buy"
         android:layout_width="wrap_content"
@@ -161,14 +162,24 @@
         android:layout_above="@+id/button2"
         android:layout_alignEnd="@+id/button2" />
 
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_below="@+id/textView14"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/searchView"
-        android:onItemClick="getInfo"
-        android:id="@+id/listView" />
+        android:id="@+id/searchField"
+        android:hint="Enter Ticker or Company" />
+
+    <Button
+        android:text="Search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/searchField"
+        android:layout_toEndOf="@+id/textView10"
+        android:onClick="onClick"
+        android:id="@+id/searchButton" />
 
 
 
