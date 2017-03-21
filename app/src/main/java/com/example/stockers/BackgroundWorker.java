@@ -318,7 +318,6 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
     public String price(String... params){
 
-
         update();
 
         try {
@@ -334,7 +333,8 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
             OutputStream outputStream = httpURLConnection.getOutputStream();
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-            String post_data = URLEncoder.encode("ticker", "UTF-8") + "=" + URLEncoder.encode(params[1], "UTF-8");
+            String post_data = URLEncoder.encode("ticker", "UTF-8") + "=" + URLEncoder.encode(params[1], "UTF-8") + "&" +
+                    URLEncoder.encode("playerID", "UTF-8") + "=" + URLEncoder.encode(params[2], "UTF-8");
 
             bufferedWriter.write(post_data);
             bufferedWriter.flush();
@@ -366,6 +366,124 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         return "-1";
     }
 
+    public String makePurchase(String... params){
+
+        update();
+
+        try {
+            this.action = "purchase";
+            URL url = new URL(purchase_url);
+
+            HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.setDoOutput(true);
+            httpURLConnection.setDoInput(true);
+
+            OutputStream outputStream = httpURLConnection.getOutputStream();
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+            String post_data = URLEncoder.encode("ticker", "UTF-8") + "=" + URLEncoder.encode(params[4], "UTF-8") + "&" +
+                    URLEncoder.encode("shares", "UTF-8") + "=" + URLEncoder.encode(params[3], "UTF-8") + "&" +
+                    URLEncoder.encode("playerID", "UTF-8") + "=" + URLEncoder.encode(params[1], "UTF-8") + "&" +
+                    URLEncoder.encode("money", "UTF-8") + "=" + URLEncoder.encode(params[2], "UTF-8");
+
+            bufferedWriter.write(post_data);
+            bufferedWriter.flush();
+            bufferedWriter.close();
+            outputStream.close();
+
+            InputStream inputStream = httpURLConnection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+
+            String result = "";
+            String line = "";
+
+            while ((line = bufferedReader.readLine()) != null){
+                result += line;
+            }
+
+            bufferedReader.close();
+            inputStream.close();
+            httpURLConnection.disconnect();
+
+            double temp = Double.parseDouble(result);
+
+            if (temp == -1.0){
+                return "-1";
+            }
+            else if (temp == -2.0){
+                return "-2";
+            }
+            else {
+                return result;
+            }
+        }
+        catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "-1";
+    }
+
+    public String sell(String... params){
+
+        update();
+
+        try {
+            this.action = "sell";
+            URL url = new URL(sell_url);
+
+            HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.setDoOutput(true);
+            httpURLConnection.setDoInput(true);
+
+            OutputStream outputStream = httpURLConnection.getOutputStream();
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+            String post_data = URLEncoder.encode("ticker", "UTF-8") + "=" + URLEncoder.encode(params[4], "UTF-8") + "&" +
+                    URLEncoder.encode("shares", "UTF-8") + "=" + URLEncoder.encode(params[3], "UTF-8") + "&" +
+                    URLEncoder.encode("playerID", "UTF-8") + "=" + URLEncoder.encode(params[1], "UTF-8") + "&" +
+                    URLEncoder.encode("money", "UTF-8") + "=" + URLEncoder.encode(params[2], "UTF-8");
+
+            bufferedWriter.write(post_data);
+            bufferedWriter.flush();
+            bufferedWriter.close();
+            outputStream.close();
+
+            InputStream inputStream = httpURLConnection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+
+            String result = "";
+            String line = "";
+
+            while ((line = bufferedReader.readLine()) != null){
+                result += line;
+            }
+
+            bufferedReader.close();
+            inputStream.close();
+            httpURLConnection.disconnect();
+
+            double temp = Double.parseDouble(result);
+
+            if (temp == -1.0){
+                return "-1";
+            }
+            else if (temp == -2.0){
+                return "-2";
+            }
+            else {
+                return result;
+            }
+        }
+        catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "-1";
+    }
+
     @Override
     protected String doInBackground(String... params){
 
@@ -389,6 +507,8 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString("LEADERBOARD", result1);
                 editor.putString("PORTFOLIO", result2);
+                editor.putString("ID", Integer.toString(player.playerID));
+                editor.putString("VALUE", Double.toString(player.value));
 
                 editor.commit();
             }
@@ -402,6 +522,12 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         }
         else if (type.equals("price")){
             result = price(params);
+        }
+        else if (type.equals("purchase")){
+            result = makePurchase(params);
+        }
+        else if (type.equals("sell")){
+            result = sell(params);
         }
         return result;
     }
@@ -441,6 +567,12 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             delegate.processFinish(result);
         }
         else if (this.action.equals("price")){
+            delegate.processFinish(result);
+        }
+        else if (this.action.equals("purchase")){
+            delegate.processFinish(result);
+        }
+        else if (this.action.equals("sell")){
             delegate.processFinish(result);
         }
     }

@@ -10,6 +10,16 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.stockers.tradeActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView17"
+        android:text="--------"
+        tools:textSize="24sp"
+        android:layout_alignBaseline="@+id/one"
+        android:layout_alignBottom="@+id/one"
+        android:layout_alignEnd="@+id/textView" />
+
     <Button
         android:text="Buy"
         android:layout_width="wrap_content"
@@ -22,7 +32,7 @@
         android:text="EPS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView6"
+        android:layout_alignTop="@+id/three"
         android:layout_alignStart="@+id/textView8"
         android:id="@+id/textView9" />
 
@@ -31,8 +41,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView8"
-        android:layout_alignBaseline="@+id/textView3"
-        android:layout_alignBottom="@+id/textView3"
+        android:layout_alignBaseline="@+id/two"
+        android:layout_alignBottom="@+id/two"
         android:layout_alignStart="@+id/textView7" />
 
     <TextView
@@ -48,10 +58,10 @@
         android:text="52 week"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3"
+        android:id="@+id/two"
         android:layout_marginBottom="33dp"
-        android:layout_above="@+id/textView6"
-        android:layout_alignStart="@+id/textView2" />
+        android:layout_above="@+id/three"
+        android:layout_alignStart="@+id/one" />
 
     <TextView
         android:text="Inst. own"
@@ -66,19 +76,19 @@
         android:text="Price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2"
+        android:id="@+id/one"
         android:layout_marginBottom="30dp"
         android:layout_marginTop="50dp"
-        android:layout_above="@+id/textView3"/>
+        android:layout_above="@+id/two"/>
 
     <TextView
         android:text="P/E"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView7"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_alignStart="@+id/button3" />
+        android:layout_alignBaseline="@+id/one"
+        android:layout_alignBottom="@+id/one"
+        android:layout_alignStart="@+id/sellButton" />
 
 
 
@@ -89,24 +99,14 @@
         android:layout_marginBottom="40dp"
         android:id="@+id/textView5"
         android:layout_above="@+id/textView4"
-        android:layout_alignStart="@+id/textView6" />
-
-    <TextView
-        android:text="# of Shares"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView16"
-        android:layout_marginStart="13dp"
-        android:layout_alignBaseline="@+id/textView15"
-        android:layout_alignBottom="@+id/textView15"
-        android:layout_alignStart="@+id/button3" />
+        android:layout_alignStart="@+id/three" />
 
     <TextView
         android:text="Open"
         android:layout_width="65dp"
         android:layout_height="35dp"
         android:layout_marginBottom="20dp"
-        android:id="@+id/textView6"
+        android:id="@+id/three"
         android:layout_above="@+id/textView5"
         android:layout_alignParentStart="true" />
 
@@ -132,17 +132,19 @@
         android:text="Buy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button2"
+        android:id="@+id/buyButton"
         android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/textView5" />
+        android:layout_toEndOf="@+id/textView5"
+        android:elevation="24dp" />
 
     <Button
         android:text="Sell"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button3"
+        android:id="@+id/sellButton"
         android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/textView14" />
+        android:layout_toEndOf="@+id/textView14"
+        android:elevation="24dp" />
 
     <TextView
         android:text="TRADE"
@@ -159,8 +161,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView15"
         android:layout_marginBottom="15dp"
-        android:layout_above="@+id/button2"
-        android:layout_alignEnd="@+id/button2" />
+        android:layout_above="@+id/buyButton"
+        android:layout_alignEnd="@+id/buyButton" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -181,6 +183,43 @@
         android:onClick="onClick"
         android:id="@+id/searchButton" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/sharesText"
+        android:hint="Enter # of shares here"
+        android:layout_alignBaseline="@+id/textView15"
+        android:layout_alignBottom="@+id/textView15"
+        android:layout_alignStart="@+id/textView14" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/priceView"
+        android:text="--------"
+        tools:textSize="24sp"
+        android:layout_alignTop="@+id/one"
+        android:layout_alignStart="@+id/volumeView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/volumeView"
+        android:text="--------"
+        tools:textSize="24sp"
+        android:layout_alignTop="@+id/two"
+        android:layout_toEndOf="@+id/three" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/changeView"
+        android:text="--------"
+        tools:textSize="24sp"
+        android:layout_alignTop="@+id/three"
+        android:layout_toEndOf="@+id/three" />
 
 
 </RelativeLayout>
