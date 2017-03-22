@@ -505,8 +505,12 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
                 SharedPreferences sharedPref = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
+                editor.clear();
+
                 editor.putString("LEADERBOARD", result1);
                 editor.putString("PORTFOLIO", result2);
+
+                Log.d("BOOOOIIII", result2);
                 editor.putString("ID", Integer.toString(player.playerID));
                 editor.putString("VALUE", Double.toString(player.value));
 
