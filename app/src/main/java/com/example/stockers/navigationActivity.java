@@ -103,4 +103,8 @@ public class navigationActivity extends AppCompatActivity
 
         return true;
     }
+
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        return false;
+    }
 }

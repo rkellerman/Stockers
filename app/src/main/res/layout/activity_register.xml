@@ -15,12 +15,11 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginStart="17dp"
         android:layout_marginTop="13dp"
         android:id="@+id/et_name"
-        android:hint="Name" />
+        android:hint="First Name" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -28,9 +27,9 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:layout_below="@+id/et_name"
-        android:layout_alignEnd="@+id/et_name"
+        android:layout_centerHorizontal="true"
         android:id="@+id/et_surname"
-        android:hint="Surname" />
+        android:hint="Last Name" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -38,29 +37,40 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:layout_below="@+id/et_surname"
-        android:layout_alignStart="@+id/et_surname"
+        android:layout_centerHorizontal="true"
         android:id="@+id/et_email"
         android:hint="Email" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:ems="10"
         android:layout_below="@+id/et_email"
-        android:layout_alignStart="@+id/et_email"
+        android:layout_centerHorizontal="true"
         android:id="@+id/et_password"
         android:hint="Password" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_below="@+id/et_password"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/et_passwordConfirm"
+        android:hint="Confirm Password" />
 
     <Button
         android:text="Register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_reg"
+        android:layout_marginTop="30dp"
         android:minHeight="63dp"
         android:minWidth="200dp"
         android:onClick="onReg"
-        android:layout_below="@+id/et_password"
-        android:layout_alignStart="@+id/et_password" />
+        android:layout_below="@+id/et_passwordConfirm"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
