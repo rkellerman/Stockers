@@ -48,60 +48,77 @@ public class portfolioActivity extends Fragment {
         alertDialog.show();
         */
 
-        result = result.substring(0, result.length() - 3);
+        if (result.length() > 2) {
+            result = result.substring(0, result.length() - 3);
 
-        String[] array = result.split("===");
+            String[] array = result.split("===");
 
-        stockTicker = new String[array.length];
-        stockPrice = new double[array.length];
-        shares = new int[array.length];
-        percentChange = new String[array.length];
+            stockTicker = new String[array.length];
+            stockPrice = new double[array.length];
+            shares = new int[array.length];
+            percentChange = new String[array.length];
 
 
-        for (int i = 0; i < array.length; i++){
+            for (int i = 0; i < array.length; i++) {
 
-            try {
-                String[] entries = array[i].split("!!!");
-                stockTicker[i] = entries[0];
-                stockPrice[i] = Double.parseDouble(entries[1]);
-                shares[i] = Integer.parseInt(entries[2]);
-                percentChange[i] = entries[3];
+                try {
+                    String[] entries = array[i].split("!!!");
+                    stockTicker[i] = entries[0];
+                    stockPrice[i] = Double.parseDouble(entries[1]);
+                    shares[i] = Integer.parseInt(entries[2]);
+                    percentChange[i] = entries[3];
+                } catch (Exception e) {
+                    stockTicker[i] = "bet";
+                    stockPrice[i] = 69.69;
+                    shares[i] = 420;
+                    percentChange[i] = "%4.20";
+                }
+
+
+
+
             }
-            catch(Exception e){
-                stockTicker[i] = "bet";
-                stockPrice[i] = 69.69;
-                shares[i] = 420;
-                percentChange[i] = "%4.20";
+
+            totalNetworth = (TextView) rootView.findViewById(R.id.total_networth);
+            double sum = 0.0;
+            for (int i = 0; i < array.length; i++)
+            {
+                sum = sum + (stockPrice[i]*shares[i]);
+            }
+            String sumString = String.valueOf("$"+String.format("%.2f", sum));
+            totalNetworth.setText(sumString);
+            if (sum > 0)
+            {
+                totalNetworth.setTextColor(Color.parseColor("#41f479"));
+            }
+            else
+            {
+                totalNetworth.setTextColor(Color.parseColor("#f44141"));
             }
 
+
+
+            portfolioList = (ListView) rootView.findViewById(R.id.portfolioListView);
+            //ADAPTER
+            ListAdapter adapter = new portfolioListAdapter(getActivity(), stockTicker, stockPrice, shares, percentChange);
+            portfolioList.setAdapter(adapter);
+
+            return rootView;
+        }
+        else {
+            AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
+            alertDialog.setTitle("NOTICE");
+            alertDialog.setMessage("No activity to show...");
+            alertDialog.show();
+
+            return null;
         }
 
-        totalNetworth = (TextView) rootView.findViewById(R.id.total_networth);
-        double sum = 0.0;
-        for (int i = 0; i < array.length; i++)
-        {
-            sum = sum + (stockPrice[i]*shares[i]);
-        }
-        String sumString = String.valueOf("$"+String.format("%.2f", sum));
-        totalNetworth.setText(sumString);
-        if (sum > 0)
-        {
-            totalNetworth.setTextColor(Color.parseColor("#41f479"));
-        }
-        else
-        {
-            totalNetworth.setTextColor(Color.parseColor("#f44141"));
-        }
 
 
 
-        portfolioList = (ListView) rootView.findViewById(R.id.portfolioListView);
-        //ADAPTER
-        ListAdapter adapter = new portfolioListAdapter(getActivity(), stockTicker, stockPrice, shares, percentChange);
-        portfolioList.setAdapter(adapter);
 
-
-        return rootView;
+        
     }
 
     @Override
