@@ -6,47 +6,55 @@
 
     <TextView
         android:id="@+id/list_portfolio_ticker"
-        android:layout_width="70dp"
-        android:layout_height="20dp"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:text="AAPL"
         android:gravity="center"
-        android:textSize="18sp" />
+        android:textSize="20sp"
+        android:textStyle="normal|bold" />
 
     <TextView
         android:id="@+id/list_portfolio_price"
-        android:layout_width="70dp"
-        android:layout_height="20dp"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:text="138.96"
         android:layout_toEndOf="@id/list_portfolio_ticker"
         android:gravity="center"
-        android:textSize="18sp" />
+        android:textSize="20sp"
+        android:textStyle="normal|bold" />
 
     <TextView
         android:id="@+id/list_portfolio_shares"
-        android:layout_width="70dp"
-        android:layout_height="20dp"
+        android:layout_below="@+id/list_portfolio_ticker"
+        android:layout_width="110dp"
+        android:layout_height="40dp"
         android:text="3"
-        android:layout_toEndOf="@id/list_portfolio_price"
         android:gravity="center"
-        android:textSize="18sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/list_portfolio_value"
-        android:layout_width="70dp"
-        android:layout_height="20dp"
+        android:layout_toRightOf="@+id/list_portfolio_shares"
+        android:layout_below="@+id/list_portfolio_ticker"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="110dp"
+        android:layout_height="40dp"
         android:text="416.88"
-        android:layout_toEndOf="@id/list_portfolio_shares"
         android:gravity="center"
-        android:textSize="18sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/list_portfolio_change"
-        android:layout_width="70dp"
-        android:layout_height="20dp"
+        android:layout_toRightOf="@+id/list_portfolio_value"
+        android:layout_below="@+id/list_portfolio_ticker"
+        android:layout_width="110dp"
+        android:layout_height="40dp"
         android:text="0.59"
-        android:layout_toEndOf="@id/list_portfolio_value"
         android:gravity="center"
-        android:textSize="18sp" />
+        android:textSize="20sp" />
 
 
 </RelativeLayout>

@@ -6,66 +6,33 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/portfolio_stockTicker"
-        android:layout_width="70dp"
+        android:id="@+id/portfolioValuedAt"
+        android:text="Your   Portfolio   Is   \nValued   At:"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:text="Ticker"
         android:gravity="center"
-        android:textSize="18sp"
-        android:textStyle="normal|bold" />
+        android:textSize="20sp"
+        android:textColor="#8e8786"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
-        android:id="@+id/portfolio_stockPrice"
-        android:layout_width="70dp"
+        android:id="@+id/total_networth"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_toEndOf="@id/portfolio_stockTicker"
-        android:text="Price"
-        android:gravity="center"
-        android:textSize="18sp"
-        android:textStyle="normal|bold" />
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_below="@id/portfolioValuedAt"
+        android:textSize="50sp"
+        android:text="$12578.45"
+        android:layout_centerHorizontal="true"/>
 
-    <TextView
-        android:id="@+id/portfolio_shares"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_toEndOf="@id/portfolio_stockPrice"
-        android:text="Shares"
-        android:gravity="center"
-        android:textSize="18sp"
-        android:textStyle="normal|bold" />
-
-    <TextView
-        android:id="@+id/portfolio_totalValue"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_toEndOf="@id/portfolio_shares"
-        android:text="Value"
-        android:gravity="center"
-        android:textSize="18sp"
-        android:textStyle="normal|bold" />
-
-    <TextView
-        android:id="@+id/portfolio_percentChange"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_toEndOf="@id/portfolio_totalValue"
-        android:text="Change"
-        android:gravity="center"
-        android:textSize="18sp"
-        android:textStyle="normal|bold" />
 
     <ListView
         android:id="@+id/portfolioListView"
         android:layout_width="350dp"
-        android:layout_height="300dp"
+        android:layout_height="360dp"
         android:layout_marginTop="5dp"
-        android:layout_below="@id/portfolio_stockTicker"
+        android:layout_below="@id/total_networth"
         android:layout_centerHorizontal="true" >
     </ListView>
 
