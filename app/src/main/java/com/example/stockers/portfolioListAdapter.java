@@ -61,11 +61,12 @@ public class portfolioListAdapter extends ArrayAdapter<String> {
         holder.totalValue= (TextView) convertView.findViewById(R.id.list_portfolio_value);
         holder.percentChange= (TextView) convertView.findViewById(R.id.list_portfolio_change);
 
+
         //ASSIGN VIEWS
-        holder.stockTicker.setText(stockTicker[position]);
+        holder.stockTicker.setText(stockTicker[position].toUpperCase());
         holder.stockPrice.setText(String.valueOf("$"+stockPrice[position]));
-        holder.shares.setText(String.valueOf(shares[position]));
-        holder.totalValue.setText(String.valueOf("$"+(stockPrice[position]*shares[position])));
+        holder.shares.setText(String.valueOf(shares[position]+" Shares"));
+        holder.totalValue.setText(String.valueOf("$"+(String.format("%.2f", stockPrice[position]*shares[position]))));
         holder.percentChange.setText(String.valueOf(percentChange[position]));
 
 

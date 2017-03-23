@@ -2,10 +2,13 @@ package com.example.stockers;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.Serializable;
 
@@ -52,9 +55,10 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse{
         player.value = Double.parseDouble(array[2]);
         player.name = array[0];
 
-
         Intent intent = new Intent(this, navigationActivity.class);
         intent.putExtra("Player", (Serializable)player);
         startActivity(intent);
     }
+
+
 }

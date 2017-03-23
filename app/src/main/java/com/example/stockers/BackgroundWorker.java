@@ -109,6 +109,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                 player.name = array[0];
                 player.playerID = Integer.parseInt(array[1]);
                 player.value = Double.parseDouble(array[2]);
+                result = result + " " + player.email;
 
                 return result;
             }
@@ -171,7 +172,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             httpURLConnection.disconnect();
 
             if (Integer.parseInt(result) == 1){
-                return "0";
+                return player.email + " " + player.name;
             }
             else {
                 return "-1";
@@ -559,7 +560,10 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             }
         }
         else if (this.action.equals("register")){
-            if (result.equals("0")){
+            if (!result.equals("-1")){
+
+                email(player);
+
                 delegate.processFinish(result);
             }
             else {}
@@ -585,5 +589,20 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     protected void onProgressUpdate(Void... values) {
         super.onProgressUpdate(values);
     }
+
+    protected void email(Player player){
+
+        try {
+            GMailSender sender = new GMailSender("123absentsnake321@gmail.com", "ryanryan");
+            sender.sendMail("Welcome to Stockers!",
+                    "This is Body",
+                    player.email,
+                    player.email);
+        } catch (Exception e) {
+            Log.e("SendMail", e.getMessage(), e);
+        }
+    }
+
+
 
 }

@@ -1,9 +1,13 @@
 package com.example.stockers;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.Serializable;
 
@@ -41,6 +45,44 @@ public class Register extends AppCompatActivity implements AsyncResponse{
     @Override
     public void processFinish(String result){
 
+        String[] array = result.split(" ");
+        Player player = new Player();
+        player.email = array[0];
+        player.name = array[1];
+
+        // sendEmail(player);
+
+
         finish();
     }
+
+    protected void sendEmail(Player player) {
+        Log.i("Send email", "");
+
+        String[] TO = {player.email};
+        // String[] CC = {""};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+
+
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+        // emailIntent.putExtra(Intent.EXTRA_CC, CC);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Welcome to Stockers!");
+
+        String body = player.name + ",\nWelcome to the most popular trading platform!";
+
+        emailIntent.putExtra(Intent.EXTRA_TEXT, body);
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            finish();
+            Log.i("Finished sending email", "");
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(Register.this,
+                    "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 }
