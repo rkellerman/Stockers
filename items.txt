@@ -1,0 +1,13 @@
+<item>msft</item>
+<item>yhoo</item>
+<item>goog</item>
+<item>vgz</item>
+<item>vz</item>
+<item>t</item>
+<item>tgt</item>
+<item>aapl</item>
+<item>hpq</item>
+<item>cmcsa</item>
+<item>dish</item>
+<item>twx</item>
+<item>cbs</item>
