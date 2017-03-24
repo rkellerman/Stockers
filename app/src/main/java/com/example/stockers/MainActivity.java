@@ -9,13 +9,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity implements AsyncResponse{
 
     EditText Username, Password;
+    private static final String TAG = "MainActivity";
 
+    private AdView mAdView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +26,9 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse{
 
         Username = (EditText)findViewById(R.id.etUserName);
         Password = (EditText)findViewById(R.id.etPassword);
-
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
     public void onLogin(View view){
