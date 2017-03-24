@@ -31,6 +31,7 @@ import com.example.stockers.SharedPreference.*;
 public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
     Player player = null;
+    boolean isLogin = true;
 
     private SharedPreference sharedPreference;
 
@@ -63,11 +64,30 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
             player = new Player();
 
+            if (params[3].equals("false")){
+
+                isLogin = false;
+
+                SharedPreferences sharedPreferences = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
+                String result = sharedPreferences.getString("PLAYER", "");
+
+                String[] array = result.split(" ");
+
+                player.email = array[3];
+                player.password = array[4];
+
+            }
+            else {
+                player.email = params[1];
+
+                player.password = params[2];
+            }
+
+
+
             URL url = new URL(login_url);
 
-            player.email = params[1];
 
-            player.password = params[2];
 
             HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
             httpURLConnection.setRequestMethod("POST");
@@ -109,7 +129,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                 player.name = array[0];
                 player.playerID = Integer.parseInt(array[1]);
                 player.value = Double.parseDouble(array[2]);
-                result = result + " " + player.email;
+                result = result + " " + player.email + " " + player.password;
 
                 return result;
             }
@@ -510,8 +530,8 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
                 editor.putString("LEADERBOARD", result1);
                 editor.putString("PORTFOLIO", result2);
+                editor.putString("PLAYER", result);
 
-                Log.d("BOOOOIIII", result2);
                 editor.putString("ID", Integer.toString(player.playerID));
                 editor.putString("VALUE", Double.toString(player.value));
 
@@ -549,6 +569,9 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
 
         if (this.action.equals("login")){
+            if (isLogin == false){
+                return;
+            }
             if (!result.equals("-1")){  // jump to welcome activity
 
                 delegate.processFinish(result);
@@ -562,7 +585,21 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         else if (this.action.equals("register")){
             if (!result.equals("-1")){
 
-                email(player);
+                Thread thread=new Thread(){
+                    @Override
+                    public void run() {
+
+                        GMailSender sender = new GMailSender("123absentsnake321@gmail.com","ryanryan");
+                        try {
+                            sender.sendMail("Welcome to Stockers!", "<b>" + player.name + ",</b><br/>Welcome to the premier trading platform!  We are happy to have you.", "welcome@stockers.com", player.email, "");
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                };
+                thread.start();
+
 
                 delegate.processFinish(result);
             }
@@ -590,18 +627,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         super.onProgressUpdate(values);
     }
 
-    protected void email(Player player){
 
-        try {
-            GMailSender sender = new GMailSender("123absentsnake321@gmail.com", "ryanryan");
-            sender.sendMail("Welcome to Stockers!",
-                    "This is Body",
-                    player.email,
-                    player.email);
-        } catch (Exception e) {
-            Log.e("SendMail", e.getMessage(), e);
-        }
-    }
 
 
 

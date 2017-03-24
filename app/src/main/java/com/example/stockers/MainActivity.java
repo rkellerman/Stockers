@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse{
 
         BackgroundWorker backgroundWorker = new BackgroundWorker(this, MainActivity.this);
         backgroundWorker.delegate = this;
-        backgroundWorker.execute(type, username, password);
+        backgroundWorker.execute(type, username, password, "true");
 
 
     }

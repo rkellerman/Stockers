@@ -158,7 +158,7 @@
                         android:text="Submit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/sellButton" />
+                        android:id="@+id/submitButton" />
 
                 </LinearLayout>
 
@@ -167,7 +167,14 @@
                     android:background="#ECECEC"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    >
+
+                    <ListView
+                        android:id="@+id/activityListView"
+                        android:layout_width="350dp"
+                        android:layout_height="300dp" >
+                    </ListView>
 
                 </LinearLayout>
 
@@ -177,6 +184,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
+
 
                 </LinearLayout>
 

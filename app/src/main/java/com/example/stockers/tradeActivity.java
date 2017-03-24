@@ -162,12 +162,24 @@ public class tradeActivity extends Fragment implements AsyncResponse{
             if (Double.parseDouble(result) > -1.0){
                 alertDialog.setMessage("Purchase complete!");
                 alertDialog.show();
+
+                String type = "login";
+
+                BackgroundWorker backgroundWorker = new BackgroundWorker(getContext(), getActivity());
+                backgroundWorker.delegate = this;
+                backgroundWorker.execute(type, "", "", "false");
             }
         }
         else if (current.equals("sell")){
             if (Double.parseDouble(result) > -1.0){
                 alertDialog.setMessage("Sale complete!");
                 alertDialog.show();
+
+                String type = "login";
+
+                BackgroundWorker backgroundWorker = new BackgroundWorker(getContext(), getActivity());
+                backgroundWorker.delegate = this;
+                backgroundWorker.execute(type, "", "", "false");
             }
         }
 

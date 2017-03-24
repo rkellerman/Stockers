@@ -1,13 +1,11 @@
 package com.example.stockers;
 
-/**
- * Created by RyanMini on 3/23/17.
- */
-
 import java.security.AccessController;
 import java.security.Provider;
 
-public class JSSEProvider extends Provider{
+public final class JSSEProvider extends Provider {
+
+    private static final long serialVersionUID = 3821760047343914156L;
 
     public JSSEProvider() {
         super("HarmonyJSSE", 1.0, "Harmony JSSE Provider");

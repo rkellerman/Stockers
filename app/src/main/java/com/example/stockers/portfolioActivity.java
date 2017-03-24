@@ -118,7 +118,7 @@ public class portfolioActivity extends Fragment {
 
 
 
-        
+
     }
 
     @Override
