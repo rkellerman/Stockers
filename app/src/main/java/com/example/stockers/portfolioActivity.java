@@ -62,7 +62,11 @@ public class portfolioActivity extends Fragment {
             for (int i = 0; i < array.length; i++) {
 
                 try {
+
+
                     String[] entries = array[i].split("!!!");
+
+
                     stockTicker[i] = entries[0];
                     stockPrice[i] = Double.parseDouble(entries[1]);
                     shares[i] = Integer.parseInt(entries[2]);
