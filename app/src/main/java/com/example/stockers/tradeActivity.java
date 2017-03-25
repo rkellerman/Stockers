@@ -184,6 +184,7 @@ public class tradeActivity extends Fragment implements AsyncResponse{
                 valid = true;
                 prevText = (String)((EditText)rootView.findViewById(R.id.searchField)).getText().toString();
                 // put text where it needs to go
+                TextView nameText = (TextView)rootView.findViewById(R.id.nameView);
                 TextView priceText = (TextView) rootView.findViewById(R.id.priceView);
                 TextView volumeText = (TextView)rootView.findViewById(R.id.volView);
                 TextView changeText = (TextView) rootView.findViewById(R.id.changeView);
@@ -195,6 +196,7 @@ public class tradeActivity extends Fragment implements AsyncResponse{
                 TextView epsText = (TextView) rootView.findViewById(R.id.EPSView);
                 TextView instText = (TextView) rootView.findViewById(R.id.instView);
 
+                nameText.setText(array[0]);
                 priceText.setText(array[2]);
                 volumeText.setText(array[6]);
                 changeText.setText(array[5]);
@@ -213,7 +215,7 @@ public class tradeActivity extends Fragment implements AsyncResponse{
 
 
             } else {
-                alertDialog.setMessage("Not a valid ticker or company name");
+                alertDialog.setMessage("Please enter a valid ticker...");
                 alertDialog.show();
             }
         }
@@ -232,7 +234,7 @@ public class tradeActivity extends Fragment implements AsyncResponse{
                 TextView instText = (TextView) rootView.findViewById(R.id.instView);
                 String bal = String.valueOf("$"+String.format("%.2f", balance));
                 balanceDisplay.setText(bal);
-                instText.setText(Integer.toString(Integer.parseInt(instText.getText().toString()) + 1));
+                instText.setText(Integer.toString(Integer.parseInt(instText.getText().toString()) + num));
                 // TextView balanceDisp = (TextView)rootView.findViewById(R.id.balancedisp);
                 // balanceDisp.setText("$ " + Double.toString(balance));
 
@@ -271,7 +273,7 @@ public class tradeActivity extends Fragment implements AsyncResponse{
 
                 String bal = String.valueOf("$"+String.format("%.2f", balance));
                 balanceDisplay.setText(bal);
-                instText.setText(Integer.toString(Integer.parseInt(instText.getText().toString()) - 1));
+                instText.setText(Integer.toString(Integer.parseInt(instText.getText().toString()) - num));
                 // TextView balanceDisp = (TextView)rootView.findViewById(R.id.balancedisp);
                 // balanceDisp.setText("$ " + Double.toString(balance));
 

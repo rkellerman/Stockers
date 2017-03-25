@@ -40,8 +40,8 @@ public class portfolioActivity extends Fragment {
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("1", Context.MODE_PRIVATE);
         String result = sharedPreferences.getString("PORTFOLIO", "0!!!0!!!0!!!0");
-
-
+        String playerText = sharedPreferences.getString("PLAYER", "-1");
+        String[] arr = playerText.split(" ");
         /*
         AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
         alertDialog.setTitle("NOTICE");
@@ -94,7 +94,7 @@ public class portfolioActivity extends Fragment {
             {
                 sum = sum + (stockPrice[i]*shares[i]);
             }
-            String sumString = String.valueOf("$"+String.format("%.2f", sum));
+            String sumString = String.valueOf("$"+String.format("%.2f", Double.parseDouble(arr[5])));
             totalNetworth.setText(sumString);
             if (sum > 0)
             {
@@ -125,7 +125,7 @@ public class portfolioActivity extends Fragment {
 
             totalNetworth = (TextView) rootView.findViewById(R.id.total_networth);
 
-            String sumString = String.valueOf("$"+String.format("%.2f", 0.00));
+            String sumString = String.valueOf("$"+String.format("%.2f", Double.parseDouble(arr[5])));
             totalNetworth.setText(sumString);
 
             totalNetworth.setTextColor(Color.parseColor("#f44141"));
