@@ -1,6 +1,8 @@
 package com.example.stockers;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
@@ -27,50 +29,19 @@ public class profileActivity extends Fragment implements View.OnClickListener, A
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.profile_layout, container, false);
 
-        /*
-        TabHost tabHost = (TabHost)rootView.findViewById(android.R.id.tabhost);
-        tabHost.setup();
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("1", Context.MODE_PRIVATE);
+        String playerText = sharedPreferences.getString("PLAYER", "-1");
 
-        final TabWidget tabWidget = tabHost.getTabWidget();
-        final FrameLayout tabContent = tabHost.getTabContentView();
+        String[] array = playerText.split(" ");
 
-        // Get the original tab textviews and remove them from the viewgroup.
-        TextView[] originalTextViews = new TextView[tabWidget.getTabCount()];
-        for (int index = 0; index < tabWidget.getTabCount(); index++) {
-            originalTextViews[index] = (TextView) tabWidget.getChildTabViewAt(index);
-        }
-        tabWidget.removeAllViews();
+        String email = array[3];
+        String netWorth = array[5];
 
-        // Ensure that all tab content childs are not visible at startup.
-        for (int index = 0; index < tabContent.getChildCount(); index++) {
-            tabContent.getChildAt(index).setVisibility(View.GONE);
-        }
+        TextView emailView = (TextView)rootView.findViewById(R.id.usernameProf);
+        TextView netWorthView = (TextView)rootView.findViewById(R.id.networth_text);
 
-        // Create the tabspec based on the textview childs in the xml file.
-        // Or create simple tabspec instances in any other way...
-        for (int index = 0; index < originalTextViews.length; index++) {
-            final TextView tabWidgetTextView = originalTextViews[index];
-            final View tabContentView = tabContent.getChildAt(index);
-            TabHost.TabSpec tabSpec = tabHost.newTabSpec((String) tabWidgetTextView.getTag());
-            tabSpec.setContent(new TabHost.TabContentFactory() {
-                @Override
-                public View createTabContent(String tag) {
-
-
-
-
-                    return tabContentView;
-                }
-            });
-            if (tabWidgetTextView.getBackground() == null) {
-                tabSpec.setIndicator(tabWidgetTextView.getText());
-            } else {
-                tabSpec.setIndicator(tabWidgetTextView.getText(), tabWidgetTextView.getBackground());
-            }
-            tabHost.addTab(tabSpec);
-        }
-        */
-
+        emailView.setText("Email:  " + email);
+        netWorthView.setText("Net:  $ " + netWorth);
 
         TabHost tabHost = (TabHost) rootView.findViewById(R.id.tabHost);
 

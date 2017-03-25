@@ -134,7 +134,12 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                 player.name = array[0];
                 player.playerID = Integer.parseInt(array[1]);
                 player.value = Double.parseDouble(array[2]);
-                result = result + " " + player.email + " " + player.password;
+
+                String netWorth = array[3];
+
+                // result = result + " " + player.email + " " + player.password;
+
+                result = array[0] + " " + array[1] + " " + array[2] + " " + player.email + " " + player.password + " " + array[3];
 
                 return result;
             }

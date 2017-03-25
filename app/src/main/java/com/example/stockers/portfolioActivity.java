@@ -70,7 +70,11 @@ public class portfolioActivity extends Fragment {
                     stockTicker[i] = entries[0];
                     stockPrice[i] = Double.parseDouble(entries[1]);
                     shares[i] = Integer.parseInt(entries[2]);
-                    percentChange[i] = entries[3];
+
+                    String percent = entries[3].substring(1, entries[3].length());
+                    percent = percent.substring(percent.indexOf('-') + 2, percent.length());
+
+                    percentChange[i] = percent;
                 } catch (Exception e) {
                     stockTicker[i] = "bet";
                     stockPrice[i] = 69.69;
