@@ -159,7 +159,7 @@ public class tradeActivity extends Fragment implements AsyncResponse{
             }
         }
         else if (current.equals("purchase")){
-            if (Double.parseDouble(result) > -1.0){
+            if (Double.parseDouble(result) >= 0){
                 alertDialog.setMessage("Purchase complete!");
                 alertDialog.show();
 
@@ -169,9 +169,14 @@ public class tradeActivity extends Fragment implements AsyncResponse{
                 backgroundWorker.delegate = this;
                 backgroundWorker.execute(type, "", "", "false");
             }
+            else {
+                alertDialog.setMessage("You do not have enough money to complete the transaction...");
+                alertDialog.show();
+            }
+
         }
         else if (current.equals("sell")){
-            if (Double.parseDouble(result) > -1.0){
+            if (Double.parseDouble(result) > 0){
                 alertDialog.setMessage("Sale complete!");
                 alertDialog.show();
 
@@ -180,6 +185,10 @@ public class tradeActivity extends Fragment implements AsyncResponse{
                 BackgroundWorker backgroundWorker = new BackgroundWorker(getContext(), getActivity());
                 backgroundWorker.delegate = this;
                 backgroundWorker.execute(type, "", "", "false");
+            }
+            else {
+                alertDialog.setMessage("You do not own the requested number of shares...");
+                alertDialog.show();
             }
         }
 

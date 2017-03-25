@@ -58,6 +58,9 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     }
 
     public String login(String... params){
+
+
+
         try {
 
             this.action = "login";
@@ -78,8 +81,10 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
             }
             else {
-                player.email = params[1];
 
+                update();
+
+                player.email = params[1];
                 player.password = params[2];
             }
 
@@ -298,7 +303,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
     public String leaderboard(){
 
-        update();
+
 
         try {
 
@@ -339,7 +344,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
     public String price(String... params){
 
-        update();
+        // update();
 
         try {
 
@@ -388,8 +393,6 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     }
 
     public String makePurchase(String... params){
-
-        update();
 
         try {
             this.action = "purchase";
@@ -447,8 +450,6 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     }
 
     public String sell(String... params){
-
-        update();
 
         try {
             this.action = "sell";
@@ -526,6 +527,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
                 SharedPreferences sharedPref = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
+
                 editor.clear();
 
                 editor.putString("LEADERBOARD", result1);
@@ -612,6 +614,8 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             delegate.processFinish(result);
         }
         else if (this.action.equals("price")){
+
+
             delegate.processFinish(result);
         }
         else if (this.action.equals("purchase")){
