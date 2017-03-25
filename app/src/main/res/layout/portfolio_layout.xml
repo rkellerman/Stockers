@@ -1,39 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin" >
 
     <TextView
         android:id="@+id/portfolioValuedAt"
         android:text="Your   Portfolio   Is   \nValued   At:"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="20sp"
-        android:textColor="#8e8786"
-        android:layout_centerHorizontal="true"/>
+        android:textColor="#8e8786" />
 
     <TextView
         android:id="@+id/total_networth"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
-        android:layout_below="@id/portfolioValuedAt"
-        android:textSize="50sp"
+        android:gravity="center"
+        android:textSize="40sp"
         android:text="$12578.45"
-        android:layout_centerHorizontal="true"/>
+        />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/dispstock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Stock Name"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:id="@+id/dispprice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Stock Price"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:textStyle="normal|bold" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
+        <TextView
+            android:id="@+id/dispshares"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="# of shares"
+            android:textSize="15sp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/dispvalue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="total value"
+            android:textSize="15sp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/dispchange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="change"
+            android:textSize="15sp"
+            android:gravity="center" />
+    </LinearLayout>
 
     <ListView
         android:id="@+id/portfolioListView"
-        android:layout_width="350dp"
-        android:layout_height="360dp"
-        android:layout_marginTop="5dp"
-        android:layout_below="@id/total_networth"
-        android:layout_centerHorizontal="true" >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     </ListView>
 
-</RelativeLayout>
+</LinearLayout>
