@@ -63,9 +63,12 @@ public class navigationActivity extends AppCompatActivity
         String playerText = sharedPreferences.getString("PLAYER", "-1");
         String[] array = playerText.split(" ");
 
-        TextView balanceDisplay = (TextView)findViewById(R.id.balancedisp);
+
         TextView email = (TextView)findViewById(R.id.usernameNav);
-        balanceDisplay.setText("$ " + balanceString);
+        Double balance = Double.parseDouble(balanceString);
+        String bal = String.valueOf("$"+String.format("%.2f", balance));
+
+
         email.setText(array[3]);
 
 

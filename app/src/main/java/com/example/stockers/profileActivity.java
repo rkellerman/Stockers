@@ -41,7 +41,9 @@ public class profileActivity extends Fragment implements View.OnClickListener, A
         TextView netWorthView = (TextView)rootView.findViewById(R.id.networth_text);
 
         emailView.setText("Email:  " + email);
-        netWorthView.setText("Net:  $ " + netWorth);
+
+        String bal = String.valueOf("$"+String.format("%.2f", Double.parseDouble(netWorth)));
+        netWorthView.setText("Net:  " + bal);
 
         TabHost tabHost = (TabHost) rootView.findViewById(R.id.tabHost);
 

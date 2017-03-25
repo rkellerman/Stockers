@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.stockers.SharedPreference.*;
 
@@ -114,12 +115,29 @@ public class portfolioActivity extends Fragment {
             return rootView;
         }
         else {
-            AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
-            alertDialog.setTitle("NOTICE");
-            alertDialog.setMessage("No activity to show...");
-            alertDialog.show();
+            Toast.makeText(getActivity(), "No activity to show...", Toast.LENGTH_SHORT).show();
 
-            return null;
+
+            stockTicker = new String[0];
+            stockPrice = new double[0];
+            shares = new int[0];
+            percentChange = new String[0];
+
+            totalNetworth = (TextView) rootView.findViewById(R.id.total_networth);
+
+            String sumString = String.valueOf("$"+String.format("%.2f", 0.00));
+            totalNetworth.setText(sumString);
+
+            totalNetworth.setTextColor(Color.parseColor("#f44141"));
+
+            portfolioList = (ListView) rootView.findViewById(R.id.portfolioListView);
+            //ADAPTER
+            ListAdapter adapter = new portfolioListAdapter(getActivity(), stockTicker, stockPrice, shares, percentChange);
+            portfolioList.setAdapter(adapter);
+
+
+
+            return rootView;
         }
 
 

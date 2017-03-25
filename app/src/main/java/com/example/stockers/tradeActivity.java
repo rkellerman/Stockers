@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -29,6 +30,8 @@ public class tradeActivity extends Fragment implements AsyncResponse{
 
     double balance;
 
+    String prevText = null;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,7 +44,9 @@ public class tradeActivity extends Fragment implements AsyncResponse{
         balance = Double.parseDouble(balanceString);
 
         TextView balanceDisplay = (TextView)rootView.findViewById(R.id.balancedisplay);
-        balanceDisplay.setText(Double.toString(balance));
+
+        String bal = String.valueOf("$"+String.format("%.2f", balance));
+        balanceDisplay.setText(bal);
 
         final Button button = (Button)rootView.findViewById(R.id.searchButton);
         button.setOnClickListener(new View.OnClickListener(){
@@ -71,19 +76,30 @@ public class tradeActivity extends Fragment implements AsyncResponse{
 
                 current = "purchase";
 
-                if (!valid){
-                    // you fucked up
-                    return;
-                }
-
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences("1", Context.MODE_PRIVATE);
                 String id = sharedPreferences.getString("ID", "-1");
                 String value = sharedPreferences.getString("VALUE", "-1");
 
                 EditText text = (EditText)rootView.findViewById(R.id.sharesText);
+                if (text.getText().toString().equals("")){
+                    Toast.makeText(getActivity(), "Please complete all fields", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 int num = Integer.parseInt(text.getText().toString());
 
                 EditText ticker = (EditText)rootView.findViewById(R.id.searchField);
+
+                if (prevText != null){
+                    if (!prevText.equals(ticker.getText().toString())){
+                        Toast.makeText(getActivity(), "Please enter a ticker above", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    valid = true;
+                }
+                if (!valid){
+                    Toast.makeText(getActivity(), "Please enter a ticker above", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
 
                 if (num > 0){
@@ -106,20 +122,30 @@ public class tradeActivity extends Fragment implements AsyncResponse{
 
                 current = "sell";
 
-                if (!valid){
-                    // you fucked up
-                    return;
-                }
-
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences("1", Context.MODE_PRIVATE);
                 String id = sharedPreferences.getString("ID", "-1");
                 String value = sharedPreferences.getString("VALUE", "-1");
 
                 EditText text = (EditText)rootView.findViewById(R.id.sharesText);
+                if (text.getText().toString().equals("")){
+                    Toast.makeText(getActivity(), "Please complete all fields", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 int num = Integer.parseInt(text.getText().toString());
 
                 EditText ticker = (EditText)rootView.findViewById(R.id.searchField);
 
+                if (prevText != null){
+                    if (!prevText.equals(ticker.getText().toString())){
+                        Toast.makeText(getActivity(), "Please enter a ticker above", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    valid = true;
+                }
+                if (!valid){
+                    Toast.makeText(getActivity(), "Please enter a ticker above", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 if (num > 0){
 
@@ -156,6 +182,7 @@ public class tradeActivity extends Fragment implements AsyncResponse{
             if (array.length > 1) {
 
                 valid = true;
+                prevText = (String)((EditText)rootView.findViewById(R.id.searchField)).getText().toString();
                 // put text where it needs to go
                 TextView priceText = (TextView) rootView.findViewById(R.id.priceView);
                 TextView volumeText = (TextView)rootView.findViewById(R.id.volView);
@@ -192,17 +219,20 @@ public class tradeActivity extends Fragment implements AsyncResponse{
         }
         else if (current.equals("purchase")){
             if (Double.parseDouble(result) >= 0){
-                alertDialog.setMessage("Purchase complete!");
-                alertDialog.show();
+                Toast.makeText(getActivity(), "Purchase confirmed!", Toast.LENGTH_SHORT).show();
 
                 EditText text = (EditText)rootView.findViewById(R.id.sharesText);
+
                 int num = Integer.parseInt(text.getText().toString());
                 TextView priceText = (TextView)rootView.findViewById(R.id.priceView);
                 double price = Double.parseDouble(priceText.getText().toString());
 
                 balance -= num * price;
                 TextView balanceDisplay = (TextView)rootView.findViewById(R.id.balancedisplay);
-                balanceDisplay.setText(Double.toString(balance));
+                TextView instText = (TextView) rootView.findViewById(R.id.instView);
+                String bal = String.valueOf("$"+String.format("%.2f", balance));
+                balanceDisplay.setText(bal);
+                instText.setText(Integer.toString(Integer.parseInt(instText.getText().toString()) + 1));
                 // TextView balanceDisp = (TextView)rootView.findViewById(R.id.balancedisp);
                 // balanceDisp.setText("$ " + Double.toString(balance));
 
@@ -210,6 +240,8 @@ public class tradeActivity extends Fragment implements AsyncResponse{
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString("VALUE", Double.toString(balance));
                 editor.commit();
+
+                valid = false;
 
                 String type = "login";
 
@@ -225,17 +257,21 @@ public class tradeActivity extends Fragment implements AsyncResponse{
         }
         else if (current.equals("sell")){
             if (Double.parseDouble(result) > 0){
-                alertDialog.setMessage("Sale complete!");
-                alertDialog.show();
+                Toast.makeText(getActivity(), "Sale confirmed!", Toast.LENGTH_SHORT).show();
 
                 EditText text = (EditText)rootView.findViewById(R.id.sharesText);
+
                 int num = Integer.parseInt(text.getText().toString());
                 TextView priceText = (TextView)rootView.findViewById(R.id.priceView);
                 double price = Double.parseDouble(priceText.getText().toString());
 
                 balance += num * price;
                 TextView balanceDisplay = (TextView)rootView.findViewById(R.id.balancedisplay);
-                balanceDisplay.setText(Double.toString(balance));
+                TextView instText = (TextView) rootView.findViewById(R.id.instView);
+
+                String bal = String.valueOf("$"+String.format("%.2f", balance));
+                balanceDisplay.setText(bal);
+                instText.setText(Integer.toString(Integer.parseInt(instText.getText().toString()) - 1));
                 // TextView balanceDisp = (TextView)rootView.findViewById(R.id.balancedisp);
                 // balanceDisp.setText("$ " + Double.toString(balance));
 
@@ -243,6 +279,8 @@ public class tradeActivity extends Fragment implements AsyncResponse{
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString("VALUE", Double.toString(balance));
                 editor.commit();
+
+                valid = false;
 
                 String type = "login";
 
