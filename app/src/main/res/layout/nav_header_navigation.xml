@@ -23,7 +23,7 @@
         android:layout_weight="0.45" />
 
     <TextView
-        android:id="@+id/username"
+        android:id="@+id/usernameNav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="(where user name should go)" />
@@ -31,17 +31,18 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:orientation="horizontal">
-    <TextView
-        android:id="@+id/balance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Balance: " />
 
-    <TextView
-        android:id="@+id/balancedisplay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="(display balance here)" />
+       <TextView
+           android:id="@+id/balance"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Spending Money: " />
+
+       <TextView
+           android:id="@+id/balancedisp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="(display balance here)" />
    </LinearLayout>
 
 </LinearLayout>

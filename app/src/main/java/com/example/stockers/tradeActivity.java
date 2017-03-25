@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class tradeActivity extends Fragment implements AsyncResponse{
 
     ArrayAdapter<String> adapter;
@@ -25,11 +27,21 @@ public class tradeActivity extends Fragment implements AsyncResponse{
     boolean valid = false;
     String current = "";
 
+    double balance;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.trade_layout, container, false);
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("1", Context.MODE_PRIVATE);
+        String balanceString = sharedPreferences.getString("VALUE", "-1");
+
+        balance = Double.parseDouble(balanceString);
+
+        TextView balanceDisplay = (TextView)rootView.findViewById(R.id.balancedisplay);
+        balanceDisplay.setText(Double.toString(balance));
 
         final Button button = (Button)rootView.findViewById(R.id.searchButton);
         button.setOnClickListener(new View.OnClickListener(){
@@ -142,15 +154,35 @@ public class tradeActivity extends Fragment implements AsyncResponse{
         if (current.equals("set")) {
             String[] array = result.split("===");
             if (array.length > 1) {
+
                 valid = true;
                 // put text where it needs to go
                 TextView priceText = (TextView) rootView.findViewById(R.id.priceView);
-                TextView volumeText = (TextView)rootView.findViewById(R.id.volumeView);
+                TextView volumeText = (TextView)rootView.findViewById(R.id.volView);
                 TextView changeText = (TextView) rootView.findViewById(R.id.changeView);
+                TextView weekText = (TextView) rootView.findViewById(R.id.weekView);
+                TextView openText = (TextView) rootView.findViewById(R.id.openView);
+                TextView mktText = (TextView) rootView.findViewById(R.id.mktView);
+                TextView peText = (TextView) rootView.findViewById(R.id.peView);
+                TextView divText = (TextView) rootView.findViewById(R.id.divView);
+                TextView epsText = (TextView) rootView.findViewById(R.id.EPSView);
+                TextView instText = (TextView) rootView.findViewById(R.id.instView);
 
                 priceText.setText(array[2]);
                 volumeText.setText(array[6]);
                 changeText.setText(array[5]);
+                weekText.setText(array[7]);
+                openText.setText(array[8]);
+                mktText.setText(array[9]);
+                peText.setText(array[10]);
+                divText.setText(array[11]);
+                epsText.setText(array[12]);
+                instText.setText(array[14]);
+
+
+
+
+
 
 
             } else {
@@ -162,6 +194,22 @@ public class tradeActivity extends Fragment implements AsyncResponse{
             if (Double.parseDouble(result) >= 0){
                 alertDialog.setMessage("Purchase complete!");
                 alertDialog.show();
+
+                EditText text = (EditText)rootView.findViewById(R.id.sharesText);
+                int num = Integer.parseInt(text.getText().toString());
+                TextView priceText = (TextView)rootView.findViewById(R.id.priceView);
+                double price = Double.parseDouble(priceText.getText().toString());
+
+                balance -= num * price;
+                TextView balanceDisplay = (TextView)rootView.findViewById(R.id.balancedisplay);
+                balanceDisplay.setText(Double.toString(balance));
+                // TextView balanceDisp = (TextView)rootView.findViewById(R.id.balancedisp);
+                // balanceDisp.setText("$ " + Double.toString(balance));
+
+                SharedPreferences sharedPref = getActivity().getSharedPreferences("1", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("VALUE", Double.toString(balance));
+                editor.commit();
 
                 String type = "login";
 
@@ -179,6 +227,22 @@ public class tradeActivity extends Fragment implements AsyncResponse{
             if (Double.parseDouble(result) > 0){
                 alertDialog.setMessage("Sale complete!");
                 alertDialog.show();
+
+                EditText text = (EditText)rootView.findViewById(R.id.sharesText);
+                int num = Integer.parseInt(text.getText().toString());
+                TextView priceText = (TextView)rootView.findViewById(R.id.priceView);
+                double price = Double.parseDouble(priceText.getText().toString());
+
+                balance += num * price;
+                TextView balanceDisplay = (TextView)rootView.findViewById(R.id.balancedisplay);
+                balanceDisplay.setText(Double.toString(balance));
+                // TextView balanceDisp = (TextView)rootView.findViewById(R.id.balancedisp);
+                // balanceDisp.setText("$ " + Double.toString(balance));
+
+                SharedPreferences sharedPref = getActivity().getSharedPreferences("1", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("VALUE", Double.toString(balance));
+                editor.commit();
 
                 String type = "login";
 
