@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -69,6 +70,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
             if (params[3].equals("false")){
 
+
                 isLogin = false;
 
                 SharedPreferences sharedPreferences = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
@@ -82,7 +84,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             }
             else {
 
-                update();
+                // update();
 
                 player.email = params[1];
                 player.password = params[2];
@@ -526,6 +528,10 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                 sharedPreference.save(context, result2);
                 */
 
+                if (isLogin){
+                    update();
+                }
+
                 SharedPreferences sharedPref = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
 
@@ -580,8 +586,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
             }
             else {
-                alertDialog.setMessage(result);
-                alertDialog.show();
+                Toast.makeText(activity, "Invalid Credentials", Toast.LENGTH_SHORT).show();
             }
         }
         else if (this.action.equals("register")){
