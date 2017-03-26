@@ -1,67 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.stockers.MainActivity">
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/banner_ad_unit_id">
-    </com.google.android.gms.ads.AdView>
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"
         android:inputType="textPersonName"
-        android:text="tim@tim.com"
         android:ems="10"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="27dp"
+        android:text="tim@tim.com"
         android:id="@+id/etUserName"
         android:hint="Email"/>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
         android:inputType="textPassword"
         android:hint="Password"
         android:ems="10"
-        android:layout_below="@+id/etUserName"
-        android:layout_alignEnd="@+id/etUserName"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="27dp"
         android:id="@+id/etPassword"
         android:text="timtim" />
-
-    <Button
-        android:text="Register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_reg"
-        android:onClick="openReg"
-        android:layout_below="@+id/btnLogin"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true" />
 
     <Button
         android:text="Login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="15dp"
         android:id="@+id/btnLogin"
-        android:onClick="onLogin"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_alignEnd="@+id/btn_reg" />
-</RelativeLayout>
+        android:onClick="onLogin" />
+
+    <Button
+        android:text="Register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/btn_reg"
+        android:onClick="openReg" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ads:adSize="MEDIUM_RECTANGLE"
+        ads:adUnitId="@string/banner_ad_unit_id">
+    </com.google.android.gms.ads.AdView>
+</LinearLayout>
