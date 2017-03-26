@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
@@ -10,53 +10,109 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.stockers.MainActivity">
+    tools:context="com.example.stockers.MainActivity"
+    android:background="@drawable/background"
+    android:baselineAligned="false">
 
-    <EditText
+    <TextView
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:text="tim@tim.com"
-        android:id="@+id/etUserName"
-        android:hint="Email"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:inputType="textPassword"
-        android:hint="Password"
-        android:ems="10"
-        android:id="@+id/etPassword"
-        android:text="timtim" />
+        android:textColor="#ffffff"
+        android:text="Stockers"
+        android:id="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="85dp" />
 
     <Button
         android:text="Login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="15dp"
         android:id="@+id/btnLogin"
-        android:onClick="onLogin" />
+        android:onClick="onLogin"
+        android:width="285dp"
+        android:height="45dp"
+        android:background= "#9AFFF7"
+        android:layout_marginBottom="65dp"
+        android:layout_above="@+id/btn_reg"
+        android:layout_centerHorizontal="true"
+        android:textSize="25dp"
+        android:textAllCaps="false"
+        android:fontFamily="sans-serif-medium" />
 
     <Button
-        android:text="Register"
+        android:text="Create an account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:id="@+id/btn_reg"
+        android:onClick="openReg"
+
+        android:elevation="0dp"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:text="Forgot Password?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2"
+        android:textColor="#ffffff"
+
+        android:elevation="0dp"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless"
+        android:layout_above="@+id/btnLogin"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="43dp"
+        android:textSize="18dp" />
+
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="15dp"
-        android:id="@+id/btn_reg"
-        android:onClick="openReg" />
+        android:inputType="textPassword"
+        android:hint="Password"
+        android:ems="10"
+        android:id="@+id/etPassword"
+        android:text="timtim"
+        android:textSize="25sp"
+        android:textColor="#ffffff"
+        android:layout_above="@+id/button2"
+        android:layout_alignStart="@+id/etUserName" />
 
-    <com.google.android.gms.ads.AdView
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:text="tim@tim.com"
+        android:id="@+id/etUserName"
+        android:hint="Email"
+        android:textSize="25sp"
+        android:textColor="#ffffff"
+        android:layout_above="@+id/etPassword"
+        android:layout_alignStart="@+id/btnLogin" />
+
+    <TextView
+        android:text="Sign in for the most immersive stock market experience yet."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22dp"
+        android:id="@+id/textView3"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentStart="true" />
+
+    <!--<com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         ads:adSize="MEDIUM_RECTANGLE"
         ads:adUnitId="@string/banner_ad_unit_id">
-    </com.google.android.gms.ads.AdView>
-</LinearLayout>
+    </com.google.android.gms.ads.AdView>-->
+</RelativeLayout>

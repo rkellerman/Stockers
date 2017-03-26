@@ -1,12 +1,16 @@
 package com.example.stockers;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.Serializable;
@@ -18,6 +22,11 @@ public class Register extends AppCompatActivity implements AsyncResponse{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        //Modifications to the screen parameters need to be set before the SetContentView method...
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_register);
 
         name = (EditText)findViewById(R.id.et_name);
@@ -25,6 +34,24 @@ public class Register extends AppCompatActivity implements AsyncResponse{
         email = (EditText)findViewById(R.id.et_email);
         password = (EditText)findViewById(R.id.et_password);
         passwordConfirm = (EditText) findViewById(R.id.et_passwordConfirm);
+
+        Typeface titleFont = Typeface.createFromAsset(getAssets(),"Lobster 1.4.otf");
+        Typeface supportfont = Typeface.createFromAsset(getAssets(),"Montserrat-UltraLight.otf");
+
+        TextView title = (TextView)findViewById(R.id.textView12);
+        TextView supporttext = (TextView)findViewById(R.id.textView6);
+        //TextView buttonText = (TextView)findViewById(R.id.button4);
+        TextView buttonRegText = (TextView)findViewById(R.id.btn_reg);
+
+        title.setTypeface(titleFont);
+        supporttext.setTypeface(supportfont);
+        name.setTypeface(supportfont);
+        surname.setTypeface(supportfont);
+        email.setTypeface(supportfont);
+        password.setTypeface(supportfont);
+        passwordConfirm.setTypeface(supportfont);
+        //buttonText.setTypeface(supportfont);
+        buttonRegText.setTypeface(supportfont);
     }
 
     public void back(View view){

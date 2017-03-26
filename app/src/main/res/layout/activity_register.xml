@@ -8,80 +8,125 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.stockers.Register">
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="13dp"
-        android:id="@+id/et_name"
-        android:hint="First Name" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_below="@+id/et_name"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/et_surname"
-        android:hint="Last Name" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_below="@+id/et_surname"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/et_email"
-        android:hint="Email" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:layout_below="@+id/et_email"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/et_password"
-        android:hint="Password" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:layout_below="@+id/et_password"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/et_passwordConfirm"
-        android:hint="Confirm Password" />
+    android:background="@drawable/registration"
+    tools:context="com.example.stockers.Register"
+    >
 
     <Button
         android:id="@+id/btn_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/btn_reg"
-        android:layout_below="@+id/btn_reg"
-        android:minHeight="63dp"
-        android:minWidth="200dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+
+        android:scaleType="fitCenter"
         android:onClick="back"
-        android:text="Back" />
+        android:background="@drawable/backarrow"
+        />
 
     <Button
         android:id="@+id/btn_reg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/et_passwordConfirm"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_width="320dp"
+        android:layout_height="45dp"
+        android:background= "#9AFFF7"
         android:minHeight="63dp"
-        android:minWidth="200dp"
+        android:minWidth="290dp"
         android:onClick="onReg"
-        android:text="Register" />
+        android:text="Create account"
+        android:textSize="22dp"
+        android:layout_marginBottom="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Become a Stocker today!"
+        android:layout_width="wrap_content"
+        android:textSize="25dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView6"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/btn_back"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Stockers"
+        android:layout_width="wrap_content"
+        android:textSize="45dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView12"
+        android:textColor="#ffffff"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/et_name"
+        android:hint="First Name"
+        android:backgroundTint="#f4f4f4"
+        android:textColorHint="#ffffff"
+        android:textColor="#ffffff"
+        android:textSize="24sp"
+        android:layout_marginTop="54dp"
+        android:layout_below="@+id/textView6"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/et_surname"
+        android:hint="Last Name"
+        android:backgroundTint="#f4f4f4"
+        android:textColorHint="#ffffff"
+        android:textColor="#ffffff"
+        android:textSize="24sp"
+        android:layout_below="@+id/et_name"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/et_password"
+        android:hint="Password"
+        android:backgroundTint="#f4f4f4"
+        android:textColorHint="#ffffff"
+        android:textColor="#ffffff"
+        android:textSize="24sp"
+        android:layout_below="@+id/et_email"
+        android:layout_alignStart="@+id/et_email" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/et_email"
+        android:hint="Email"
+        android:backgroundTint="#f4f4f4"
+        android:textColorHint="#ffffff"
+        android:textColor="#ffffff"
+        android:textSize="24sp"
+        android:layout_below="@+id/et_surname"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/et_passwordConfirm"
+        android:hint="Confirm Password"
+        android:textColorHint="#ffffff"
+        android:textColor="#ffffff"
+        android:backgroundTint="#f4f4f4"
+        android:textSize="24sp"
+        android:layout_below="@+id/et_password"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
