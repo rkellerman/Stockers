@@ -62,15 +62,26 @@
         android:hint="Confirm Password" />
 
     <Button
-        android:text="Register"
+        android:id="@+id/btn_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/btn_reg"
+        android:layout_below="@+id/btn_reg"
+        android:minHeight="63dp"
+        android:minWidth="200dp"
+        android:onClick="back"
+        android:text="Back" />
+
+    <Button
         android:id="@+id/btn_reg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_passwordConfirm"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:minHeight="63dp"
         android:minWidth="200dp"
         android:onClick="onReg"
-        android:layout_below="@+id/et_passwordConfirm"
-        android:layout_centerHorizontal="true" />
+        android:text="Register" />
 
 </RelativeLayout>

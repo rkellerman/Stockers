@@ -106,6 +106,9 @@ public class navigationActivity extends AppCompatActivity
             case R.id.nav_trade:
                 fragment = new tradeActivity();
                 break;
+            case R.id.logout:
+                finish();
+                break;
         }
         if(fragment != null){
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

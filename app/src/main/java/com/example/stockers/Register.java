@@ -27,6 +27,10 @@ public class Register extends AppCompatActivity implements AsyncResponse{
         passwordConfirm = (EditText) findViewById(R.id.et_passwordConfirm);
     }
 
+    public void back(View view){
+        finish();
+    }
+
     public void onReg(View view){
 
         String str_name = name.getText().toString();
