@@ -55,7 +55,7 @@ public class leaderboardListAdapter extends ArrayAdapter<String> {
         //ASSIGN VIEWS
         holder.rankLeader.setText(String.valueOf(rankLeader[position]));
         holder.investorLeader.setText(investorLeader[position]);
-        holder.networthLeader.setText(String.valueOf("$" +networthLeader[position]));
+        holder.networthLeader.setText(String.valueOf("$" + String.format("%.2f", networthLeader[position])));
 
         //return super.getView(position, convertView, parent);
         return convertView;

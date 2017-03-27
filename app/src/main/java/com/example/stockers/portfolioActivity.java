@@ -125,7 +125,7 @@ public class portfolioActivity extends Fragment {
             }
             String sumString = String.valueOf("$"+String.format("%.2f", Double.parseDouble(arr[5])));
             totalNetworth.setText(sumString);
-            if (sum > 10000)
+            if (Double.parseDouble(arr[5]) > 10000)
             {
                 totalNetworth.setTextColor(Color.parseColor("#41f479"));
             }
