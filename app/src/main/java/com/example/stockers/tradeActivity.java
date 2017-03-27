@@ -64,7 +64,7 @@ public class tradeActivity extends Fragment implements AsyncResponse{
 
                 BackgroundWorker backgroundWorker = new BackgroundWorker(getContext(), getActivity());
                 backgroundWorker.delegate = del;
-                backgroundWorker.execute(type, text.getText().toString(), id);
+                backgroundWorker.execute(type, text.getText().toString().toLowerCase(), id);
             }
         });
 
