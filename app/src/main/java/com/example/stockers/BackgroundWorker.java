@@ -34,9 +34,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
     Player player = null;
     boolean isLogin = true;
-
     private SharedPreference sharedPreference;
-
     private Activity activity;
     public AsyncResponse delegate = null;
 
@@ -513,7 +511,6 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... params){
 
-        Looper.prepare();
 
         String type = params[0];
 
