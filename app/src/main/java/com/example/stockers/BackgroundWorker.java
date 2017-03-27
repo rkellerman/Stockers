@@ -542,7 +542,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
                     player.email = array[3];
                     player.password = array[4];
-                    
+
                     update();
 
                     result = login("butts", player.email, player.password, "true");

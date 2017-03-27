@@ -96,7 +96,7 @@ public class portfolioActivity extends Fragment {
             }
             String sumString = String.valueOf("$"+String.format("%.2f", Double.parseDouble(arr[5])));
             totalNetworth.setText(sumString);
-            if (sum > 0)
+            if (sum > 10000)
             {
                 totalNetworth.setTextColor(Color.parseColor("#41f479"));
             }
@@ -128,7 +128,6 @@ public class portfolioActivity extends Fragment {
             String sumString = String.valueOf("$"+String.format("%.2f", Double.parseDouble(arr[5])));
             totalNetworth.setText(sumString);
 
-            totalNetworth.setTextColor(Color.parseColor("#f44141"));
 
             portfolioList = (ListView) rootView.findViewById(R.id.portfolioListView);
             //ADAPTER
