@@ -75,10 +75,13 @@
         android:layout_gravity="center_horizontal"
         android:inputType="textPassword"
         android:hint="Password"
+        android:text=""
+        android:textColorHint="#f0f0f0"
         android:ems="10"
         android:id="@+id/etPassword"
         android:textSize="25sp"
         android:textColor="#ffffff"
+        android:backgroundTint="#f0f0f0"
         android:layout_above="@+id/button2"
         android:layout_alignStart="@+id/etUserName" />
 
@@ -90,8 +93,11 @@
         android:ems="10"
         android:id="@+id/etUserName"
         android:hint="Email"
+        android:text=""
         android:textSize="25sp"
         android:textColor="#ffffff"
+        android:backgroundTint="#f0f0f0"
+        android:textColorHint="#f0f0f0"
         android:layout_above="@+id/etPassword"
         android:layout_alignStart="@+id/btnLogin" />
 

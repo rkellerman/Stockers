@@ -1,6 +1,7 @@
 package com.example.stockers;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +46,8 @@ public class portfolioListAdapter extends ArrayAdapter<String> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+
+
         if(convertView==null)
         {
             inflater=(LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -73,6 +76,27 @@ public class portfolioListAdapter extends ArrayAdapter<String> {
 
         holder.totalValue.setText(String.valueOf("$"+(String.format("%.2f", stockPrice[position]*shares[position]))));
         holder.percentChange.setText(String.valueOf(percentChange[position]));
+
+        //Here we are going to implement UI modifications (Frank)...
+
+        //Instantiate our font...
+        Typeface numberfont = Typeface.createFromAsset(getContext().getAssets(),"din.ttf");
+
+        //Reference the text object...
+        TextView StockName = (TextView)convertView.findViewById(R.id.list_portfolio_ticker);
+        TextView StockPrice = (TextView)convertView.findViewById(R.id.list_portfolio_price);
+        //TextView Stocknamehead = (TextView)convertView.findViewById(R.id.dispshares);
+        //TextView Stockpricehead = (TextView)convertView.findViewById(R.id.dispshares);
+
+
+        //Just do it...
+        StockName.setTypeface(numberfont);
+        StockPrice.setTypeface(numberfont);
+        //Stocknamehead.setTypeface(numberfont);
+        //Stockpricehead.setTypeface(numberfont);
+
+
+
 
 
         //return super.getView(position, convertView, parent);

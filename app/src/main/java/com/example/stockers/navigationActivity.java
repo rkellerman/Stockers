@@ -2,6 +2,7 @@ package com.example.stockers;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -23,13 +24,17 @@ public class navigationActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        Typeface numberfont = Typeface.createFromAsset(getAssets(),"Lobster 1.4.otf");
         setContentView(R.layout.activity_navigation);
 
 
+        TextView toolbarTitle = (TextView)findViewById(R.id.toolbar_title);
+        toolbarTitle.setTypeface(numberfont);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        getSupportActionBar().setTitle("");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

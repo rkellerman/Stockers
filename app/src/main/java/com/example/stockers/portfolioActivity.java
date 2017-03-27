@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -49,6 +50,33 @@ public class portfolioActivity extends Fragment {
         alertDialog.show();
         */
 
+        //Here we are going to handle UI modifications (Frank)...
+
+        //Instantiate our font...
+        Typeface number = Typeface.createFromAsset(getActivity().getAssets(),"din.ttf");
+
+        //Access the textView we want to modify...
+        TextView networthNumber = (TextView) rootView.findViewById(R.id.total_networth);
+        TextView networthTitle  = (TextView) rootView.findViewById(R.id.portfolioValuedAt);
+        TextView networthpriceheader  = (TextView) rootView.findViewById(R.id.dispprice);
+        TextView networthnameheader  = (TextView) rootView.findViewById(R.id.dispstock);
+        TextView Stocknamehead = (TextView)rootView.findViewById(R.id.dispshares);
+        TextView Stockpricehead = (TextView)rootView.findViewById(R.id.dispvalue);
+        TextView helper = (TextView)rootView.findViewById(R.id.dispchange);
+
+
+
+
+
+        //Modify the component...
+        networthNumber.setTypeface(number);
+        networthTitle.setTypeface(number);
+        networthpriceheader.setTypeface(number);
+        networthnameheader.setTypeface(number);
+        Stocknamehead.setTypeface(number);
+        Stockpricehead.setTypeface(number);
+        helper.setTypeface(number);
+
         if (result.length() > 2) {
             result = result.substring(0, result.length() - 3);
 
@@ -89,6 +117,7 @@ public class portfolioActivity extends Fragment {
             }
 
             totalNetworth = (TextView) rootView.findViewById(R.id.total_networth);
+
             double sum = 0.0;
             for (int i = 0; i < array.length; i++)
             {

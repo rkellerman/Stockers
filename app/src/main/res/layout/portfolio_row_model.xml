@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -8,26 +9,29 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="1">
         <TextView
             android:id="@+id/list_portfolio_ticker"
-            android:layout_width="match_parent"
+            android:layout_width="73dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="AAPL"
+            android:text="      AAPL"
             android:textSize="15sp"
             android:gravity="center"
-            android:textStyle="normal|bold" />
+            android:textStyle="normal|bold"
+            android:textAlignment="center"
+            android:layout_weight="0.16" />
 
         <TextView
             android:id="@+id/list_portfolio_price"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="138.96"
             android:textSize="15sp"
-            android:gravity="center"
-            android:textStyle="normal|bold" />
+
+            android:textStyle="normal|bold"
+            android:layout_width="wrap_content"
+            android:textAlignment="textEnd"
+            android:layout_weight="0.66" />
     </LinearLayout>
 <LinearLayout
     android:layout_width="match_parent"
