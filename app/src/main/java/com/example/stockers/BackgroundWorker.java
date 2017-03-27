@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -512,6 +513,8 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... params){
 
+        Looper.prepare();
+
         String type = params[0];
 
         String result = null;
@@ -519,6 +522,23 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         if (type.equals("login")){
             result = login(params);
             if (!result.equals("-1")){
+
+                if (isLogin){
+                    // Looper.prepare();
+                    try {
+                        activity.runOnUiThread(new Runnable(){
+
+                            @Override
+                            public void run() {
+                                Toast.makeText(activity, "Login Success!  Preparing Content...", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    update();
+                }
 
                 String result1 = leaderboard();
                 String result2 = portfolio(params);
@@ -528,9 +548,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                 sharedPreference.save(context, result2);
                 */
 
-                if (isLogin){
-                    update();
-                }
+
 
                 SharedPreferences sharedPref = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
