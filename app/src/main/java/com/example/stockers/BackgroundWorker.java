@@ -38,6 +38,8 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     private Activity activity;
     public AsyncResponse delegate = null;
 
+    SharedPreferences sharedPref;
+
     public static String login_url = "http://stockers.atwebpages.com/login.php";
     public static String register_url = "http://stockers.atwebpages.com/register.php";
     public static String viewPrices_url = "http://stockers.atwebpages.com/viewPrices.php";
@@ -83,7 +85,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             }
             else {
 
-                // update();
+
 
                 player.email = params[1];
                 player.password = params[2];
@@ -520,8 +522,10 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             result = login(params);
             if (!result.equals("-1")){
 
+
                 if (isLogin){
                     // Looper.prepare();
+
                     try {
                         activity.runOnUiThread(new Runnable(){
 
@@ -534,8 +538,19 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                         e.printStackTrace();
                     }
 
+                    String[] array = result.split(" ");
+
+                    player.email = array[3];
+                    player.password = array[4];
+
                     update();
+
+                    result = login("butts", player.email, player.password, "true");
+
                 }
+
+                sharedPref = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
 
                 String result1 = leaderboard();
                 String result2 = portfolio(params);
@@ -545,10 +560,6 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                 sharedPreference.save(context, result2);
                 */
 
-
-
-                SharedPreferences sharedPref = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
 
                 editor.putString("LEADERBOARD", result1);
                 editor.putString("PORTFOLIO", result2);
