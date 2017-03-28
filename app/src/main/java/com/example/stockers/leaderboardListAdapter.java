@@ -1,6 +1,7 @@
 package com.example.stockers;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,14 +44,17 @@ public class leaderboardListAdapter extends ArrayAdapter<String> {
             inflater=(LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView=inflater.inflate(R.layout.leaderboard_row_model, null);
         }
-
+        Typeface supportfont = Typeface.createFromAsset(getContext().getAssets(),"Montserrat-UltraLight.otf");
         // OUR VIEWHOLDER OBJECT
         final ViewHolder holder = new ViewHolder();
 
         //INITIALIZE VIEWS
         holder.rankLeader= (TextView) convertView.findViewById(R.id.list_leaderboard_rank);
+        holder.rankLeader.setTypeface(supportfont);
         holder.investorLeader= (TextView) convertView.findViewById(R.id.list_leaderboard_investor);
+        holder.investorLeader.setTypeface(supportfont);
         holder.networthLeader= (TextView) convertView.findViewById(R.id.list_leaderboard_networth);
+        holder.networthLeader.setTypeface(supportfont);
 
         //ASSIGN VIEWS
         holder.rankLeader.setText(String.valueOf(rankLeader[position]));

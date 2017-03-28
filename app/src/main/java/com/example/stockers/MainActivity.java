@@ -31,13 +31,14 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse{
         //Modifications to the screen parameters need to be set before the SetContentView method...
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
         Username = (EditText)findViewById(R.id.etUserName);
         Password = (EditText)findViewById(R.id.etPassword);
-        /*mAdView = (AdView) findViewById(R.id.adView);
+        mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);*/
+        mAdView.loadAd(adRequest);
         //Here we are going to handle the initialization of our fonts...
         Typeface myTpeface = Typeface.createFromAsset(getAssets(),"Lobster 1.4.otf");
         //Here we will reference the text we want to modify...
