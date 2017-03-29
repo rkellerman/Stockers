@@ -27,7 +27,7 @@ import java.net.URLEncoder;
 import com.example.stockers.SharedPreference.*;
 
 /**
- * Created by RyanMini on 3/2/17.
+ * Backgroundworker class that runs all the important functions and calls for the app
  */
 
 public class BackgroundWorker extends AsyncTask<String, Void, String> {
@@ -54,11 +54,22 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     AlertDialog alertDialog;
     String action;
 
+    /**
+     * sets the current context and activity to the activity that the user is in.
+     * @param context the current state of the application
+     * @param activity the current view that the user is in
+     */
     public BackgroundWorker (Context context, Activity activity){
         this.context = context;
         this.activity = activity;
     }
 
+    /**
+     * used to check if login is correct and finds the user in the database. Returns the appropriate values
+     * based on if it was correct login information or not.
+     * @param params multiple parameters such as email and password
+     * @return returns a success message if the login is successful. A -1 if it is an incorrect login
+     */
     public String login(String... params){
 
 
@@ -84,9 +95,6 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
             }
             else {
-
-
-
                 player.email = params[1];
                 player.password = params[2];
             }
@@ -161,6 +169,11 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         return "-1";
     }
 
+    /**
+     * allows a user to register on the app and create an account.
+     * @param params parameters such as name, surname, email, and password
+     * @return returns the player email and name if successful and a -1 if it was not
+     */
     public String register(String... params){
         try {
             this.action = "register";
@@ -220,6 +233,11 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         return "-1";
     }
 
+    /**
+     *  retrieves information about the user's portfolio and returns a string of the portfolio information
+     * @param params user email
+     * @return returns a string consisting of the portfolio information or -1 if there is none available
+     */
     public String portfolio(String... params){
 
         try {
@@ -274,6 +292,9 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         return "-1";
     }
 
+    /**
+     * gives an update call to the database to update all of its stocks
+     */
     public void update(){
 
         try {
@@ -307,6 +328,10 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         }
     }
 
+    /**
+     *  retrieves leaderboard information which is sorted by user networth
+     * @return returns a string consisting of the username and networth
+     */
     public String leaderboard(){
 
         try {
@@ -346,6 +371,11 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
     }
 
+    /**
+     *  retrieves the prices of stocks
+     * @param params a string of parameters that is passed
+     * @return a string containing the prices. -1 if there is an error
+     */
     public String price(String... params){
 
         // update();
@@ -396,6 +426,11 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         return "-1";
     }
 
+    /**
+     * makes purchase based on the given parameters
+     * @param params a string of parameters that are passed
+     * @return string consisting of ticker, shares, playerID, and money
+     */
     public String makePurchase(String... params){
 
         try {
@@ -453,6 +488,11 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         return "-1";
     }
 
+    /**
+     * sells stock based on the parameters given
+     * @param params string of parameters for selling stock
+     * @return returns string of Ticker, shares, playerID, and money
+     */
     public String sell(String... params){
 
         try {
@@ -510,6 +550,11 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         return "-1";
     }
 
+    /**
+     * background worker that performs multiple functions based on its parameters
+     * @param params string of parameters that contain the user information
+     * @return returns a string that contains information based on what function was called inside it
+     */
     @Override
     protected String doInBackground(String... params){
 
@@ -591,6 +636,9 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         return result;
     }
 
+    /**
+     * creates an alert dialog that has a title of "Notice"
+     */
     @Override
     protected void onPreExecute() {
 
@@ -598,6 +646,10 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         alertDialog.setTitle("NOTICE");
     }
 
+    /**
+     *  delegates process finishes and displays alert boxes
+     * @param result string containing information on what process to perform
+     */
     @Override
     protected void onPostExecute(String result) {
 
@@ -657,6 +709,10 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         }
     }
 
+    /**
+     * default Android studio function
+     * @param values default Android studio parameter
+     */
     @Override
     protected void onProgressUpdate(Void... values) {
         super.onProgressUpdate(values);
