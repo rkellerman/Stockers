@@ -24,6 +24,9 @@ import android.util.Log;
 
 import com.example.stockers.JSSEProvider;
 
+/**
+ *  is not being used currently
+ */
 public class GMailSender extends javax.mail.Authenticator {
     private String mailhost = "smtp.gmail.com";
     private String user;

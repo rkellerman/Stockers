@@ -3,6 +3,9 @@ package com.example.stockers;
 import java.security.AccessController;
 import java.security.Provider;
 
+/**
+ * java secure socket provider
+ */
 public final class JSSEProvider extends Provider {
 
     private static final long serialVersionUID = 3821760047343914156L;
