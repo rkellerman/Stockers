@@ -67,7 +67,7 @@ public class leaderboardListAdapter extends ArrayAdapter<String> {
             convertView=inflater.inflate(R.layout.leaderboard_row_model, null);
         }
         Typeface supportfont = Typeface.createFromAsset(getContext().getAssets(),"Montserrat-UltraLight.otf");
-        // OUR VIEWHOLDER OBJECT
+        // VIEWHOLDER OBJECT
         final ViewHolder holder = new ViewHolder();
 
         //INITIALIZE VIEWS

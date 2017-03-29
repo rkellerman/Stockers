@@ -84,7 +84,7 @@ public class leaderboardActivity extends Fragment {
         }
 
 
-        //ADAPTER
+        //ADAPTER Function
         ListAdapter adapter = new leaderboardListAdapter(getActivity(), rank, investor, networth);
         leaderboardList.setAdapter(adapter);
         return rootView;
