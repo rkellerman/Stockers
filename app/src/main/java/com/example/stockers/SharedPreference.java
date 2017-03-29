@@ -6,7 +6,7 @@ import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
 
 /**
- * Created by RyanMini on 3/13/17.
+ * Android studio Default java file. It edits the settings of the user
  */
 
 public class SharedPreference {
@@ -14,10 +14,18 @@ public class SharedPreference {
     public static final String PREFS_NAME = "AOP_PREFS";
     public static final String PREFS_KEY = "AOP_PREFS_String";
 
+    /**
+     * initializes the sharedPreference constructor
+     */
     public SharedPreference() {
         super();
     }
 
+    /**
+     * saves the shared preference settings.
+     * @param context  class to access the settings
+     * @param text string to put into the editor
+     */
     public void save(Context context, String text) {
         SharedPreferences settings;
         Editor editor;
@@ -31,6 +39,11 @@ public class SharedPreference {
         editor.commit(); //4
     }
 
+    /**
+     * gets the value of a settings from the context class
+     * @param context class to access the settings
+     * @return returns the text retrieved
+     */
     public String getValue(Context context) {
         SharedPreferences settings;
         String text;
@@ -41,6 +54,10 @@ public class SharedPreference {
         return text;
     }
 
+    /**
+     * clears the editor settings
+     * @param context
+     */
     public void clearSharedPreference(Context context) {
         SharedPreferences settings;
         Editor editor;
@@ -53,6 +70,10 @@ public class SharedPreference {
         editor.commit();
     }
 
+    /**
+     * removes the value of a settings from the context class
+     * @param context class to access the settings
+     */
     public void removeValue(Context context) {
         SharedPreferences settings;
         Editor editor;

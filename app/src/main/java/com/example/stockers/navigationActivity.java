@@ -70,7 +70,7 @@ public class navigationActivity extends AppCompatActivity
      * Display's player username on Navigation Bar
      * @param menu
      * Android Studio Default Parameter
-     * @return
+     * @return returns true when it has completed
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
