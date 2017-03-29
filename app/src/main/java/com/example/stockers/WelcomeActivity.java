@@ -17,11 +17,17 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
+/**
+ * initilizes the player information and their portfolio
+ */
 public class WelcomeActivity extends AppCompatActivity implements AsyncResponse {
 
     Player player;
 
-
+    /**
+     * when the view is created it initilizes user portfolio
+     * @param savedInstanceState Default android studio parameter
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +44,10 @@ public class WelcomeActivity extends AppCompatActivity implements AsyncResponse 
     }
 
 
-
+    /**
+     * performs an action when the process is finished
+     * @param result input of a android studio result
+     */
     @Override
     public void processFinish(String result) {
 
