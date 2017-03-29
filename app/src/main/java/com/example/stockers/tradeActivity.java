@@ -16,8 +16,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
+/**
+ * the tradeActivity will auto generate different variables that can be used in the code
+ *
+ */
 
 public class tradeActivity extends Fragment implements AsyncResponse{
+
 
     ArrayAdapter<String> adapter;
     ListView listView;
@@ -32,7 +37,14 @@ public class tradeActivity extends Fragment implements AsyncResponse{
 
     String prevText = null;
 
-
+    /**
+     * creates multiple algorithms when this activity is started up to initialize all of the buttons
+     * and create the functions that they will carry out
+     * @param inflater android studio default parameter
+     * @param container android studio default parameter
+     * @param savedInstanceState android studio default parameter
+     * @return returns rootview
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -163,7 +175,11 @@ public class tradeActivity extends Fragment implements AsyncResponse{
         return rootView;
     }
 
-
+    /**
+     * gets the activity and sets the title to trade. Happens before OnCreateView
+     * @param view android studio default parameter
+     * @param savedInstanceState android studio default parameter
+     */
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -171,6 +187,15 @@ public class tradeActivity extends Fragment implements AsyncResponse{
         getActivity().setTitle("Trade");
     }
 
+    /**
+     * This function talks to the database and replaces the textviews with the stock information and performs the transactions.
+     * This is done by finding the id's of the textviews, and replacing them with the values retrieved
+     * from the background worker.
+     *
+     * It also performs all of the buy and sell interaction, such as checking if the user has enough money,
+     * updating the prices, sending error messages, and performing the transaction
+     * @param result the stock name
+     */
     @Override
     public void processFinish(String result) {
 
@@ -207,13 +232,6 @@ public class tradeActivity extends Fragment implements AsyncResponse{
                 divText.setText(array[11]);
                 epsText.setText(array[12]);
                 instText.setText(array[14]);
-
-
-
-
-
-
-
             } else {
                 alertDialog.setMessage("Please enter a valid ticker...");
                 alertDialog.show();
@@ -295,8 +313,5 @@ public class tradeActivity extends Fragment implements AsyncResponse{
                 alertDialog.show();
             }
         }
-
-
-
     }
 }
