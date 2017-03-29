@@ -22,6 +22,18 @@ public class leaderboardActivity extends Fragment {
     String[] investor = null;
     double[] networth = null;
 
+    /**
+     * This function initializes all variables
+     * when view is created,  to values
+     * obtained from our database.
+     * @param inflater
+     * Android Studio Default Parameter
+     * @param container
+     * Android Studio Default Parameter
+     * @param savedInstanceState
+     * Android Studio Default Parameter
+     * @return rootView
+     */
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -78,6 +90,13 @@ public class leaderboardActivity extends Fragment {
         return rootView;
     }
 
+    /**
+     * Sets the Title in the Header. This function is called before onCreateView.
+     * @param view
+     * Android Studio Default Parameter
+     * @param savedInstanceState
+     * Android Studio Default Parameter
+     */
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

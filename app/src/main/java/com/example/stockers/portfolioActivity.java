@@ -185,7 +185,7 @@ public class portfolioActivity extends Fragment {
     }
 
     /**
-     * Sets the Title in the Header. This funciton is called before onCreateView
+     * Sets the Title in the Header. This function is called before onCreateView.
      * @param view
      * Android Studio Default Parameter
      * @param savedInstanceState

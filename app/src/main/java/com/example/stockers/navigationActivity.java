@@ -20,6 +20,11 @@ import android.widget.TextView;
 public class navigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    /**
+     * Links XML widgets to Java variables upon creation
+     * @param savedInstanceState
+     * Android Studio Default Parameter
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +53,9 @@ public class navigationActivity extends AppCompatActivity
         displaySelectedScreen(R.id.nav_portfolio);
     }
 
+    /**
+     * Closes Navigation Drawer when button is pressed.
+     */
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -58,6 +66,12 @@ public class navigationActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Display's player username on Navigation Bar
+     * @param menu
+     * Android Studio Default Parameter
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -80,6 +94,13 @@ public class navigationActivity extends AppCompatActivity
         return true;
     }
 
+    /**
+     * Connects Navigation Bar Open/Close with Android back button.
+     * @param item
+     * Android Studio Default Parameter
+     * @return
+     * true
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -95,6 +116,11 @@ public class navigationActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * This method opens other pages as requested by the user from the NavBar.
+     * @param id
+     * ID of Android Pages
+     */
     private void displaySelectedScreen(int id){
         Fragment fragment = null;
 
@@ -126,6 +152,11 @@ public class navigationActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
     }
 
+    /**
+     * Fetches ID from XML.
+     * @param item
+     * @return true
+     */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -136,6 +167,12 @@ public class navigationActivity extends AppCompatActivity
         return true;
     }
 
+    /**
+     * Default Android Function
+     * @param menu
+     * @return
+     * false
+     */
     public boolean onPrepareOptionsMenu(Menu menu) {
         return false;
     }

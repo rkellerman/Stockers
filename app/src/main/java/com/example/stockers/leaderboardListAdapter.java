@@ -18,6 +18,18 @@ public class leaderboardListAdapter extends ArrayAdapter<String> {
     Context c;
     LayoutInflater inflater;
 
+    /**
+     * This is used to initialize various portfolio variables to display to the ListView widget.
+     * @param context
+     * Android Studio Default Parameter
+     * @param rankLeader
+     * Array contains ordered ranks of all players
+     * @param investorLeader
+     * Array contains all player names
+     * @param networthLeader
+     * Array contains each players networth
+     */
+
     public leaderboardListAdapter(Context context, int[] rankLeader, String[] investorLeader,
                                   double[] networthLeader) {
         super(context, R.layout.leaderboard_row_model, investorLeader);
@@ -35,6 +47,16 @@ public class leaderboardListAdapter extends ArrayAdapter<String> {
         TextView networthLeader;
     }
 
+    /**
+     * Sets all values in XML file to display on app.
+     * @param position
+     * Current position of an element in the ListView widget
+     * @param convertView
+     * Android Studio Default Parameter
+     * @param parent
+     * Android Studio Default Parameter
+     * @return convertView
+     */
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
