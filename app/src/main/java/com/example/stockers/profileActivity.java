@@ -25,6 +25,18 @@ import static android.app.Activity.RESULT_OK;
 public class profileActivity extends Fragment implements View.OnClickListener, AsyncResponse{
 
     ImageView profileImageView;
+
+    /**
+     * Creates page upon opening of Profile Page. Defines variables and tabs.
+     * @param inflater
+     * Android Studio Default Parameter
+     * @param container
+     * Android Studio Default Parameter
+     * @param savedInstanceState
+     * Android Studio Default Parameter
+     * @return
+     * rootView
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.profile_layout, container, false);
@@ -72,6 +84,13 @@ public class profileActivity extends Fragment implements View.OnClickListener, A
         return rootView;
     }
 
+    /**
+     * Sets title for page.
+     * @param view
+     * Android Studio Default Parameter
+     * @param savedInstanceState
+     * Android Studio Default Parameter
+     */
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -79,6 +98,15 @@ public class profileActivity extends Fragment implements View.OnClickListener, A
         getActivity().setTitle("Profile");
     }
 
+    /**
+     * Helper function to set player image.
+     * @param requestCode
+     * Used to verify if image is already stored
+     * @param resultCode
+     * Variable used for verification purposes
+     * @param data
+     * Input Image
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         if(resultCode == RESULT_OK){
@@ -87,6 +115,11 @@ public class profileActivity extends Fragment implements View.OnClickListener, A
             }
         }
     }
+
+    /**
+     * When button pressed, calls options to set Player image.
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         Intent intent = new Intent();
@@ -95,6 +128,10 @@ public class profileActivity extends Fragment implements View.OnClickListener, A
         startActivityForResult(Intent.createChooser(intent,"Select Image"),1);
     }
 
+    /**
+     * Function to be used later when connecting database.
+     * @param result
+     */
     @Override
     public void processFinish(String result) {
 

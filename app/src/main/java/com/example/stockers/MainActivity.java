@@ -23,6 +23,12 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse{
     private static final String TAG = "MainActivity";
 
     private AdView mAdView;
+
+    /**
+     * Creates the login page upon opening.
+     * @param savedInstanceState
+     * Android Studio Default Parameter
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +68,11 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse{
         forgotbuttonText.setTypeface(supportfont);
     }
 
+    /**
+     * Upon login, this method will verify user credentials.
+     * @param view
+     * Android Studio Default Parameter
+     */
     public void onLogin(View view){
 
         String username = Username.getText().toString();
@@ -75,12 +86,23 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse{
 
     }
 
+    /**
+     * Takes user to registration page.
+     * @param view
+     * Android Studio Default Parameter
+     */
     public void openReg(View view){
 
         startActivity(new Intent(this, Register.class));
 
     }
 
+
+    /**
+     * Places data in Navigation Bar.
+     * @param result
+     * Parameter from database to get values for database
+     */
     @Override
     public void processFinish(String result){
 

@@ -19,6 +19,11 @@ public class Register extends AppCompatActivity implements AsyncResponse{
 
     EditText name, surname, email, password, passwordConfirm;
 
+    /**
+     * Creates Registration Page and defines all variables.
+     * @param savedInstanceState
+     * Android Studio Default Parameter
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,10 +59,20 @@ public class Register extends AppCompatActivity implements AsyncResponse{
         buttonRegText.setTypeface(supportfont);
     }
 
+    /**
+     * Allows return to login page.
+     * @param view
+     * Android Studio Default Parameter
+     */
     public void back(View view){
         finish();
     }
 
+    /**
+     * Upon registration, input variables are checked for valid entries and stored in database.
+     * @param view
+     * Android Studio Default Parameter
+     */
     public void onReg(View view){
 
         String str_name = name.getText().toString();
@@ -110,6 +125,11 @@ public class Register extends AppCompatActivity implements AsyncResponse{
 
     }
 
+    /**
+     * Sets email and name to define Player.
+     * @param result
+     * String from database
+     */
     @Override
     public void processFinish(String result){
 
@@ -124,6 +144,11 @@ public class Register extends AppCompatActivity implements AsyncResponse{
         finish();
     }
 
+    /**
+     * Function to send verification email to user after successful registration. Function not completed yet.
+     * @param player
+     * Calls Player object in order to access necessary variables
+     */
     protected void sendEmail(Player player) {
         Log.i("Send email", "");
 
