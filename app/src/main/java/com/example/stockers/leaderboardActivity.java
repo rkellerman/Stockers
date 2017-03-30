@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class leaderboardActivity extends Fragment {
+    public boolean LeaderboardState_actual = false;
+    public boolean Leaderboard_expected = true;
 
     ListView leaderboardList;
     int[] rank = null;
@@ -81,8 +84,14 @@ public class leaderboardActivity extends Fragment {
             rank[i] = i+1;
             investor[i] = entries[0];
             networth[i] = Double.parseDouble(entries[1]);
-        }
 
+            if(rank[i]==array.length-1){
+                LeaderboardState_actual = true;
+            }
+        }
+        if(Leaderboard_expected==LeaderboardState_actual){
+            Log.d("Leaderboard State: ","True");
+        }
 
         //ADAPTER Function
         ListAdapter adapter = new leaderboardListAdapter(getActivity(), rank, investor, networth);

@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse{
         String username = Username.getText().toString();
         String password = Password.getText().toString();
         String type = "login";
-
+        portfolioActivity.PortfolioState_Actual = true;
         BackgroundWorker backgroundWorker = new BackgroundWorker(this, MainActivity.this);
         backgroundWorker.delegate = this;
         backgroundWorker.execute(type, username, password, "true");

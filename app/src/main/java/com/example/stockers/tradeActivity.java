@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,14 @@ import org.w3c.dom.Text;
  */
 
 public class tradeActivity extends Fragment implements AsyncResponse{
+    //Unit-Test variables...
+
+    //These keep track of purchase transactions...
+    public boolean PurchaseState_Actual = false;
+    public boolean PurchaseState_Expected = true;
+    //These keep track of sold transactions...
+    public boolean SellState_Actual = false;
+    public boolean SellState_Expected = true;
 
 
     ArrayAdapter<String> adapter;
@@ -268,6 +277,11 @@ public class tradeActivity extends Fragment implements AsyncResponse{
                 BackgroundWorker backgroundWorker = new BackgroundWorker(getContext(), getActivity());
                 backgroundWorker.delegate = this;
                 backgroundWorker.execute(type, "", "", "false");
+
+                PurchaseState_Actual = true;
+                if(PurchaseState_Actual==PurchaseState_Expected){
+                    Log.d("Purchase State: ","True");
+                }
             }
             else {
                 alertDialog.setMessage("You do not have enough money to complete the transaction...");
@@ -301,7 +315,10 @@ public class tradeActivity extends Fragment implements AsyncResponse{
                 editor.commit();
 
                 valid = false;
-
+                SellState_Actual = true;
+                if(SellState_Actual==SellState_Expected){
+                    Log.d("Sell State: ","True");
+                }
                 String type = "login";
 
                 BackgroundWorker backgroundWorker = new BackgroundWorker(getContext(), getActivity());

@@ -17,6 +17,10 @@ import java.io.Serializable;
 
 public class Register extends AppCompatActivity implements AsyncResponse{
 
+    //Unit test variables...
+    public boolean RegisterState_Expected = true;
+    public boolean RegisterState_Actual = false;
+
     EditText name, surname, email, password, passwordConfirm;
 
     /**
@@ -114,7 +118,10 @@ public class Register extends AppCompatActivity implements AsyncResponse{
         }
 
         Toast.makeText(Register.this, "Registration Success", Toast.LENGTH_SHORT).show();
-
+        RegisterState_Actual = true;
+        if(RegisterState_Actual==RegisterState_Expected){
+            Log.d("Register State: ","True");
+        }
         String type = "register";
 
         BackgroundWorker backgroundWorker = new BackgroundWorker(this, Register.this);
