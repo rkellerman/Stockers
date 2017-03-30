@@ -19,6 +19,9 @@ import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity implements AsyncResponse{
 
+    public boolean LoginState_actual = false;
+    public boolean LoginState_expected = true;
+
     EditText Username, Password;
     private static final String TAG = "MainActivity";
 
@@ -31,6 +34,10 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse{
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        LoginState_actual = true;
+        if(LoginState_actual == LoginState_expected){
+            Log.d("LoginState","True");
+        }
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
