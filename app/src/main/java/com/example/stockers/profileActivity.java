@@ -23,7 +23,8 @@ import android.widget.TextView;
 import static android.app.Activity.RESULT_OK;
 
 public class profileActivity extends Fragment implements View.OnClickListener, AsyncResponse{
-
+    public boolean ProfileState_actual = false;
+    public boolean ProfileState_expected = true;
     ImageView profileImageView;
 
     /**
@@ -39,6 +40,10 @@ public class profileActivity extends Fragment implements View.OnClickListener, A
      */
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //Unit testing...
+        //Profile
+
+
         View rootView = inflater.inflate(R.layout.profile_layout, container, false);
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("1", Context.MODE_PRIVATE);
