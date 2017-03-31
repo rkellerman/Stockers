@@ -47,6 +47,9 @@ public class profileActivity extends Fragment implements View.OnClickListener, A
         if(ProfileState_actual == ProfileState_expected) {
             Log.d("Profile State: ", "True");
         }
+        else{
+            Log.d("Profile State: ", "False");
+        }
 
 
         View rootView = inflater.inflate(R.layout.profile_layout, container, false);

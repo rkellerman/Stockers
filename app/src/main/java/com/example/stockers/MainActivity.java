@@ -38,6 +38,9 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse{
         if(LoginState_actual == LoginState_expected){
             Log.d("LoginState","True");
         }
+        else{
+            Log.d("LoginState","False");
+        }
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 

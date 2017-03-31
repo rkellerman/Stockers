@@ -53,6 +53,9 @@ public class portfolioActivity extends Fragment {
         if(PortfolioState_Actual==PortfolioState_Expected){
                 Log.d("Portfolio State: ","True");
         }
+        else{
+                Log.d("Portfolio State: ","False");
+        }
         View rootView = inflater.inflate(R.layout.portfolio_layout, container, false);
         /*
         sharedPreference = new SharedPreference();
