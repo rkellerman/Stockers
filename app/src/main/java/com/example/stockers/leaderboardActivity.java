@@ -23,6 +23,8 @@ public class leaderboardActivity extends Fragment {
     ListView leaderboardList;
     int[] rank = null;
     String[] investor = null;
+    int netldboard=0;
+    int netpfile=0;
     double[] networth = null;
 
     /**
@@ -67,7 +69,9 @@ public class leaderboardActivity extends Fragment {
 
         getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
+        if(netldboard==netpfile){
+            Log.d("V","Net worth on Profile equal to Net worth on Leader Board: True");
+        }
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("1", Context.MODE_PRIVATE);
         String result = sharedPreferences.getString("LEADERBOARD", "0!!!0");
 

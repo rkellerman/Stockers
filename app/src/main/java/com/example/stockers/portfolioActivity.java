@@ -28,6 +28,8 @@ public class portfolioActivity extends Fragment {
     double[] stockPrice = null;
     int[] shares = null;
     String[] percentChange = null;
+    int netpfile=0;
+    int netprfl=0;
     private static TextView totalNetworth;
 
     private SharedPreference sharedPreference;
@@ -96,7 +98,9 @@ public class portfolioActivity extends Fragment {
         Stocknamehead.setTypeface(number);
         Stockpricehead.setTypeface(number);
         helper.setTypeface(number);
-
+        if(netpfile==netprfl){
+            Log.d("V","Net worth on Profile equal to Net worth on Portfolio: True");
+        }
         if (result.length() > 2) {
             result = result.substring(0, result.length() - 3);
 
