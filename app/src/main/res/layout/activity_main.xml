@@ -15,7 +15,6 @@
     android:baselineAligned="false">
 
     <TextView
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#ffffff"
@@ -25,37 +24,16 @@
         android:layout_centerHorizontal="true"
         android:textSize="85dp" />
 
-    <Button
-        android:text="Login"
+    <TextView
+        android:text="Sign in for the most immersive stock market experience yet."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnLogin"
-        android:onClick="onLogin"
-        android:width="285dp"
-        android:height="45dp"
-        android:background= "#9AFFF7"
-        android:layout_marginBottom="65dp"
-        android:layout_above="@+id/btn_reg"
-        android:layout_centerHorizontal="true"
-        android:textSize="25dp"
-        android:textAllCaps="false"
-        android:fontFamily="sans-serif-medium" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:inputType="textPassword"
-        android:hint="Password"
-        android:text="frank123"
-        android:textColorHint="#f0f0f0"
-        android:ems="10"
-        android:id="@+id/etPassword"
-        android:textSize="25sp"
+        android:textSize="22dp"
+        android:id="@+id/textView3"
+        android:textAlignment="center"
         android:textColor="#ffffff"
-        android:backgroundTint="#f0f0f0"
-        android:layout_above="@+id/button2"
-        android:layout_alignStart="@+id/etUserName" />
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -73,40 +51,21 @@
         android:layout_above="@+id/etPassword"
         android:layout_alignStart="@+id/btnLogin" />
 
-    <TextView
-        android:text="Sign in for the most immersive stock market experience yet."
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="22dp"
-        android:id="@+id/textView3"
-        android:textAlignment="center"
+        android:layout_gravity="center_horizontal"
+        android:inputType="textPassword"
+        android:hint="Password"
+        android:text="frank123"
+        android:textColorHint="#f0f0f0"
+        android:ems="10"
+        android:id="@+id/etPassword"
+        android:textSize="25sp"
         android:textColor="#ffffff"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentStart="true" />
-
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/banner_ad_unit_id"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/textView2">
-    </com.google.android.gms.ads.AdView>
-
-    <Button
-        android:text="Create an account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:id="@+id/btn_reg"
-        android:onClick="openReg"
-
-        android:elevation="0dp"
-        style="@android:style/Widget.DeviceDefault.Button.Borderless"
-        android:textColor="#ffffff"
-        android:layout_above="@+id/adView"
-        android:layout_centerHorizontal="true" />
+        android:backgroundTint="#f0f0f0"
+        android:layout_above="@+id/button2"
+        android:layout_alignStart="@+id/etUserName" />
 
     <Button
         android:text="Forgot Password?"
@@ -121,4 +80,48 @@
         android:textSize="18dp"
         android:layout_above="@+id/btnLogin"
         android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnLogin"
+        android:onClick="onLogin"
+        android:width="285dp"
+        android:height="45dp"
+        android:background= "#9AFFF7"
+        android:layout_marginBottom="25dp"
+        android:layout_above="@+id/btn_reg"
+        android:layout_centerHorizontal="true"
+        android:textSize="25dp"
+        android:textAllCaps="false"
+        android:fontFamily="sans-serif-medium" />
+
+    <Button
+        android:text="Create an account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:id="@+id/btn_reg"
+        android:onClick="openReg"
+        android:elevation="0dp"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless"
+        android:textColor="#ffffff"
+        android:layout_above="@+id/adView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="28dp" />
+
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id"
+        android:layout_alignParentBottom="true">
+    </com.google.android.gms.ads.AdView>
+
+
+
+
 </RelativeLayout>
