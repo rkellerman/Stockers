@@ -30,6 +30,8 @@
             android:label="@string/title_activity_navigation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".About" />
+        <activity android:name=".Help"></activity>
     </application>
 
 </manifest>

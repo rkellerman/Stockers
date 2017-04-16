@@ -122,6 +122,9 @@ public class Register extends AppCompatActivity implements AsyncResponse{
         if(RegisterState_Actual==RegisterState_Expected){
             Log.d("Register State: ","True");
         }
+        else{
+            Log.d("Register State: ","False");
+        }
         String type = "register";
 
         BackgroundWorker backgroundWorker = new BackgroundWorker(this, Register.this);

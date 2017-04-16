@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -19,6 +20,28 @@ import android.widget.TextView;
 
 public class navigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    //Unit Testing Variables
+
+    //Portfolio...
+    public boolean NavigationState_Portfolio_actual = false;
+    public boolean NavigationState_Portfolio_expected = true;
+
+    //Leaderboard...
+    public boolean NavigationState_Leaderboard_actual = false;
+    public boolean NavigationState_Leaderboard_expected = true;
+
+    //Profile...
+    public boolean NavigationState_Profile_actual = false;
+    public boolean NavigationState_Profile_expected = true;
+
+    //Trade...
+    public boolean NavigationState_Trade_actual = false;
+    public boolean NavigationState_Trade_expected = true;
+
+    //Logout...
+    public boolean NavigationState_Logout_actual = false;
+    public boolean NavigationState_Logout_expected = true;
 
     /**
      * Links XML widgets to Java variables upon creation
@@ -126,18 +149,43 @@ public class navigationActivity extends AppCompatActivity
 
         switch (id){
             case R.id.nav_portfolio:
+
+                NavigationState_Portfolio_actual = true;
+                if(NavigationState_Portfolio_actual==NavigationState_Portfolio_expected){
+                    Log.d("Navigation->Portfolio: ","True");
+                }
                 fragment = new portfolioActivity();
                 break;
             case R.id.nav_leaderboard:
+
+                NavigationState_Leaderboard_actual = true;
+                if(NavigationState_Leaderboard_actual==NavigationState_Leaderboard_expected){
+                    Log.d("Navigation->Leaderbrd: ","True");
+                }
                 fragment = new leaderboardActivity();
                 break;
             case R.id.nav_profile:
+
+                NavigationState_Profile_actual = true;
+                if(NavigationState_Profile_actual==NavigationState_Profile_expected){
+                    Log.d("Navigation->Profile: ","True");
+                }
                 fragment = new profileActivity();
                 break;
             case R.id.nav_trade:
+
+                NavigationState_Trade_actual = true;
+                if(NavigationState_Trade_actual==NavigationState_Trade_expected){
+                    Log.d("Navigation->Trade: ","True");
+                }
                 fragment = new tradeActivity();
                 break;
             case R.id.logout:
+
+                NavigationState_Logout_actual = true;
+                if(NavigationState_Logout_actual==NavigationState_Logout_expected){
+                    Log.d("Navigation->Logout: ","True");
+                }
                 finish();
                 break;
             /*

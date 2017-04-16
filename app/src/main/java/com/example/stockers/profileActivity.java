@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import static android.app.Activity.RESULT_OK;
 public class profileActivity extends Fragment implements View.OnClickListener, AsyncResponse{
     public boolean ProfileState_actual = false;
     public boolean ProfileState_expected = true;
+
     ImageView profileImageView;
 
     /**
@@ -41,7 +43,13 @@ public class profileActivity extends Fragment implements View.OnClickListener, A
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //Unit testing...
-        //Profile
+        ProfileState_actual = true;
+        if(ProfileState_actual == ProfileState_expected) {
+            Log.d("Profile State: ", "True");
+        }
+        else{
+            Log.d("Profile State: ", "False");
+        }
 
 
         View rootView = inflater.inflate(R.layout.profile_layout, container, false);

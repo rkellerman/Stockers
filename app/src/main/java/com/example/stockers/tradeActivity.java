@@ -313,6 +313,7 @@ public class tradeActivity extends Fragment implements AsyncResponse{
             else {
                 alertDialog.setMessage("You do not have enough money to complete the transaction...");
                 alertDialog.show();
+                Log.d("Purchase State: ","False");
             }
 
         }
@@ -355,6 +356,7 @@ public class tradeActivity extends Fragment implements AsyncResponse{
             else {
                 alertDialog.setMessage("You do not own the requested number of shares...");
                 alertDialog.show();
+                Log.d("Sell State: ","False");
             }
         }
     }
