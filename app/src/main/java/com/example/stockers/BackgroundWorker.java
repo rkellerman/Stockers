@@ -49,6 +49,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     public static String portfolio_url = "http://stockers.atwebpages.com/portfolio.php";
     public static String leaderboard_url = "http://stockers.atwebpages.com/leaderboard.php";
     public static String price_url = "http://stockers.atwebpages.com/price.php";
+    public static String graph_url = "http://stockers.atwebpages.com/graph.php";
 
     Context context;
     AlertDialog alertDialog;
@@ -426,6 +427,54 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         return "-1";
     }
 
+    public String graph(String... params){
+        // update();
+
+        try {
+
+            this.action = "graph";
+
+            URL url = new URL(graph_url);
+
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.setDoOutput(true);
+            httpURLConnection.setDoInput(true);
+
+            OutputStream outputStream = httpURLConnection.getOutputStream();
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+            String post_data = URLEncoder.encode("ticker", "UTF-8") + "=" + URLEncoder.encode(params[1], "UTF-8");
+
+            bufferedWriter.write(post_data);
+            bufferedWriter.flush();
+            bufferedWriter.close();
+            outputStream.close();
+
+            InputStream inputStream = httpURLConnection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+
+            String result = "";
+            String line = "";
+
+            while ((line = bufferedReader.readLine()) != null) {
+                result += line;
+            }
+
+            bufferedReader.close();
+            inputStream.close();
+            httpURLConnection.disconnect();
+
+            return result;
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "-1";
+    }
+
     /**
      * makes purchase based on the given parameters
      * @param params a string of parameters that are passed
@@ -633,6 +682,9 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         else if (type.equals("sell")){
             result = sell(params);
         }
+        else if (type.equals("graph")){
+            result = graph(params);
+        }
         return result;
     }
 
@@ -705,6 +757,9 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             delegate.processFinish(result);
         }
         else if (this.action.equals("sell")){
+            delegate.processFinish(result);
+        }
+        else if (this.action.equals("graph")){
             delegate.processFinish(result);
         }
     }

@@ -3,8 +3,11 @@ package com.example.stockers;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -241,10 +245,33 @@ public class tradeActivity extends Fragment implements AsyncResponse{
                 divText.setText(array[11]);
                 epsText.setText(array[12]);
                 instText.setText(array[14]);
+
+                // get image
+                current = "graph";
+
+                String type = "graph";
+
+                EditText text = (EditText)rootView.findViewById(R.id.searchField);
+
+                BackgroundWorker backgroundWorker = new BackgroundWorker(getContext(), getActivity());
+                backgroundWorker.delegate = del;
+                backgroundWorker.execute(type, text.getText().toString().toLowerCase());
+
+
+
             } else {
                 alertDialog.setMessage("Please enter a valid ticker...");
                 alertDialog.show();
             }
+        }
+        else if (current.equals("graph")){
+
+
+            ImageView image = (ImageView)rootView.findViewById(R.id.graphImage);
+            byte[] decodedString = Base64.decode(result, Base64.DEFAULT);
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            image.setImageBitmap(decodedByte);
+
         }
         else if (current.equals("purchase")){
             if (Double.parseDouble(result) >= 0){

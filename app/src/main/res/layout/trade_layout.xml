@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_trade"
     android:layout_width="match_parent"
@@ -257,4 +258,11 @@
             android:id="@+id/sellButton"
             android:elevation="24dp" />
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/graphImage"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        app:srcCompat="?android:attr/alertDialogIcon" />
+
 </LinearLayout>

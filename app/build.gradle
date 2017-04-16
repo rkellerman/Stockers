@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     useLibrary 'org.apache.http.legacy'
@@ -31,9 +32,11 @@ dependencies {
     compile files('libs/additionnal.jar')
     compile files('libs/mail.jar')
     compile files('libs/activation.jar')
+    // compile 'com.google.android.gms:play-services:8.3.0'
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.android.support:design:25.2.0'
     compile 'com.google.firebase:firebase-ads:10.0.1'
+    compile 'com.android.support.constraint:constraint-layout:+'
     testCompile 'junit:junit:4.12'
 }
 

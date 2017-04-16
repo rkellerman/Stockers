@@ -140,6 +140,11 @@ public class navigationActivity extends AppCompatActivity
             case R.id.logout:
                 finish();
                 break;
+            /*
+            case R.id.nav_chat:
+                fragment = new ChatActivity();
+                break;
+                */
         }
         if(fragment != null){
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
