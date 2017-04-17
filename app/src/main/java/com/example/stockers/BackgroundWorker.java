@@ -537,6 +537,116 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         return "-1";
     }
 
+    public String sendMessage(String... params){
+
+        try {
+
+            this.action = "sendMessage";
+
+            URL url = new URL(graph_url);
+
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.setDoOutput(true);
+            httpURLConnection.setDoInput(true);
+
+            SharedPreferences sharedPreferences = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
+            String player_string = sharedPreferences.getString("PLAYER", "-1");
+
+            String[] player_array = player_string.split(" ");
+
+            player.email = player_array[3];
+
+            OutputStream outputStream = httpURLConnection.getOutputStream();
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+            String post_data = URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(player.email, "UTF-8") + "&" +
+                    URLEncoder.encode("message", "UTF-8") + "=" + URLEncoder.encode(params[1], "UTF-8");
+
+            bufferedWriter.write(post_data);
+            bufferedWriter.flush();
+            bufferedWriter.close();
+            outputStream.close();
+
+            InputStream inputStream = httpURLConnection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+
+            String result = "";
+            String line = "";
+
+            while ((line = bufferedReader.readLine()) != null) {
+                result += line;
+            }
+
+            bufferedReader.close();
+            inputStream.close();
+            httpURLConnection.disconnect();
+
+            return result;
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "-1";
+
+    }
+
+    public String getMessages(String... params){
+
+        try {
+
+            this.action = "getMessages";
+
+            URL url = new URL(graph_url);
+
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.setDoOutput(true);
+            httpURLConnection.setDoInput(true);
+
+            SharedPreferences sharedPreferences = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
+            String player_string = sharedPreferences.getString("PLAYER", "-1");
+
+            String[] player_array = player_string.split(" ");
+
+            player.email = player_array[3];
+
+            OutputStream outputStream = httpURLConnection.getOutputStream();
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+            String post_data = URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(player.email, "UTF-8");
+
+            bufferedWriter.write(post_data);
+            bufferedWriter.flush();
+            bufferedWriter.close();
+            outputStream.close();
+
+            InputStream inputStream = httpURLConnection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+
+            String result = "";
+            String line = "";
+
+            while ((line = bufferedReader.readLine()) != null) {
+                result += line;
+            }
+
+            bufferedReader.close();
+            inputStream.close();
+            httpURLConnection.disconnect();
+
+            return result;
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "-1";
+    }
+
     /**
      * sells stock based on the parameters given
      * @param params string of parameters for selling stock
@@ -685,6 +795,27 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         else if (type.equals("graph")){
             result = graph(params);
         }
+        else if (type.equals("sendMessage")){
+            result = sendMessage(params);
+            result = getMessages(params);
+
+            sharedPref = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+
+            editor.putString("CHAT", result);
+            editor.commit();
+
+
+        }
+        else if (type.equals("getMessages")){
+            result = getMessages(params);
+
+            sharedPref = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+
+            editor.putString("CHAT", result);
+            editor.commit();
+        }
         return result;
     }
 
@@ -760,6 +891,12 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             delegate.processFinish(result);
         }
         else if (this.action.equals("graph")){
+            delegate.processFinish(result);
+        }
+        else if (this.action.equals("sendMessage")){
+            // should not reach here
+        }
+        else if (this.action.equals("getMessages")){
             delegate.processFinish(result);
         }
     }
