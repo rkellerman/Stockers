@@ -36,7 +36,8 @@
         android:layout_height="1dp"
         android:background="#000000"
         android:layout_alignBottom="@+id/My_Profile_Title"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:id="@+id/view" />
 
 
     <TextView
@@ -193,6 +194,15 @@
             </FrameLayout>
         </LinearLayout>
     </TabHost>
+
+
+    <Button
+        android:id="@+id/sharebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/view"
+        android:layout_toEndOf="@+id/My_Profile_Title"
+        android:text="Share" />
 
 
 </RelativeLayout>

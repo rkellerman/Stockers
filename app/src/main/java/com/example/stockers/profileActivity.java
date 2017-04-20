@@ -21,6 +21,7 @@ import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
+import static android.R.attr.onClick;
 import static android.app.Activity.RESULT_OK;
 
 public class profileActivity extends Fragment implements View.OnClickListener, AsyncResponse{
@@ -29,6 +30,7 @@ public class profileActivity extends Fragment implements View.OnClickListener, A
 
     ImageView profileImageView;
 
+    Button shareButton;
     /**
      * Creates page upon opening of Profile Page. Defines variables and tabs.
      * @param inflater
@@ -53,6 +55,21 @@ public class profileActivity extends Fragment implements View.OnClickListener, A
 
 
         View rootView = inflater.inflate(R.layout.profile_layout, container, false);
+
+        // share button
+        shareButton = (Button)rootView.findViewById(R.id.sharebutton);
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                Intent myIntent =new Intent(Intent.ACTION_SEND);
+                myIntent.setType("Text/plain");
+                String shareBody = "Let your friends know about the app!";
+                String shareSub = "Download STOCKERS and learn about the stock market right now!";
+                myIntent.putExtra(Intent.EXTRA_SUBJECT, shareSub);
+                myIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(myIntent, "Share via"));
+            }
+        });
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("1", Context.MODE_PRIVATE);
         String playerText = sharedPreferences.getString("PLAYER", "-1");
