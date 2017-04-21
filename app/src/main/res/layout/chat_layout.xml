@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/chatHeader"
+        android:layout_width="100sp"
+        android:layout_height="wrap_content"
+        android:text="Chat"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/chatListView"
+        android:layout_width="match_parent"
+        android:layout_height="450sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/chatHeader"
+        >
+    </ListView>
+
+</RelativeLayout>
