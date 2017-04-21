@@ -39,6 +39,10 @@ public class navigationActivity extends AppCompatActivity
     public boolean NavigationState_Trade_actual = false;
     public boolean NavigationState_Trade_expected = true;
 
+    //Help
+    public boolean NavigationState_Help_actual = false;
+    public boolean NavigationState_Help_expected = true;
+
     //Logout...
     public boolean NavigationState_Logout_actual = false;
     public boolean NavigationState_Logout_expected = true;
@@ -190,6 +194,13 @@ public class navigationActivity extends AppCompatActivity
                 break;
             case R.id.nav_chat:
                 fragment = new ChatActivity();
+                break;
+            case R.id.nav_learn:
+                NavigationState_Help_actual = true;
+                if(NavigationState_Help_actual == NavigationState_Help_expected){
+                    Log.d("Navigation->Help: ", "True");
+                }
+                fragment = new Help();
                 break;
 
         }

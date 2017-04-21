@@ -1,9 +1,264 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.stockers.Help">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/help_heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Helpful Terms"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:id="@+id/help_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="500sp"
+        android:layout_below="@id/help_heading"
+        android:layout_marginTop="10dp"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/fifty_two"
+                android:layout_marginTop="5sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="52 Week High/Low"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/fifty_two_definition"
+                android:layout_below="@id/fifty_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="A 52-week high/low is the highest and lowest price that a stock has traded at during the previous year. On the Trade Page, it is given as (lowest price) - (highest price)."
+                android:textSize="16sp"
+                />
+
+
+            <TextView
+                android:id="@+id/Div_Yield"
+                android:layout_below="@id/fifty_two_definition"
+                android:layout_marginTop="5sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dividend Yield"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/Div_Yield_definition"
+                android:layout_below="@id/Div_Yield"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="A financial ratio that indicates how much a company pays out in dividends each year relative to its share price."
+                android:textSize="16sp"
+                />
+
+
+            <TextView
+                android:id="@+id/Networth"
+                android:layout_below="@id/Div_Yield_definition"
+                android:layout_marginTop="5sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Networth"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/Networth_definition"
+                android:layout_below="@id/Networth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="This is the combined value of your spendable money and stock value. For example, if you have $100 and spend $50 on stock, your networth is still $100. if the value of your stock increases by 10%, then your networth value is $50 + ($50 x 1.1) or $105."
+                android:textSize="16sp"
+                />
+
+
+            <TextView
+                android:id="@+id/Open"
+                android:layout_below="@id/Networth_definition"
+                android:layout_marginTop="5sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Open Price"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/Open_definition"
+                android:layout_below="@id/Open"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="This is the share price at the beginning of the market day."
+                android:textSize="16sp"
+                />
+
+
+            <TextView
+                android:id="@+id/Price_Earnings"
+                android:layout_below="@id/Open_definition"
+                android:layout_marginTop="5sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Price Earnings Ratio"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/Price_Earnings_definition"
+                android:layout_below="@id/Price_Earnings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="The price-earnings ratio (P/E Ratio) is the ratio for valuing a company that measures its current share price relative to its per-share earnings. Generally, the lower the P/E ratio, the better."
+                android:textSize="16sp"
+                />
+
+
+            <TextView
+                android:id="@+id/Share_Number"
+                android:layout_below="@id/Price_Earnings_definition"
+                android:layout_marginTop="5sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Share Number"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/Share_Number_definition"
+                android:layout_below="@id/Share_Number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="The Share Number, as show on the Portfolio Page, is the number of Shares per stock you own. For example, if you by 5 shares of Apple Stock, your Share Number is 5."
+                android:textSize="16sp"
+                />
+
+
+            <TextView
+                android:id="@+id/Share_Price"
+                android:layout_below="@id/Share_Number_definition"
+                android:layout_marginTop="5sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Share Price"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/Share_Price_definition"
+                android:layout_below="@id/Share_Price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="This is the price of one share of a stock. The current price of Apple is $150. Therefore the Share Price of Apple is $150."
+                android:textSize="16sp"
+                />
+
+
+            <TextView
+                android:id="@+id/Change"
+                android:layout_below="@id/Share_Price_definition"
+                android:layout_marginTop="5sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Change"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/Change_definition"
+                android:layout_below="@id/Change"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="As shown on the Trade Page, This is the Actual and Percent change as compared to the daily change. If a stock has an open price of $110 and the current price is $113, the the Change is displayed as +3 - +2.72%."
+                android:textSize="16sp"
+                />
+
+
+            <TextView
+                android:id="@+id/EMA"
+                android:layout_below="@id/Change_definition"
+                android:layout_marginTop="5sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Exponential Moving Average"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/EMA_definition"
+                android:layout_below="@id/EMA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="An Exponential Moving Average (EMA) is an algorithm that can help predict whether a stock price will rise or fall. This is displayed on the graph on the Trade Page."
+                android:textSize="16sp"
+                />
+
+
+            <TextView
+                android:id="@+id/EPS"
+                android:layout_below="@id/EMA_definition"
+                android:layout_marginTop="5sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Earnings Per Share"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/EPS_definition"
+                android:layout_below="@id/EPS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Earnings per share (EPS) is the portion of a company's profit allocated to each outstanding share of common stock. Earnings per share serves as an indicator of a company's profitability."
+                android:textSize="16sp"
+                />
+
+
+            <TextView
+                android:id="@+id/Market_Cap"
+                android:layout_below="@id/EPS_definition"
+                android:layout_marginTop="5sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Market Cap"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/Market_Cap_definition"
+                android:layout_below="@id/Market_Cap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Market capitalization refers the total dollar market value of a company's outstanding shares. Commonly referred to as market cap, it is calculated by multiplying a company's shares outstanding by the current market price of one share. The investment community uses this figure to determine a company's size, as opposed to using sales or total asset figures."
+                android:textSize="16sp"
+                />
+
+
+            <TextView
+                android:id="@+id/Volume"
+                android:layout_below="@id/Market_Cap_definition"
+                android:layout_marginTop="5sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Volume"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/Volume_definition"
+                android:layout_below="@id/Volume"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Volume is the number of shares or contracts traded in a security or an entire market during a given period of time."
+                android:textSize="16sp"
+                />
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>
