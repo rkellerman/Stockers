@@ -12,9 +12,29 @@
 
     <ListView
         android:id="@+id/friendsListView"
-        android:layout_below="@id/friendsHeader"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </ListView>
+        android:layout_height="match_parent"
+        android:layout_below="@id/friendsHeader"
+        android:layout_marginBottom="60dp"></ListView>
+
+    <EditText
+        android:id="@+id/friendSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="17dp"
+        android:ems="10"
+        android:hint="Search for friends..."
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/searchFriendsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/friendSearch"
+        android:layout_marginStart="32dp"
+        android:layout_toEndOf="@+id/friendSearch"
+        android:text="Search" />
 
 </RelativeLayout>

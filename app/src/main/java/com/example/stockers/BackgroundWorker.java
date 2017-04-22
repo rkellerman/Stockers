@@ -52,6 +52,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     public static String graph_url = "http://stockers.atwebpages.com/graph.php";
     public static String getMessages_url = "http://stockers.atwebpages.com/getMessages.php";
     public static String sendMessage_url = "http://stockers.atwebpages.com/sendMessage.php";
+    public static String friend_url = "http://stockers.atwebpages.com/friend.php";
 
     Context context;
     AlertDialog alertDialog;
@@ -729,6 +730,67 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         return "-1";
     }
 
+    public String handleFriend(String... params){
+
+        try{
+
+            URL url = new URL(friend_url);
+
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.setDoOutput(true);
+            httpURLConnection.setDoInput(true);
+
+            OutputStream outputStream = httpURLConnection.getOutputStream();
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+            String post_data = URLEncoder.encode("method", "UTF-8") + "=" + URLEncoder.encode(params[1], "UTF-8") + "&" +
+                    URLEncoder.encode("recipient", "UTF-8") + "=" + URLEncoder.encode(params[2], "UTF-8") + "&" +
+                    URLEncoder.encode("sender", "UTF-8") + "=" + URLEncoder.encode(params[3], "UTF-8");
+
+            bufferedWriter.write(post_data);
+            bufferedWriter.flush();
+            bufferedWriter.close();
+            outputStream.close();
+
+            InputStream inputStream = httpURLConnection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+
+            String result = "";
+            String line = "";
+
+            while ((line = bufferedReader.readLine()) != null) {
+                result += line;
+            }
+
+            bufferedReader.close();
+            inputStream.close();
+            httpURLConnection.disconnect();
+
+            if (params[1].equals("show_requests")){
+                sharedPref = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("REQUESTS", result);
+                editor.commit();
+            }
+            else if (params[1].equals("show_friends")){
+                sharedPref = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("FRIENDS", result);
+                editor.commit();
+            }
+
+
+            return result;
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "-1";
+    }
+
     /**
      * background worker that performs multiple functions based on its parameters
      * @param params string of parameters that contain the user information
@@ -845,6 +907,11 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             catch(Exception e){
                 return "-1";
             }
+        }
+        else if (type.equals("handleFriend")){
+            result = handleFriend(params);
+
+
         }
         return result;
     }
