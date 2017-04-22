@@ -15,7 +15,10 @@ import android.widget.ListView;
 public class friendsActivity extends Fragment implements AsyncResponse, View.OnClickListener{
 
     ListView friendsList;
+    ListView friendsRequestList;
     String[] friendNames = null;
+    String[] friendsRequestNames = null;
+
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         View rootView = inflater.inflate(R.layout.friends_layout, container, false);
@@ -38,7 +41,10 @@ public class friendsActivity extends Fragment implements AsyncResponse, View.OnC
         friendNames = text.split("!!!");
 
         ListAdapter adapter = new friendsListAdapter(getActivity(), friendNames);
+        ListAdapter adapter1 = new friendsRequestListAdapter(getActivity(), friendsRequestNames);
+
         friendsList.setAdapter(adapter);
+        friendsRequestList.setAdapter(adapter1);
         return rootView;
     }
 
