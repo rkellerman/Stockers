@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Base64;
@@ -72,6 +73,86 @@ public class tradeActivity extends Fragment implements AsyncResponse{
 
         String bal = String.valueOf("$"+String.format("%.2f", balance));
         balanceDisplay.setText(bal);
+
+        Typeface myTpeface = Typeface.createFromAsset(getContext().getAssets(),"Lobster 1.4.otf");
+        Typeface supportfont = Typeface.createFromAsset(getContext().getAssets(),"Montserrat-UltraLight.otf");
+
+        TextView balance = (TextView)rootView.findViewById(R.id.balance);
+        TextView money = (TextView)rootView.findViewById(R.id.balance);
+        TextView tit1 = (TextView)rootView.findViewById(R.id.searchField);
+        TextView tit2 = (TextView)rootView.findViewById(R.id.searchButton);
+        TextView tit3 = (TextView)rootView.findViewById(R.id.nameView);
+
+        TextView tit4 = (TextView)rootView.findViewById(R.id.one);
+        TextView tit5 = (TextView)rootView.findViewById(R.id.priceView);
+
+        TextView tit6 = (TextView)rootView.findViewById(R.id.six);
+        TextView tit7 = (TextView)rootView.findViewById(R.id.peView);
+
+        TextView tit8 = (TextView)rootView.findViewById(R.id.two);
+        TextView tit9 = (TextView)rootView.findViewById(R.id.weekView);
+
+        TextView tit10 = (TextView)rootView.findViewById(R.id.seven);
+        TextView tit11 = (TextView)rootView.findViewById(R.id.divView);
+
+        TextView tit12 = (TextView)rootView.findViewById(R.id.three);
+        TextView tit13 = (TextView)rootView.findViewById(R.id.openView);
+
+        TextView tit14 = (TextView)rootView.findViewById(R.id.eight);
+        TextView tit15 = (TextView)rootView.findViewById(R.id.EPSView);
+
+        TextView tit16 = (TextView)rootView.findViewById(R.id.four);
+        TextView tit17 = (TextView)rootView.findViewById(R.id.volView);
+
+        TextView tit18 = (TextView)rootView.findViewById(R.id.nine);
+        TextView tit19 = (TextView)rootView.findViewById(R.id.changeView);
+
+        TextView tit20 = (TextView)rootView.findViewById(R.id.five);
+        TextView tit21 = (TextView)rootView.findViewById(R.id.mktView);
+
+        TextView tit22 = (TextView)rootView.findViewById(R.id.ten);
+        TextView tit23 = (TextView)rootView.findViewById(R.id.instView);
+
+        TextView tit24 = (TextView)rootView.findViewById(R.id.textView15);
+        TextView tit25 = (TextView)rootView.findViewById(R.id.sharesText);
+        TextView tit26 = (TextView)rootView.findViewById(R.id.buyButton);
+        TextView tit27 = (TextView)rootView.findViewById(R.id.sellButton);
+
+
+
+
+        balance.setTypeface(supportfont);
+        money.setTypeface(supportfont);
+        tit1.setTypeface(supportfont);
+        tit2.setTypeface(supportfont);
+        tit3.setTypeface(supportfont);
+        tit4.setTypeface(supportfont);
+        tit5.setTypeface(supportfont);
+        tit6.setTypeface(supportfont);
+        tit7.setTypeface(supportfont);
+        tit8.setTypeface(supportfont);
+        tit9.setTypeface(supportfont);
+        tit10.setTypeface(supportfont);
+        tit11.setTypeface(supportfont);
+        tit12.setTypeface(supportfont);
+        tit13.setTypeface(supportfont);
+        tit14.setTypeface(supportfont);
+        tit15.setTypeface(supportfont);
+        tit16.setTypeface(supportfont);
+        tit17.setTypeface(supportfont);
+        tit18.setTypeface(supportfont);
+        tit19.setTypeface(supportfont);
+        tit20.setTypeface(supportfont);
+        tit21.setTypeface(supportfont);
+        tit22.setTypeface(supportfont);
+        tit23.setTypeface(supportfont);
+        tit24.setTypeface(supportfont);
+        tit25.setTypeface(supportfont);
+        tit26.setTypeface(supportfont);
+        tit27.setTypeface(supportfont);
+
+
+
 
         final Button button = (Button)rootView.findViewById(R.id.searchButton);
         button.setOnClickListener(new View.OnClickListener(){
