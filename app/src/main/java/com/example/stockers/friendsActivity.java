@@ -27,7 +27,8 @@ public class friendsActivity extends Fragment implements AsyncResponse, View.OnC
         rootView = inflater.inflate(R.layout.friends_layout, container, false);
 
         friendsList=(ListView) rootView.findViewById(R.id.friendsListView);
-        Button butt = (Button) rootView.findViewById(R.id.searchFriendsButton);
+        friendsRequestList = (ListView) rootView.findViewById(R.id.friendsRequestsListView);
+       Button butt = (Button) rootView.findViewById(R.id.searchFriendsButton);
         butt.setOnClickListener(this);
         // lmao butt
 
