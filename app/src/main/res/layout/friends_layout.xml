@@ -15,7 +15,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/friendsHeader"
-        android:layout_marginBottom="60dp"></ListView>
+        android:layout_marginBottom="60dp">
+    </ListView>
+
+    <ListView
+        android:id="@+id/friendsRequestsListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/friendsListView"
+        android:layout_marginBottom="60dp">
+    </ListView>
+
 
     <EditText
         android:id="@+id/friendSearch"
