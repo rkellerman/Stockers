@@ -19,9 +19,14 @@ import android.widget.TextView;
 
 
 public class navigationActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, AsyncResponse {
+
+    String type = null;
+    AsyncResponse del = this;
 
     //Unit Testing Variables
+
+
 
     //Portfolio...
     public boolean NavigationState_Portfolio_actual = false;
@@ -150,6 +155,7 @@ public class navigationActivity extends AppCompatActivity
      */
     private void displaySelectedScreen(int id){
         Fragment fragment = null;
+        boolean proceed = true;
 
         switch (id){
             case R.id.nav_portfolio:
@@ -193,7 +199,12 @@ public class navigationActivity extends AppCompatActivity
                 finish();
                 break;
             case R.id.nav_chat:
-                fragment = new ChatActivity();
+                proceed = false;
+                // fragment = new ChatActivity();
+                type = "chat";
+                BackgroundWorker backgroundWorker = new BackgroundWorker(this, navigationActivity.this);
+                backgroundWorker.delegate = del;
+                backgroundWorker.execute("getMessages");
                 break;
             case R.id.nav_learn:
                 NavigationState_Help_actual = true;
@@ -204,15 +215,17 @@ public class navigationActivity extends AppCompatActivity
                 break;
 
         }
-        if(fragment != null){
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_navigation, fragment);
-            ft.commit();
+        if (proceed == true) {
+            if (fragment != null) {
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.content_navigation, fragment);
+                ft.commit();
+            }
+
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
         }
 
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
     }
 
     /**
@@ -238,5 +251,19 @@ public class navigationActivity extends AppCompatActivity
      */
     public boolean onPrepareOptionsMenu(Menu menu) {
         return false;
+    }
+
+    @Override
+    public void processFinish(String result) {
+
+        if (type.equals("chat")){
+            Fragment fragment = new ChatActivity();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_navigation, fragment);
+            ft.commit();
+
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+        }
     }
 }

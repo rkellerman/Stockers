@@ -50,6 +50,8 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     public static String leaderboard_url = "http://stockers.atwebpages.com/leaderboard.php";
     public static String price_url = "http://stockers.atwebpages.com/price.php";
     public static String graph_url = "http://stockers.atwebpages.com/graph.php";
+    public static String getMessages_url = "http://stockers.atwebpages.com/getMessages.php";
+    public static String sendMessage_url = "http://stockers.atwebpages.com/sendMessage.php";
 
     Context context;
     AlertDialog alertDialog;
@@ -542,8 +544,9 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         try {
 
             this.action = "sendMessage";
+            player = new Player();
 
-            URL url = new URL(graph_url);
+            URL url = new URL(sendMessage_url);
 
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("POST");
@@ -598,8 +601,9 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         try {
 
             this.action = "getMessages";
+            player = new Player();
 
-            URL url = new URL(graph_url);
+            URL url = new URL(getMessages_url);
 
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("POST");
@@ -608,6 +612,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
             SharedPreferences sharedPreferences = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
             String player_string = sharedPreferences.getString("PLAYER", "-1");
+            Log.d("HEY", player_string);
 
             String[] player_array = player_string.split(" ");
 
@@ -825,8 +830,8 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     @Override
     protected void onPreExecute() {
 
-        alertDialog = new AlertDialog.Builder(context).create();
-        alertDialog.setTitle("NOTICE");
+        //alertDialog = new AlertDialog.Builder(context).create();
+        //alertDialog.setTitle("NOTICE");
     }
 
     /**

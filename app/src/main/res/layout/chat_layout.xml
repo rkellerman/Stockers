@@ -20,4 +20,24 @@
         >
     </ListView>
 
+    <Button
+        android:id="@+id/sendButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/chatListView"
+        android:text="Button" />
+
+    <EditText
+        android:id="@+id/messageText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/chatListView"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="21dp"
+        android:ems="10"
+        android:hint="Message..."
+        android:inputType="textPersonName" />
+
 </RelativeLayout>
