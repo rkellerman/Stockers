@@ -48,6 +48,10 @@ public class navigationActivity extends AppCompatActivity
     public boolean NavigationState_Help_actual = false;
     public boolean NavigationState_Help_expected = true;
 
+    //Friends
+    public boolean NavigationState_Friends_actual = false;
+    public boolean NavigationState_Friends_expected = true;
+
     //Logout...
     public boolean NavigationState_Logout_actual = false;
     public boolean NavigationState_Logout_expected = true;
@@ -213,6 +217,12 @@ public class navigationActivity extends AppCompatActivity
                 }
                 fragment = new Help();
                 break;
+            case R.id.nav_friends:
+                NavigationState_Friends_actual = true;
+                if(NavigationState_Friends_actual == NavigationState_Friends_expected){
+                    Log.d("Navigation->Friends: ", "True");
+                }
+                fragment = new friendsActivity();
 
         }
         if (proceed == true) {
