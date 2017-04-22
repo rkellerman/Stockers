@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.util.Base64;
 import android.util.Log;
@@ -43,6 +45,7 @@ public class ChatActivity extends Fragment implements AsyncResponse, View.OnClic
 
     Button sendButton = null;
     String prev = "";
+    String current = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -82,6 +85,17 @@ public class ChatActivity extends Fragment implements AsyncResponse, View.OnClic
         ListAdapter adapter = new ChatListAdapter(getActivity(), userName, userMessage, messageTime);
         chatList.setAdapter(adapter);
 
+        final Handler ha=new Handler();
+        ha.postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                //call function
+                tryUpdate();
+                ha.postDelayed(this, 5000);
+            }
+        }, 5000);
+
         return rootView;
     }
 
@@ -92,35 +106,63 @@ public class ChatActivity extends Fragment implements AsyncResponse, View.OnClic
         getActivity().setTitle("Trade");
     }
 
+    public void tryUpdate(){
 
+        current = "update";
+        Log.d("YOOOOOOO", "I'm doing the thing");
+
+        if (getActivity() == null){
+            return;
+        }
+        BackgroundWorker backgroundWorker = new BackgroundWorker(getContext(), getActivity());
+        backgroundWorker.delegate = this;
+        backgroundWorker.execute("getMessages");
+    }
 
     @Override
     public void processFinish(String result) {
 
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("1", Context.MODE_PRIVATE);
-        String text = sharedPreferences.getString("CHAT", "-1");
-        prev = text;
+            try {
+                if (getActivity() == null){
+                    return;
+                }
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("1", Context.MODE_PRIVATE);
 
-        text = text.substring(0, text.length()-3);
-        String[] array = text.split("!!!");
+                String text = sharedPreferences.getString("CHAT", "-1");
+                if (current.equals("update")) {
+                    if (prev != text) {
 
-        userName = new String[array.length];
-        userMessage = new String[array.length];
-        messageTime = new String[array.length];
+                    } else {
+                        return;
+                    }
+                }
+                prev = text;
 
-        for (int i = 0; i < array.length; i++){
+                text = text.substring(0, text.length() - 3);
+                String[] array = text.split("!!!");
 
-            String[] entries = array[i].split("===");
-            Log.d("AYOOO", array[i]);
-            userName[i] = entries[0].substring(1, entries[0].length());
-            userMessage[i] = entries[1];
-            messageTime[i] = entries[2];
+                userName = new String[array.length];
+                userMessage = new String[array.length];
+                messageTime = new String[array.length];
 
-        }
+                for (int i = 0; i < array.length; i++) {
 
-        //ADAPTER Function
-        ListAdapter adapter = new ChatListAdapter(getActivity(), userName, userMessage, messageTime);
-        chatList.setAdapter(adapter);
+                    String[] entries = array[i].split("===");
+                    Log.d("AYOOO", array[i]);
+                    userName[i] = entries[0].substring(1, entries[0].length());
+                    userMessage[i] = entries[1];
+                    messageTime[i] = entries[2];
+
+                }
+
+                //ADAPTER Function
+                ListAdapter adapter = new ChatListAdapter(getActivity(), userName, userMessage, messageTime);
+                chatList.setAdapter(adapter);
+            }
+            catch (Exception e){
+                return;
+            }
+
 
     }
 
@@ -131,9 +173,12 @@ public class ChatActivity extends Fragment implements AsyncResponse, View.OnClic
         String message = messageText.getText().toString();
         messageText.setText("");
 
+        current = "send";
+
         BackgroundWorker backgroundWorker = new BackgroundWorker(getContext(), getActivity());
         backgroundWorker.delegate = this;
         backgroundWorker.execute("sendMessage", message);
+
 
     }
 }

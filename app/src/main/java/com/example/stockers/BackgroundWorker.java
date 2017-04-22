@@ -553,8 +553,15 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             httpURLConnection.setDoOutput(true);
             httpURLConnection.setDoInput(true);
 
-            SharedPreferences sharedPreferences = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
-            String player_string = sharedPreferences.getString("PLAYER", "-1");
+            String player_string;
+
+            try {
+                SharedPreferences sharedPreferences = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
+                player_string = sharedPreferences.getString("PLAYER", "-1");
+            }
+            catch (Exception e){
+                return "-1";
+            }
 
             String[] player_array = player_string.split(" ");
 
@@ -610,9 +617,17 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             httpURLConnection.setDoOutput(true);
             httpURLConnection.setDoInput(true);
 
-            SharedPreferences sharedPreferences = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
-            String player_string = sharedPreferences.getString("PLAYER", "-1");
-            Log.d("HEY", player_string);
+            String player_string = "";
+
+            try {
+
+                SharedPreferences sharedPreferences = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
+                player_string = sharedPreferences.getString("PLAYER", "-1");
+                Log.d("HEY", player_string);
+            }
+            catch (Exception e){
+                return "-1";
+            }
 
             String[] player_array = player_string.split(" ");
 
@@ -801,25 +816,35 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             result = graph(params);
         }
         else if (type.equals("sendMessage")){
-            result = sendMessage(params);
-            result = getMessages(params);
+            try {
+                result = sendMessage(params);
+                result = getMessages(params);
 
-            sharedPref = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPref.edit();
+                sharedPref = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
 
-            editor.putString("CHAT", result);
-            editor.commit();
+                editor.putString("CHAT", result);
+                editor.commit();
+            }
+            catch (Exception e){
+                return "-1";
+            }
 
 
         }
         else if (type.equals("getMessages")){
-            result = getMessages(params);
+            try {
+                result = getMessages(params);
 
-            sharedPref = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPref.edit();
+                sharedPref = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
 
-            editor.putString("CHAT", result);
-            editor.commit();
+                editor.putString("CHAT", result);
+                editor.commit();
+            }
+            catch(Exception e){
+                return "-1";
+            }
         }
         return result;
     }
