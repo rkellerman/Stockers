@@ -57,9 +57,12 @@ public class ChatActivity extends Fragment implements AsyncResponse, View.OnClic
         String text = sharedPreferences.getString("CHAT", "-1");
         prev = text;
 
+        String[] array = new String[0];
 
-        text = text.substring(0, text.length()-3);
-        String[] array = text.split("!!!");
+        if (text.length() > 0) {
+            text = text.substring(0, text.length() - 3);
+            array = text.split("!!!");
+        }
 
         userName = new String[array.length];
         userMessage = new String[array.length];

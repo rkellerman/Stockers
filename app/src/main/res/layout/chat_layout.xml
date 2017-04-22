@@ -17,6 +17,8 @@
         android:layout_height="450sp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/chatHeader"
+        android:stackFromBottom="true"
+        android:transcriptMode="alwaysScroll"
         >
     </ListView>
 
