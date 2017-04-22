@@ -5,10 +5,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -16,9 +18,10 @@ public class friendsActivity extends Fragment implements AsyncResponse, View.OnC
 
     ListView friendsList;
     String[] friendNames = null;
+    View rootView;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
-        View rootView = inflater.inflate(R.layout.friends_layout, container, false);
+        rootView = inflater.inflate(R.layout.friends_layout, container, false);
 
         friendsList=(ListView) rootView.findViewById(R.id.friendsListView);
         Button butt = (Button) rootView.findViewById(R.id.searchFriendsButton);
@@ -27,6 +30,8 @@ public class friendsActivity extends Fragment implements AsyncResponse, View.OnC
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("1", Context.MODE_PRIVATE);
         String text = sharedPreferences.getString("FRIENDS", "-1");
+        String playerText = sharedPreferences.getString("PLAYER", "-1");
+
         if (text.equals("-1")){
             // report no friends :( and then do something
             friendNames = new String[0];
@@ -44,7 +49,21 @@ public class friendsActivity extends Fragment implements AsyncResponse, View.OnC
 
     @Override
     public void onClick(View v) {
-        
+        EditText text = (EditText) rootView.findViewById(R.id.friendSearch);
+        String recipient = text.getText().toString();
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("1", Context.MODE_PRIVATE);
+        String playerText = sharedPreferences.getString("PLAYER", "-1");
+
+        String[] array = playerText.split(" ");
+
+        Log.d("BRUUUUHHH", "Ayyy");
+
+
+        BackgroundWorker backgroundWorker = new BackgroundWorker(getContext(), getActivity());
+        backgroundWorker.delegate = this;
+        backgroundWorker.execute("handleFriend", "add", recipient, array[1]);
+
     }
 
     @Override

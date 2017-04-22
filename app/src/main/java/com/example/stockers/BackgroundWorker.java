@@ -734,6 +734,8 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
         try{
 
+            this.action = "handleFrien  d";
+            Log.d("NIIIIGGGG", "nig");
             URL url = new URL(friend_url);
 
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -779,7 +781,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                 editor.commit();
             }
 
-
+            Log.d("NIIIIG", result);
             return result;
 
         } catch (MalformedURLException e) {
@@ -994,6 +996,9 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             // should not reach here
         }
         else if (this.action.equals("getMessages")){
+            delegate.processFinish(result);
+        }
+        else if (this.action.equals("handleFriend")){
             delegate.processFinish(result);
         }
     }
