@@ -49,18 +49,30 @@ public class ChatListAdapter extends ArrayAdapter<String>{
             convertView=inflater.inflate(R.layout.chat_row_model, null);
         }
 
+        //Typeface supportfont = Typeface.createFromAsset(getAssets(),"Montserrat-UltraLight.otf");
+        Typeface titleFont = Typeface.createFromAsset(getContext().getAssets(),"Lobster 1.4.otf");
+        Typeface supportfont = Typeface.createFromAsset(getContext().getAssets(),"Montserrat-UltraLight.otf");
+
         // VIEWHOLDER OBJECT
         final ChatListAdapter.ViewHolder holder = new ChatListAdapter.ViewHolder();
 
         //INITIALIZE VIEWS
         holder.userName= (TextView) convertView.findViewById(R.id.userNameRow);
         holder.userMessage= (TextView) convertView.findViewById(R.id.userMessageRow);
-        holder.messageTime= (TextView) convertView.findViewById(R.id.messageTimeRow);
+        //holder.messageTime= (TextView) convertView.findViewById(R.id.messageTimeRow);
+
+
+
+
 
         //ASSIGN VIEWS
         holder.userName.setText(String.valueOf(userName[position]));
         holder.userMessage.setText(userMessage[position]);
-        holder.messageTime.setText(messageTime[position]);
+        //holder.messageTime.setText(messageTime[position]);
+
+        //ASSIGN FONTS...
+        holder.userName.setTypeface(supportfont);
+        holder.userMessage.setTypeface(supportfont);
 
         //return super.getView(position, convertView, parent);
         return convertView;

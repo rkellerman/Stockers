@@ -15,14 +15,16 @@
         android:layout_toRightOf="@id/userNameRow"
         android:layout_width="200sp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="30sp"
         android:text="HI GUYYYS" />
 
-    <TextView
+    <!--<TextView
         android:id="@+id/messageTimeRow"
         android:layout_toRightOf="@id/userMessageRow"
-        android:layout_width="100sp"
+        android:layout_width="50sp"
         android:layout_height="wrap_content"
-        android:text="3:02 PM" />
+        android:textSize="10sp"
+        android:text="3:02 PM" />-->
 
 
 </RelativeLayout>

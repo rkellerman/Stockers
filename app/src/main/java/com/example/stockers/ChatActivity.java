@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -54,6 +55,11 @@ public class ChatActivity extends Fragment implements AsyncResponse, View.OnClic
 
         sendButton = (Button) rootView.findViewById(R.id.sendButton);
         sendButton.setOnClickListener(this);
+
+        TextView title = (TextView) rootView.findViewById(R.id.chatHeader);
+        Typeface titleFont = Typeface.createFromAsset(getContext().getAssets(),"Lobster 1.4.otf");
+        title.setTypeface(titleFont);
+
 
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("1", Context.MODE_PRIVATE);
