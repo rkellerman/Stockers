@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,22 +18,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Typeface;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.TextView;
 
 /**
  * Created by namit on 4/22/2017.
@@ -65,8 +50,18 @@ public class friendsRequestListAdapter extends ArrayAdapter implements View.OnCl
                 backgroundWorker.execute("handleFriend", "show_friends", "", str);
             }
             else if (current.equals("friends")){
-                Fragment fragment = new friendsActivity();
-                fragment.startActivity(new Intent(getContext(), friendsActivity.class));
+
+                if (getContext() instanceof FragmentActivity){
+
+                    Fragment fragment = new friendsActivity();
+                    FragmentActivity act = (FragmentActivity)(getContext());
+                    FragmentTransaction t = act.getSupportFragmentManager().beginTransaction();
+                    t.replace(R.id.content_navigation, fragment);
+                    t.commit();
+
+
+
+                }
 
             }
 

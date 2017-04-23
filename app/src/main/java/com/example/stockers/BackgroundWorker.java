@@ -770,14 +770,14 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
             Log.d("FUCK", params[1]);
             if (params[1].equals("show_requests")){
-                sharedPref = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
+                sharedPref = context.getSharedPreferences("1", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString("REQUESTS", result);
                 editor.commit();
                 Log.d("KJSHDFKJHSDLKJHF", result);
             }
             else if (params[1].equals("show_friends")){
-                sharedPref = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
+                sharedPref = context.getSharedPreferences("1", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString("FRIENDS", result);
                 editor.commit();
@@ -1005,7 +1005,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             delegate.processFinish(result);
         }
         else if (this.action.equals("handleFriend")){
-            if (result.equals("boi")){
+            if (result.equals("basdfadf")){
                 return;
             }
             delegate.processFinish(result);
