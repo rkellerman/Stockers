@@ -53,6 +53,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     public static String getMessages_url = "http://stockers.atwebpages.com/getMessages.php";
     public static String sendMessage_url = "http://stockers.atwebpages.com/sendMessage.php";
     public static String friend_url = "http://stockers.atwebpages.com/friend.php";
+    public static String friendLeaderboard_url = "http://stockers.atwebpages.com/friendLeaderboard.php";
 
     Context context;
     AlertDialog alertDialog;
@@ -288,6 +289,51 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             return result;
 
         } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "-1";
+    }
+
+    public String friendLeaderboard(String... params){
+        try {
+            this.action = "friendLeaderboard";
+
+            URL url = new URL(friendLeaderboard_url);
+
+            HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.setDoOutput(true);
+            httpURLConnection.setDoInput(true);
+
+            OutputStream outputStream = httpURLConnection.getOutputStream();
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+            String post_data = URLEncoder.encode("person", "UTF-8") + "=" + URLEncoder.encode(params[1], "UTF-8");
+
+            bufferedWriter.write(post_data);
+            bufferedWriter.flush();
+            bufferedWriter.close();
+            outputStream.close();
+
+            InputStream inputStream = httpURLConnection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+
+            String result = "";
+            String line = "";
+
+            while ((line = bufferedReader.readLine()) != null){
+                result += line;
+            }
+
+            bufferedReader.close();
+            inputStream.close();
+            httpURLConnection.disconnect();
+
+            return result;
+        }
+        catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
@@ -921,6 +967,15 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
 
         }
+        else if (type.equals("friendLeaderboard")){
+            result = friendLeaderboard(params);
+
+            sharedPref = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+
+            editor.putString("FRIENDLEADERBOARD", result);
+            editor.commit();
+        }
         return result;
     }
 
@@ -1010,6 +1065,9 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             }
             delegate.processFinish(result);
             Log.d("hello", result);
+        }
+        else if (this.action.equals("friendLeaderboard")){
+            delegate.processFinish(result);
         }
     }
 

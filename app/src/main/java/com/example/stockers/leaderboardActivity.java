@@ -12,9 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class leaderboardActivity extends Fragment {
     public boolean LeaderboardState_actual = false;
@@ -100,6 +103,87 @@ public class leaderboardActivity extends Fragment {
         //ADAPTER Function
         ListAdapter adapter = new leaderboardListAdapter(getActivity(), rank, investor, networth);
         leaderboardList.setAdapter(adapter);
+
+        final Button defaultButton = (Button)rootView.findViewById(R.id.filter_top_investor);
+        defaultButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("1", Context.MODE_PRIVATE);
+                String result = sharedPreferences.getString("LEADERBOARD", "0!!!0");
+
+                result = result.substring(0, result.length()-3);
+                String[] array = result.split("===");
+
+                rank = new int[array.length];
+                investor = new String[array.length];
+                networth = new double[array.length];
+
+                for (int i = 0; i < array.length; i++){
+                    String[] entries = array[i].split("!!!");
+
+                    rank[i] = i+1;
+                    investor[i] = entries[0];
+                    networth[i] = Double.parseDouble(entries[1]);
+
+                }
+
+                //ADAPTER Function
+                ListAdapter adapter = new leaderboardListAdapter(getActivity(), rank, investor, networth);
+                leaderboardList.setAdapter(adapter);
+
+
+            }
+        });
+
+        final Button friendButton = (Button)rootView.findViewById(R.id.filter_my_friends);
+        friendButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("1", Context.MODE_PRIVATE);
+                String result = sharedPreferences.getString("FRIENDLEADERBOARD", "0!!!0");
+
+                Log.d("AYY", result);
+
+                if (result.equals("-1")){
+
+                    rank = new int[0];
+                    investor = new String[0];
+                    networth = new double[0];
+
+                    ListAdapter adapter = new leaderboardListAdapter(getActivity(), rank, investor, networth);
+                    leaderboardList.setAdapter(adapter);
+                }
+                else {
+                    result = result.substring(0, result.length()-3);
+                    String[] array = result.split("===");
+
+                    rank = new int[array.length];
+                    investor = new String[array.length];
+                    networth = new double[array.length];
+
+                    for (int i = 0; i < array.length; i++){
+                        String[] entries = array[i].split("!!!");
+
+                        rank[i] = i+1;
+                        investor[i] = entries[0];
+                        networth[i] = Double.parseDouble(entries[1]);
+
+                        if(rank[i]==array.length-1){
+                            LeaderboardState_actual = true;
+                        }
+                    }
+                    ListAdapter adapter = new leaderboardListAdapter(getActivity(), rank, investor, networth);
+                    leaderboardList.setAdapter(adapter);
+
+                }
+
+
+            }
+        });
+
         return rootView;
     }
 

@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class friendsActivity extends Fragment implements AsyncResponse, View.OnClickListener{
 
@@ -91,6 +92,8 @@ public class friendsActivity extends Fragment implements AsyncResponse, View.OnC
         EditText text = (EditText) rootView.findViewById(R.id.friendSearch);
         String recipient = text.getText().toString();
 
+
+
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("1", Context.MODE_PRIVATE);
         String playerText = sharedPreferences.getString("PLAYER", "-1");
 
@@ -103,10 +106,22 @@ public class friendsActivity extends Fragment implements AsyncResponse, View.OnC
         backgroundWorker.delegate = this;
         backgroundWorker.execute("handleFriend", "add", recipient, array[1]);
 
+        text.setText("");
+
     }
 
     @Override
     public void processFinish(String result) {
+
+        if (result.equals("-1")){
+            Toast.makeText(getActivity(), "User does not exist", Toast.LENGTH_SHORT).show();
+        }
+        else if (result.equals("-2")){
+            Toast.makeText(getActivity(), "There is already a pending request", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(getActivity(), "Friend request sent", Toast.LENGTH_SHORT).show();
+        }
 
     }
 }

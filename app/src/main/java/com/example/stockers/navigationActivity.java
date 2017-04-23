@@ -165,6 +165,13 @@ public class navigationActivity extends AppCompatActivity
 
 
         switch (id){
+            case R.id.nav_tutorial:
+                NavigationState_Portfolio_actual = true;
+                if(NavigationState_Portfolio_actual==NavigationState_Portfolio_expected){
+                    Log.d("Navigation->Portfolio: ","True");
+                }
+                fragment = new tutorialActivity();
+                break;
             case R.id.nav_portfolio:
 
                 NavigationState_Portfolio_actual = true;
@@ -175,11 +182,25 @@ public class navigationActivity extends AppCompatActivity
                 break;
             case R.id.nav_leaderboard:
 
+                type = "leaderboard";
+                proceed = false;
+
                 NavigationState_Leaderboard_actual = true;
                 if(NavigationState_Leaderboard_actual==NavigationState_Leaderboard_expected){
                     Log.d("Navigation->Leaderbrd: ","True");
                 }
-                fragment = new leaderboardActivity();
+                SharedPreferences sharedPreferences = navigationActivity.this.getSharedPreferences("1", Context.MODE_PRIVATE);
+                String playerText = sharedPreferences.getString("PLAYER", "-1");
+
+                String[] array = playerText.split(" ");
+
+                backgroundWorker = new BackgroundWorker(this, navigationActivity.this);
+                backgroundWorker.delegate = del;
+                backgroundWorker.execute("friendLeaderboard", array[1]);
+
+                Log.d("BOI", array[1]);
+
+
                 break;
             case R.id.nav_profile:
 
@@ -229,15 +250,15 @@ public class navigationActivity extends AppCompatActivity
                 }
                 // fragment = new friendsActivity();
 
-                SharedPreferences sharedPreferences = navigationActivity.this.getSharedPreferences("1", Context.MODE_PRIVATE);
-                String playerText = sharedPreferences.getString("PLAYER", "-1");
+                SharedPreferences sharedPreferences1 = navigationActivity.this.getSharedPreferences("1", Context.MODE_PRIVATE);
+                String playerText1 = sharedPreferences1.getString("PLAYER", "-1");
 
-                String[] array = playerText.split(" ");
+                String[] array1 = playerText1.split(" ");
 
                 backgroundWorker = new BackgroundWorker(this, navigationActivity.this);
                 backgroundWorker.delegate = del;
-                backgroundWorker.execute("handleFriend", "show_requests", "butts", array[1]);
-                str = array[1];
+                backgroundWorker.execute("handleFriend", "show_requests", "butts", array1[1]);
+                str = array1[1];
                 break;
 
         }
@@ -302,6 +323,15 @@ public class navigationActivity extends AppCompatActivity
         }
         else if (type.equals("friends")){
             Fragment fragment = new friendsActivity();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_navigation, fragment);
+            ft.commit();
+
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+        }
+        else if (type.equals("leaderboard")){
+            Fragment fragment = new leaderboardActivity();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_navigation, fragment);
             ft.commit();
