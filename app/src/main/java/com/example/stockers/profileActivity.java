@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
@@ -73,6 +75,7 @@ public class profileActivity extends Fragment implements View.OnClickListener, A
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("1", Context.MODE_PRIVATE);
         String playerText = sharedPreferences.getString("PLAYER", "-1");
+        String activityText = sharedPreferences.getString("ACTIVITY", "-1");
 
         String[] array = playerText.split(" ");
 
@@ -107,6 +110,21 @@ public class profileActivity extends Fragment implements View.OnClickListener, A
         tabSpec.setContent(R.id.Activity);
         tabSpec.setIndicator("Activity");
         tabHost.addTab(tabSpec);
+
+        ListView listView = (ListView)rootView.findViewById(R.id.activityListView);
+        String[] items;
+        if (activityText.equals(-1)){
+            items = new String[1];
+            items[0] = "No activity to show...";
+        }
+        else {
+            activityText = activityText.substring(0, activityText.length()-3);
+            items = activityText.split("!!!");
+        }
+
+        ListAdapter adapter = new activityListAdapter(getActivity(), items);
+        listView.setAdapter(adapter);
+
 
 
         profileImageView = (ImageView) rootView.findViewById(R.id.imageToUpload);

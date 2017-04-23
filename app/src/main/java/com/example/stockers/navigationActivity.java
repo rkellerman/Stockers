@@ -204,11 +204,23 @@ public class navigationActivity extends AppCompatActivity
                 break;
             case R.id.nav_profile:
 
+                type = "profile";
+                proceed = false;
+
+                SharedPreferences sharedPreferences2 = navigationActivity.this.getSharedPreferences("1", Context.MODE_PRIVATE);
+                String playerText2 = sharedPreferences2.getString("PLAYER", "-1");
+
+                String[] array2 = playerText2.split(" ");
+
+                backgroundWorker = new BackgroundWorker(this, navigationActivity.this);
+                backgroundWorker.delegate = del;
+                backgroundWorker.execute("profile", array2[1]);
+
                 NavigationState_Profile_actual = true;
                 if(NavigationState_Profile_actual==NavigationState_Profile_expected){
                     Log.d("Navigation->Profile: ","True");
                 }
-                fragment = new profileActivity();
+                // fragment = new profileActivity();
                 break;
             case R.id.nav_trade:
 
@@ -332,6 +344,15 @@ public class navigationActivity extends AppCompatActivity
         }
         else if (type.equals("leaderboard")){
             Fragment fragment = new leaderboardActivity();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_navigation, fragment);
+            ft.commit();
+
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+        }
+        else if (type.equals("profile")){
+            Fragment fragment = new profileActivity();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_navigation, fragment);
             ft.commit();

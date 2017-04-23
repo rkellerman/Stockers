@@ -45,6 +45,7 @@ public class leaderboardListAdapter extends ArrayAdapter<String> {
         TextView rankLeader;
         TextView investorLeader;
         TextView networthLeader;
+        TextView item;
     }
 
     /**
