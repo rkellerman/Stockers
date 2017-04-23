@@ -28,23 +28,55 @@ public class friendsActivity extends Fragment implements AsyncResponse, View.OnC
 
         friendsList=(ListView) rootView.findViewById(R.id.friendsListView);
         friendsRequestList = (ListView) rootView.findViewById(R.id.friendsRequestsListView);
-       Button butt = (Button) rootView.findViewById(R.id.searchFriendsButton);
+        Button butt = (Button) rootView.findViewById(R.id.searchFriendsButton);
         butt.setOnClickListener(this);
         // lmao butt
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("1", Context.MODE_PRIVATE);
         String text = sharedPreferences.getString("FRIENDS", "-1");
+        String text1 = sharedPreferences.getString("REQUESTS", "-1");
         String playerText = sharedPreferences.getString("PLAYER", "-1");
+
+        Log.d("BOOOOIIII", text);
+        Log.d("BBBBBOOOOOOU", text1);
 
         if (text.equals("-1")){
             // report no friends :( and then do something
             friendNames = new String[0];
-            ListAdapter adapter = new friendsListAdapter(getActivity(), friendNames);
-            friendsList.setAdapter(adapter);
-            return rootView;
+        }
+        else {
+            if (text.length() < 4){
+                friendNames = new String[0];
+            }
+            else {
+                text = text.substring(0, text.length() - 3);
+                String[] array = text.split("!!!");
+                friendNames = new String[array.length];
+                for (int i = 0; i < array.length; i++){
+                    friendNames[i] = array[i];
+                }
+            }
+
         }
 
-        friendNames = text.split("!!!");
+        if (text1.equals("-1")){
+            friendsRequestNames = new String[0];
+        }
+        else {
+            if (text1.length() < 4){
+                friendsRequestNames = new String[0];
+            }
+            else {
+                text1 = text1.substring(0, text1.length() - 3);
+                String[] array = text1.split("!!!");
+                friendsRequestNames = new String[array.length];
+
+                for (int i = 0; i < array.length; i++){
+                    friendsRequestNames[i] = array[i];
+                }
+            }
+        }
+
 
         ListAdapter adapter = new friendsListAdapter(getActivity(), friendNames);
         ListAdapter adapter1 = new friendsRequestListAdapter(getActivity(), friendsRequestNames);

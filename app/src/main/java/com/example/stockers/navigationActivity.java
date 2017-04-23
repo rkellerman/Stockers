@@ -23,7 +23,8 @@ public class navigationActivity extends AppCompatActivity
 
     String type = null;
     AsyncResponse del = this;
-
+    BackgroundWorker backgroundWorker;
+    String str = "";
     //Unit Testing Variables
 
 
@@ -161,6 +162,8 @@ public class navigationActivity extends AppCompatActivity
         Fragment fragment = null;
         boolean proceed = true;
 
+
+
         switch (id){
             case R.id.nav_portfolio:
 
@@ -206,7 +209,7 @@ public class navigationActivity extends AppCompatActivity
                 proceed = false;
                 // fragment = new ChatActivity();
                 type = "chat";
-                BackgroundWorker backgroundWorker = new BackgroundWorker(this, navigationActivity.this);
+                backgroundWorker = new BackgroundWorker(this, navigationActivity.this);
                 backgroundWorker.delegate = del;
                 backgroundWorker.execute("getMessages");
                 break;
@@ -219,10 +222,23 @@ public class navigationActivity extends AppCompatActivity
                 break;
             case R.id.nav_friends:
                 NavigationState_Friends_actual = true;
+                proceed = false;
+                type = "requests";
                 if(NavigationState_Friends_actual == NavigationState_Friends_expected){
                     Log.d("Navigation->Friends: ", "True");
                 }
-                fragment = new friendsActivity();
+                // fragment = new friendsActivity();
+
+                SharedPreferences sharedPreferences = navigationActivity.this.getSharedPreferences("1", Context.MODE_PRIVATE);
+                String playerText = sharedPreferences.getString("PLAYER", "-1");
+
+                String[] array = playerText.split(" ");
+
+                backgroundWorker = new BackgroundWorker(this, navigationActivity.this);
+                backgroundWorker.delegate = del;
+                backgroundWorker.execute("handleFriend", "show_requests", "butts", array[1]);
+                str = array[1];
+                break;
 
         }
         if (proceed == true) {
@@ -268,6 +284,24 @@ public class navigationActivity extends AppCompatActivity
 
         if (type.equals("chat")){
             Fragment fragment = new ChatActivity();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_navigation, fragment);
+            ft.commit();
+
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+        }
+        else if (type.equals("requests")){
+            type = "friends";
+
+            backgroundWorker = new BackgroundWorker(this, navigationActivity.this);
+            backgroundWorker.delegate = del;
+            backgroundWorker.execute("handleFriend", "show_friends", "", str);
+            return;
+
+        }
+        else if (type.equals("friends")){
+            Fragment fragment = new friendsActivity();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_navigation, fragment);
             ft.commit();

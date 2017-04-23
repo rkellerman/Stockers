@@ -734,7 +734,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
         try{
 
-            this.action = "handleFrien  d";
+            this.action = "handleFriend";
             Log.d("NIIIIGGGG", "nig");
             URL url = new URL(friend_url);
 
@@ -768,17 +768,23 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             inputStream.close();
             httpURLConnection.disconnect();
 
+            Log.d("FUCK", params[1]);
             if (params[1].equals("show_requests")){
                 sharedPref = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString("REQUESTS", result);
                 editor.commit();
+                Log.d("KJSHDFKJHSDLKJHF", result);
             }
             else if (params[1].equals("show_friends")){
                 sharedPref = activity.getSharedPreferences("1", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString("FRIENDS", result);
                 editor.commit();
+                Log.d("FLAACCCKKKKAAA", result);
+            }
+            else if (params[1].equals("accept")){
+                result = "boi";
             }
 
             Log.d("NIIIIG", result);
@@ -999,7 +1005,11 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             delegate.processFinish(result);
         }
         else if (this.action.equals("handleFriend")){
+            if (result.equals("boi")){
+                return;
+            }
             delegate.processFinish(result);
+            Log.d("hello", result);
         }
     }
 
