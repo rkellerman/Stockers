@@ -327,6 +327,21 @@ public class tradeActivity extends Fragment implements AsyncResponse{
                 epsText.setText(array[12]);
                 instText.setText(array[14]);
 
+
+
+                double eps = Double.parseDouble(epsText.getText().toString());
+
+                if (eps < 0){
+                    alertDialog.setMessage("If owned, we recommend that you sell this stock");
+                }
+                else if (eps < 4 && eps >= 0){
+                    alertDialog.setMessage("If owned, we recommend that you hold this stock");
+                }
+                else if (eps >= 4){
+                    alertDialog.setMessage("We recommend that you purchase this stock");
+                }
+                alertDialog.show();
+
                 // get image
                 current = "graph";
 
