@@ -32,6 +32,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".About" />
         <activity android:name=".Help" />
+        <activity android:name=".IntroActivity"/>
         <activity android:name=".ChatActivity"></activity>
     </application>
 

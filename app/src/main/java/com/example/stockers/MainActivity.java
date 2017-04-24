@@ -76,6 +76,10 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse{
         regbuttonText.setTypeface(supportfont);
         logbuttonText.setTypeface(supportfont);
         forgotbuttonText.setTypeface(supportfont);
+
+        Intent intent = new Intent(this,IntroActivity.class);
+        startActivity(intent);
+
     }
 
     /**
