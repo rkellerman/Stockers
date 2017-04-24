@@ -124,10 +124,10 @@ public class profileActivity extends Fragment implements View.OnClickListener, A
 
 
 
-        tabSpec = tabHost.newTabSpec("News");
-        tabSpec.setContent(R.id.News);
-        tabSpec.setIndicator("News");
-        tabHost.addTab(tabSpec);
+        //tabSpec = tabHost.newTabSpec("News");
+        //tabSpec.setContent(R.id.News);
+        //tabSpec.setIndicator("News");
+        //tabHost.addTab(tabSpec);
 
         tabSpec = tabHost.newTabSpec("Activity");
         tabSpec.setContent(R.id.Activity);
