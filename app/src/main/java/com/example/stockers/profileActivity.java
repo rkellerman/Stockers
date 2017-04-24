@@ -3,6 +3,7 @@ package com.example.stockers;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
@@ -57,6 +58,28 @@ public class profileActivity extends Fragment implements View.OnClickListener, A
 
 
         View rootView = inflater.inflate(R.layout.profile_layout, container, false);
+        Typeface titlefont = Typeface.createFromAsset(getContext().getAssets(),"Lobster 1.4.otf");
+        Typeface supportfont = Typeface.createFromAsset(getContext().getAssets(),"Montserrat-UltraLight.otf");
+
+        TextView tit = (TextView)rootView.findViewById(R.id.My_Profile_Title);
+        TextView tit1 = (TextView)rootView.findViewById(R.id.usernameProf);
+        TextView tit2 = (TextView)rootView.findViewById(R.id.networth_text);
+        TextView tit3 = (TextView)rootView.findViewById(R.id.tab_settings_username);
+        TextView tit4 = (TextView)rootView.findViewById(R.id.tab_settings_email);
+        TextView tit5 = (TextView)rootView.findViewById(R.id.tab_settings_password);
+        TextView tit6 = (TextView)rootView.findViewById(R.id.tab_settings_retypepassword);
+        TextView tit7 = (TextView)rootView.findViewById(R.id.sharebutton);
+
+
+        tit.setTypeface(titlefont);
+        tit1.setTypeface(supportfont);
+        tit2.setTypeface(supportfont);
+        tit3.setTypeface(supportfont);
+        tit4.setTypeface(supportfont);
+        tit5.setTypeface(supportfont);
+        tit6.setTypeface(supportfont);
+        tit7.setTypeface(supportfont);
+
 
         // share button
         shareButton = (Button)rootView.findViewById(R.id.sharebutton);

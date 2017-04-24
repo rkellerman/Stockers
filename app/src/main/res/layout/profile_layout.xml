@@ -81,7 +81,7 @@
                 android:id="@android:id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#6C7BBE"/>
+                android:background="#1d3863"/>
 
             <FrameLayout
                 android:id="@android:id/tabcontent"
@@ -157,7 +157,7 @@
                         />
 
                     <Button
-                        android:text="Submit"
+                        android:text="Change my password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/submitButton" />

@@ -27,8 +27,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="30dp"
         android:layout_below="@+id/chatListView"
-        android:text="Button" />
+        android:text="Send" />
 
     <EditText
         android:id="@+id/messageText"
@@ -39,7 +41,7 @@
         android:layout_marginStart="11dp"
         android:layout_marginTop="21dp"
         android:ems="10"
-        android:hint="Message..."
+        android:hint="Say something..."
         android:inputType="textPersonName" />
 
 </RelativeLayout>

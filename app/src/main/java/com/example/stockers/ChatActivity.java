@@ -57,9 +57,16 @@ public class ChatActivity extends Fragment implements AsyncResponse, View.OnClic
         sendButton.setOnClickListener(this);
 
         TextView title = (TextView) rootView.findViewById(R.id.chatHeader);
-        Typeface titleFont = Typeface.createFromAsset(getContext().getAssets(),"Lobster 1.4.otf");
-        title.setTypeface(titleFont);
+        TextView tit1 = (TextView) rootView.findViewById(R.id.sendButton);
+        TextView tit2 = (TextView) rootView.findViewById(R.id.messageText);
 
+        Typeface titleFont = Typeface.createFromAsset(getContext().getAssets(),"Lobster 1.4.otf");
+        //Typeface myTpeface = Typeface.createFromAsset(getContext().getAssets(),"Lobster 1.4.otf");
+        Typeface supportfont = Typeface.createFromAsset(getContext().getAssets(),"Montserrat-UltraLight.otf");
+
+        title.setTypeface(titleFont);
+        tit1.setTypeface(supportfont);
+        tit2.setTypeface(supportfont);
 
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("1", Context.MODE_PRIVATE);
