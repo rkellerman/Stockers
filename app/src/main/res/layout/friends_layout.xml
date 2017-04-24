@@ -4,10 +4,10 @@
 
     <TextView
         android:id="@+id/friendsHeader"
-        android:layout_width="100sp"
+        android:layout_width="150sp"
         android:layout_height="wrap_content"
-        android:text="Friends"
-        android:textSize="24sp"
+        android:text="My Friends"
+        android:textSize="35sp"
         android:textStyle="bold" />
 
     <ListView

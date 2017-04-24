@@ -2,6 +2,7 @@ package com.example.stockers;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class friendsActivity extends Fragment implements AsyncResponse, View.OnClickListener{
@@ -32,6 +34,17 @@ public class friendsActivity extends Fragment implements AsyncResponse, View.OnC
         Button butt = (Button) rootView.findViewById(R.id.searchFriendsButton);
         butt.setOnClickListener(this);
         // lmao butt
+        Typeface myTpeface = Typeface.createFromAsset(getContext().getAssets(),"Lobster 1.4.otf");
+        Typeface supportfont = Typeface.createFromAsset(getContext().getAssets(),"Montserrat-UltraLight.otf");
+
+        TextView tit1 = (TextView)rootView.findViewById(R.id.friendsHeader);
+        TextView tit2 = (TextView)rootView.findViewById(R.id.friendSearch);
+        TextView tit3 = (TextView)rootView.findViewById(R.id.searchFriendsButton);
+
+
+        tit1.setTypeface(myTpeface);
+        tit2.setTypeface(supportfont);
+        tit3.setTypeface(supportfont);
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("1", Context.MODE_PRIVATE);
         String text = sharedPreferences.getString("FRIENDS", "-1");

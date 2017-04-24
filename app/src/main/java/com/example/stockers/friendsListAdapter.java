@@ -45,11 +45,17 @@ public class friendsListAdapter extends ArrayAdapter implements AsyncResponse, V
     public class ViewHolder
     {
         TextView friends;
+        TextView title;
+        TextView tit1;
+        TextView tit2;
+
     }
 
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
+
 
         if(convertView==null)
         {
@@ -61,10 +67,10 @@ public class friendsListAdapter extends ArrayAdapter implements AsyncResponse, V
 
         //INITIALIZE VIEWS
         holder.friends = (TextView) convertView.findViewById(R.id.list_friends);
-
+        Typeface supportfont = Typeface.createFromAsset(getContext().getAssets(),"Montserrat-UltraLight.otf");
+        holder.friends.setTypeface(supportfont);
         //ASSIGN VIEWS
         holder.friends.setText(String.valueOf(friends[position]));
-
 
         //return super.getView(position, convertView, parent);
         return convertView;

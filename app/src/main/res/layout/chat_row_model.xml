@@ -8,7 +8,9 @@
         android:layout_width="100sp"
         android:layout_height="wrap_content"
         android:text="Raj Patel: "
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
 
     <TextView
         android:id="@+id/userMessageRow"
@@ -16,7 +18,9 @@
         android:layout_width="200sp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30sp"
-        android:text="HI GUYYYS" />
+        android:text="HI GUYYYS"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
 
     <!--<TextView
         android:id="@+id/messageTimeRow"

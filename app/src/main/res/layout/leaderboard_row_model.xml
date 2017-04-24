@@ -10,7 +10,10 @@
         android:layout_height="wrap_content"
         android:layout_weight="1.5"
         android:text="1"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="20dp"/>
 
     <TextView
         android:id="@+id/list_leaderboard_investor"
@@ -18,7 +21,9 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Investor"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
 
     <TextView
         android:id="@+id/list_leaderboard_networth"
@@ -26,5 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Net Worth"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
 </LinearLayout>
