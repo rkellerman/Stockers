@@ -165,6 +165,7 @@ public class navigationActivity extends AppCompatActivity
 
 
         switch (id){
+            /*
             case R.id.nav_tutorial:
                 NavigationState_Portfolio_actual = true;
                 if(NavigationState_Portfolio_actual==NavigationState_Portfolio_expected){
@@ -172,6 +173,7 @@ public class navigationActivity extends AppCompatActivity
                 }
                 fragment = new tutorialActivity();
                 break;
+                */
             case R.id.nav_portfolio:
 
                 NavigationState_Portfolio_actual = true;
