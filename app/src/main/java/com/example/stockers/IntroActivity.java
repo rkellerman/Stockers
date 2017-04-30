@@ -34,6 +34,9 @@ public class IntroActivity extends AppIntro {
         addSlide(SampleSlide.newInstance(R.layout.slide_1));
         addSlide(SampleSlide.newInstance(R.layout.slide_2));
         addSlide(SampleSlide.newInstance(R.layout.slide_3));
+        addSlide(SampleSlide.newInstance(R.layout.slide_4));
+        addSlide(SampleSlide.newInstance(R.layout.slide_5));
+        addSlide(SampleSlide.newInstance(R.layout.slide_6));
 
         //addSlide(AppIntroFragment.newInstance("Slide Title","Description",R.drawable.ic_menu_camera,getColor(R.color.colorAccent)));
 
