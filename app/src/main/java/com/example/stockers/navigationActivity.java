@@ -17,6 +17,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+/**
+ * Created by Ryan Kellerman & Namit Patel.
+ */
 
 public class navigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AsyncResponse {

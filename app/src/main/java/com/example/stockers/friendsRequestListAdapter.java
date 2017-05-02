@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 
 /**
- * Created by namit on 4/22/2017.
+ * Created by Namit Patel on 4/22/2017.
  */
 
 public class friendsRequestListAdapter extends ArrayAdapter implements View.OnClickListener {
@@ -68,6 +68,13 @@ public class friendsRequestListAdapter extends ArrayAdapter implements View.OnCl
         }
     };
 
+    /**
+     * This is used to initialize the friend request list in the friendActivity.
+     * @param context
+     * Android Studio Default Parameter
+     * @param friendsRequest
+     * Array contains usernames of all potential friends
+     */
     public friendsRequestListAdapter(Context context, String[] friendsRequest) {
         super(context, R.layout.friends_request_row_model, friendsRequest);
 
@@ -75,6 +82,12 @@ public class friendsRequestListAdapter extends ArrayAdapter implements View.OnCl
         this.friendsRequest=friendsRequest;
     }
 
+    /**
+     * Listening function that waits for certain button to be pressed.
+     *
+     * @param v
+     * Android Studio Default Parameter
+     */
     @Override
     public void onClick(View v) {
         Log.d("AAAAA", "hello");
@@ -97,6 +110,16 @@ public class friendsRequestListAdapter extends ArrayAdapter implements View.OnCl
         TextView friendsRequest;
     }
 
+    /**
+     * Sets all values in XML file to display on app.
+     * @param position
+     * Current position of an element in the ListView widget
+     * @param convertView
+     * Android Studio Default Parameter
+     * @param parent
+     * Android Studio Default Parameter
+     * @return convertView
+     */
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

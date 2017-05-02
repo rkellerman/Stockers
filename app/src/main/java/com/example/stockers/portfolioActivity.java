@@ -19,6 +19,10 @@ import android.widget.Toast;
 
 import com.example.stockers.SharedPreference.*;
 
+/**
+ * Created by Ryan Kellerman & Namit Patel.
+ */
+
 public class portfolioActivity extends Fragment {
     public static boolean PortfolioState_Actual = false;
     public boolean PortfolioState_Expected = true;

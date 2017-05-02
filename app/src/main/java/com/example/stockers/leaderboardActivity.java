@@ -19,6 +19,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Created by Ryan Kellerman & Namit Patel.
+ */
+
 public class leaderboardActivity extends Fragment {
     public boolean LeaderboardState_actual = false;
     public boolean Leaderboard_expected = true;

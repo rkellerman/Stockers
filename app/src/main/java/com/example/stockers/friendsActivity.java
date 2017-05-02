@@ -17,6 +17,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Created by Ryan Kellerman & Namit Patel on 4/21/2017.
+ */
+
 public class friendsActivity extends Fragment implements AsyncResponse, View.OnClickListener{
 
     ListView friendsList;
@@ -25,7 +29,21 @@ public class friendsActivity extends Fragment implements AsyncResponse, View.OnC
     View rootView;
     String[] friendsRequestNames = null;
 
-
+    /**
+     *
+     * This function initializes all variables
+     * when view is created,  to values
+     * obtained from our database.
+     *
+     * @param inflater
+     * Android Studio Default Parameter
+     * @param container
+     * Android Studio Default Parameter
+     * @param savedInstanceState
+     * Android Studio Default Parameter
+     * @return rootView
+     *
+     */
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         rootView = inflater.inflate(R.layout.friends_layout, container, false);
 
@@ -33,7 +51,7 @@ public class friendsActivity extends Fragment implements AsyncResponse, View.OnC
         friendsRequestList = (ListView) rootView.findViewById(R.id.friendsRequestsListView);
         Button butt = (Button) rootView.findViewById(R.id.searchFriendsButton);
         butt.setOnClickListener(this);
-        // lmao butt
+
         Typeface myTpeface = Typeface.createFromAsset(getContext().getAssets(),"Lobster 1.4.otf");
         Typeface supportfont = Typeface.createFromAsset(getContext().getAssets(),"Montserrat-UltraLight.otf");
 
@@ -100,6 +118,12 @@ public class friendsActivity extends Fragment implements AsyncResponse, View.OnC
         return rootView;
     }
 
+    /**
+     * Listening function that waits for certain button to be pressed.
+     *
+     * @param v
+     * Android Studio Default Parameter
+     */
     @Override
     public void onClick(View v) {
         EditText text = (EditText) rootView.findViewById(R.id.friendSearch);

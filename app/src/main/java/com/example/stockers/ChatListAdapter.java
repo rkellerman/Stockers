@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 /**
- * Created by namit on 4/21/2017.
+ * Created by Namit Patel on 4/21/2017.
  */
 
 public class ChatListAdapter extends ArrayAdapter<String>{
@@ -21,6 +21,19 @@ public class ChatListAdapter extends ArrayAdapter<String>{
     String[] messageTime={};
     Context c;
     LayoutInflater inflater;
+
+
+    /**
+     * This is used to initialize the chat log for the ChatActivity.
+     * @param context
+     * Android Studio Default Parameter
+     * @param userName
+     * Array contains usernames of all players
+     * @param userMessage
+     * Array contains messages from all players
+     * @param messageTime
+     * Array contains times of each message
+     */
 
     public ChatListAdapter(Context context, String[] userName, String[] userMessage, String[] messageTime){
         super(context, R.layout.chat_row_model, userName);
@@ -38,6 +51,16 @@ public class ChatListAdapter extends ArrayAdapter<String>{
         TextView messageTime;
     }
 
+    /**
+     * Sets all values in XML file to display on app.
+     * @param position
+     * Current position of an element in the ListView widget
+     * @param convertView
+     * Android Studio Default Parameter
+     * @param parent
+     * Android Studio Default Parameter
+     * @return convertView
+     */
     @NonNull
     @Override
     // get view
@@ -60,10 +83,6 @@ public class ChatListAdapter extends ArrayAdapter<String>{
         holder.userName= (TextView) convertView.findViewById(R.id.userNameRow);
         holder.userMessage= (TextView) convertView.findViewById(R.id.userMessageRow);
         //holder.messageTime= (TextView) convertView.findViewById(R.id.messageTimeRow);
-
-
-
-
 
         //ASSIGN VIEWS
         holder.userName.setText(String.valueOf(userName[position]));

@@ -9,6 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+/**
+ * Created by Namit Patel.
+ */
+
 public class leaderboardListAdapter extends ArrayAdapter<String> {
 
     //DECLARATIONS
