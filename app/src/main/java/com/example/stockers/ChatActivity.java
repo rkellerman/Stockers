@@ -29,7 +29,7 @@ import com.example.stockers.AsyncResponse;
 import java.util.List;
 
 /**
- * Created by RyanMini on 4/17/17.
+ * Created by Ryan Kellerman on 4/17/17.
  */
 
 public class ChatActivity extends Fragment implements AsyncResponse, View.OnClickListener{

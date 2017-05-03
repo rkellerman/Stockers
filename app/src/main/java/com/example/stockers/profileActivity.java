@@ -27,6 +27,10 @@ import android.widget.TextView;
 import static android.R.attr.onClick;
 import static android.app.Activity.RESULT_OK;
 
+/**
+ * Created by Ryan Kellerman
+ */
+
 public class profileActivity extends Fragment implements View.OnClickListener, AsyncResponse{
     public boolean ProfileState_actual = false;
     public boolean ProfileState_expected = true;

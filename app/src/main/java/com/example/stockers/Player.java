@@ -3,7 +3,7 @@ package com.example.stockers;
 import java.io.Serializable;
 
 /**
- * Created by RyanMini on 3/2/17.
+ * Created by Ryan Kellerman on 3/2/17.
  */
 
 public class Player implements Serializable{

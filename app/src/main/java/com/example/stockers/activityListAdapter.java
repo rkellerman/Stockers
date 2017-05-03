@@ -12,7 +12,7 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 
 /**
- * Created by RyanMini on 4/23/17.
+ * Created by Ryan Kellerman on 4/23/17.
  */
 
 public class activityListAdapter extends ArrayAdapter<String> {

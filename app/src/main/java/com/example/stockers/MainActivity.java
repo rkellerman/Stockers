@@ -17,6 +17,10 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import java.io.Serializable;
 
+/**
+ * Created by Ryan Kellerman
+ */
+
 public class MainActivity extends AppCompatActivity implements AsyncResponse{
 
     public boolean LoginState_actual = false;

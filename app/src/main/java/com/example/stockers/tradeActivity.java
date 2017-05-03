@@ -24,7 +24,7 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 /**
  * the tradeActivity will auto generate different variables that can be used in the code
- *
+ * Created by Ryan Kellerman
  */
 
 public class tradeActivity extends Fragment implements AsyncResponse{

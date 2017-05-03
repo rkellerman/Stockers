@@ -28,6 +28,7 @@ import com.example.stockers.SharedPreference.*;
 
 /**
  * Backgroundworker class that runs all the important functions and calls for the app
+ * Created by Ryan Kellerman
  */
 
 public class BackgroundWorker extends AsyncTask<String, Void, String> {

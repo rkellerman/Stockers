@@ -16,7 +16,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 /**
- * Created by RyanMini on 4/23/17.
+ * Created by Ryan Kellerman on 4/23/17.
  */
 
 public class tutorialActivity extends Fragment {
