@@ -41,21 +41,21 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
     SharedPreferences sharedPref;
 
-    public static String login_url = "http://stockers.atwebpages.com/login.php";
-    public static String register_url = "http://stockers.atwebpages.com/register.php";
-    public static String viewPrices_url = "http://stockers.atwebpages.com/viewPrices.php";
-    public static String purchase_url = "http://stockers.atwebpages.com/purchase.php";
-    public static String sell_url = "http://stockers.atwebpages.com/sell.php";
-    public static String update_url = "http://stockers.atwebpages.com/yahoostock.php";
-    public static String portfolio_url = "http://stockers.atwebpages.com/portfolio.php";
-    public static String leaderboard_url = "http://stockers.atwebpages.com/leaderboard.php";
-    public static String price_url = "http://stockers.atwebpages.com/price.php";
-    public static String graph_url = "http://stockers.atwebpages.com/graph.php";
-    public static String getMessages_url = "http://stockers.atwebpages.com/getMessages.php";
-    public static String sendMessage_url = "http://stockers.atwebpages.com/sendMessage.php";
-    public static String friend_url = "http://stockers.atwebpages.com/friend.php";
-    public static String friendLeaderboard_url = "http://stockers.atwebpages.com/friendLeaderboard.php";
-    public static String activity_url = "http://stockers.atwebpages.com/activity.php";
+    public static String login_url = "http://73.178.70.160/login.php";
+    public static String register_url = "http://73.178.70.160/register.php";
+    public static String viewPrices_url = "http://73.178.70.160/viewPrices.php";
+    public static String purchase_url = "http://73.178.70.160/purchase.php";
+    public static String sell_url = "http://73.178.70.160/sell.php";
+    public static String update_url = "http://73.178.70.160/yahoostock.php";
+    public static String portfolio_url = "http://73.178.70.160/portfolio.php";
+    public static String leaderboard_url = "http://73.178.70.160/leaderboard.php";
+    public static String price_url = "http://73.178.70.160/price.php";
+    public static String graph_url = "http://73.178.70.160/graph.php";
+    public static String getMessages_url = "http://73.178.70.160/getMessages.php";
+    public static String sendMessage_url = "http://73.178.70.160/sendMessage.php";
+    public static String friend_url = "http://73.178.70.160/friend.php";
+    public static String friendLeaderboard_url = "http://73.178.70.160/friendLeaderboard.php";
+    public static String activity_url = "http://73.178.70.160/activity.php";
 
     Context context;
     AlertDialog alertDialog;
@@ -113,7 +113,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
 
             HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
-            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.setRequestMethod("GET");
             httpURLConnection.setDoOutput(true);
             httpURLConnection.setDoInput(true);
 
